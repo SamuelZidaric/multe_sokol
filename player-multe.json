@@ -1,28 +1,162 @@
-{
-  "3": [
-    {
-      "multaId": 0,
-      "count": 1
-    }
-  ],
-  "15": [
-    {
-      "multaId": 5,
-      "count": 5
-    }
-  ],
-  "18": [
-    {
-      "multaId": 6,
-      "count": 1
-    },
-    {
-      "multaId": 11,
-      "count": 1
-    },
-    {
-      "multaId": 1,
-      "count": 1
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "playerId": 16,
+    "multaId": 24,
+    "date": "27/07/2025",
+    "status": "Pending",
+    "desc": "BD"
+  },
+  {
+    "id": 2,
+    "playerId": 12,
+    "multaId": 16,
+    "date": "22/07/2025",
+    "status": "Pending",
+    "desc": "slika"
+  },
+  {
+    "id": 3,
+    "playerId": 7,
+    "multaId": 22,
+    "date": "08/08/2025",
+    "status": "Pending",
+    "desc": "Patente motor"
+  },
+  {
+    "id": 4,
+    "playerId": 9,
+    "multaId": 16,
+    "date": "15/08/2025",
+    "status": "Pending",
+    "desc": "slika"
+  },
+  {
+    "id": 5,
+    "playerId": 29,
+    "multaId": 16,
+    "date": "20/08/2025",
+    "status": "Pending",
+    "desc": "video"
+  },
+  {
+    "id": 6,
+    "playerId": 20,
+    "multaId": 24,
+    "date": "06/09/2025",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 7,
+    "playerId": 2,
+    "multaId": 22,
+    "date": "17/09/2025",
+    "status": "Pending",
+    "desc": "Nou auto"
+  },
+  {
+    "id": 8,
+    "playerId": 15,
+    "multaId": 24,
+    "date": "22/09/2025",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 9,
+    "playerId": 23,
+    "multaId": 21,
+    "date": "27/09/2025",
+    "status": "Pending",
+    "desc": "Patente Gusti Halo"
+  },
+  {
+    "id": 10,
+    "playerId": 15,
+    "multaId": 6,
+    "date": "02/10/2025",
+    "status": "Pending",
+    "desc": "Pozabu majco dresa"
+  },
+  {
+    "id": 11,
+    "playerId": 15,
+    "multaId": 6,
+    "date": "02/10/2025",
+    "status": "Pending",
+    "desc": "Pozabu majco dresa"
+  },
+  {
+    "id": 12,
+    "playerId": 15,
+    "multaId": 6,
+    "date": "02/10/2025",
+    "status": "Pending",
+    "desc": "Pozabu hlace dresa"
+  },
+  {
+    "id": 13,
+    "playerId": 15,
+    "multaId": 6,
+    "date": "02/10/2025",
+    "status": "Pending",
+    "desc": "Pozabu hlace dresa"
+  },
+  {
+    "id": 14,
+    "playerId": 18,
+    "multaId": 2,
+    "date": "04/10/2025",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 15,
+    "playerId": 18,
+    "multaId": 7,
+    "date": "04/10/2025",
+    "status": "Pending",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 16,
+    "playerId": 5,
+    "multaId": 7,
+    "date": "04/10/2025",
+    "status": "Pending",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 17,
+    "playerId": 6,
+    "multaId": 21,
+    "date": "06/10/2025",
+    "status": "Pending",
+    "desc": "Patent Halo"
+  },
+  {
+    "id": 18,
+    "playerId": 15,
+    "multaId": 5,
+    "date": "07/10/2025",
+    "status": "Pending",
+    "desc": "Pozabu majco u telovadnici"
+  },
+  {
+    "id": 19,
+    "playerId": 18,
+    "multaId": 12,
+    "date": "09/10/2025",
+    "status": "Pending",
+    "desc": "Podaja alla alba"
+  },
+  {
+    "id": 20,
+    "playerId": 3,
+    "multaId": 1,
+    "date": "09/10/2025",
+    "status": "Validated",
+    "desc": "Multa Telefono"
+  }
+]
