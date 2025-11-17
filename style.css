@@ -1,0 +1,279 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.app-title {
+  color: #d84315;
+  text-align: center;
+  margin-top: 0;
+}
+
+.main-controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #d84315;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background-color: #bf360c;
+}
+
+.btn-purple {
+  background-color: #6a1b9a;
+}
+
+.btn-purple:hover {
+  background-color: #4a148c;
+}
+
+.btn-blue {
+  background-color: #0277bd;
+}
+
+.btn-blue:hover {
+  background-color: #01579b;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid;
+}
+
+.section-multe-list {
+  background-color: #fff3e0;
+  border-color: #d84315;
+}
+
+.section-player-multe {
+  background-color: #f3e5f5;
+  border-color: #6a1b9a;
+}
+
+.section-beer {
+  background-color: #e3f2fd;
+  border-color: #0277bd;
+}
+
+.section-title {
+  margin-top: 0;
+}
+
+.section-title-orange {
+  color: #d84315;
+}
+
+.section-title-purple {
+  color: #6a1b9a;
+}
+
+.section-title-blue {
+  color: #0277bd;
+}
+
+.multe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+}
+
+.multe-note {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.multe-note p {
+  margin: 5px 0;
+}
+
+.badge {
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.badge-kasa {
+  background-color: #ff6f00;
+}
+
+.badge-merenda {
+  background-color: #c62828;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.stats-total {
+  grid-column: 1 / -1;
+  background-color: #f3e5f5;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #6a1b9a;
+}
+
+.stats-total h3 {
+  margin: 0 0 10px 0;
+}
+
+.stats-total-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.player-card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #6a1b9a;
+}
+
+.player-card-multe-list {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.multa-item {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: #fafafa;
+  border-left: 3px solid #d84315;
+  padding-left: 10px;
+}
+
+.beer-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.beer-total {
+  grid-column: 1 / -1;
+  background-color: #fff3e0;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #0277bd;
+}
+
+.beer-section-header {
+  grid-column: 1 / -1;
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #0277bd;
+}
+
+.beer-item {
+  background-color: white;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #0277bd;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  background-color: #d84315;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
+td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.td-alias {
+  color: #666;
+  font-style: italic;
+}
+
+.td-club {
+  color: #0277bd;
+  font-size: 0.9em;
+}
+
+.td-total {
+  font-weight: bold;
+  background-color: #fff3e0;
+}
+
+.th-total {
+  background-color: #fff3e0;
+  color: #d84315;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

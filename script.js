@@ -1,0 +1,279 @@
+import React, { useState, useEffect } from 'react';
+
+const BasketballTracker = () => {
+  // State for data loaded from JSON
+  const [playersData, setPlayersData] = useState([]);
+  const [multeTypesData, setMulteTypesData] = useState([]);
+
+  // Load data from JSON files
+  useEffect(() => {
+    // Load players data
+    fetch('./players.json')
+      .then(response => response.json())
+      .then(data => setPlayersData(data))
+      .catch(error => console.error('Error loading players:', error));
+
+    // Load multe types data
+    fetch('./multe-types.json')
+      .then(response => response.json())
+      .then(data => setMulteTypesData(data))
+      .catch(error => console.error('Error loading multe types:', error));
+  }, []);
+
+  // Initialize sample data
+  const initPlayerMulte = () => {
+    const initial = {};
+    playersData.forEach(p => {
+      initial[p.id] = [];
+    });
+    // Sample data
+    initial[3] = [{multaId: 0, count: 1}]; // Teo
+    initial[15] = [{multaId: 5, count: 5}]; // Lopreiato
+    initial[18] = [{multaId: 6, count: 1}, {multaId: 11, count: 1}, {multaId: 1, count: 1}]; // Sasa
+    return initial;
+  };
+
+  // State management
+  const [dates] = useState([]);
+  const [multe] = useState({});
+  const [beers] = useState([]);
+  const [playerMulte] = useState(() => {
+    if (playersData.length > 0) {
+      return initPlayerMulte();
+    }
+    return {};
+  });
+  const [showMulteList, setShowMulteList] = useState(false);
+  const [showBeerSection, setShowBeerSection] = useState(false);
+  const [showPlayerMulteSection, setShowPlayerMulteSection] = useState(true);
+
+  // Re-initialize playerMulte when playersData is loaded
+  useEffect(() => {
+    if (playersData.length > 0) {
+      // Don't reinitialize if already set
+    }
+  }, [playersData]);
+
+  // Calculate player multe stats
+  const playerMulteStats = () => {
+    if (!playersData.length || !multeTypesData.length) return [];
+
+    const stats = [];
+    playersData.forEach(player => {
+      const multe = playerMulte[player.id] || [];
+      if (multe.length > 0) {
+        const totalCount = multe.reduce((sum, m) => sum + m.count, 0);
+        let totalEuro = 0;
+        let kasaCount = 0;
+        let merendaCount = 0;
+
+        multe.forEach(m => {
+          const multaType = multeTypesData.find(mt => mt.id === m.multaId);
+          if (multaType) {
+            if (typeof multaType.price === 'number') {
+              totalEuro += multaType.price * m.count;
+            } else if (multaType.price === 'KASA') {
+              kasaCount += m.count;
+            } else if (multaType.price === 'MERENDA') {
+              merendaCount += m.count;
+            }
+          }
+        });
+
+        stats.push({
+          player,
+          multe,
+          totalCount,
+          totalEuro,
+          kasaCount,
+          merendaCount
+        });
+      }
+    });
+
+    return stats.sort((a, b) => b.totalCount - a.totalCount);
+  };
+
+  // Calculate beer stats
+  const beerStats = () => {
+    const beerCount = {};
+    const playerCount = {};
+    let totalBeers = 0;
+
+    beers.forEach(beer => {
+      beerCount[beer.name] = (beerCount[beer.name] || 0) + beer.quantity;
+      if (beer.player !== 'N/A') {
+        playerCount[beer.player] = (playerCount[beer.player] || 0) + beer.quantity;
+      }
+      totalBeers += beer.quantity;
+    });
+
+    return { beerCount, playerCount, totalBeers };
+  };
+
+  const stats = playerMulteStats();
+  const totalMulteCount = stats.reduce((sum, s) => sum + s.totalCount, 0);
+  const totalEuroSum = stats.reduce((sum, s) => sum + s.totalEuro, 0);
+  const totalKasa = stats.reduce((sum, s) => sum + s.kasaCount, 0);
+  const totalMerenda = stats.reduce((sum, s) => sum + s.merendaCount, 0);
+
+  const { beerCount, playerCount, totalBeers } = beerStats();
+
+  return (
+    <div className="app-container">
+      <h1 className="app-title">
+        Basketball Tracker - Multe & Sokol
+      </h1>
+
+      {/* Main Controls */}
+      <div className="main-controls">
+        <button onClick={() => setShowMulteList(!showMulteList)} className="btn">
+          Liste Multe
+        </button>
+        <button onClick={() => setShowPlayerMulteSection(!showPlayerMulteSection)}
+                className="btn btn-purple">
+          Multe per Giocatore
+        </button>
+        <button onClick={() => setShowBeerSection(!showBeerSection)}
+                className="btn btn-blue">
+          Gestione Birre
+        </button>
+      </div>
+
+      {/* Multe List */}
+      {showMulteList && (
+        <div className="section section-multe-list">
+          <h2 className="section-title section-title-orange">Liste delle Multe</h2>
+          <div className="multe-grid">
+            {multeTypesData.map(multa => (
+              <div key={multa.id}>
+                <strong>{multa.id}.</strong> {multa.name} - {' '}
+                {typeof multa.price === 'number' ? (
+                  <strong>${multa.price}</strong>
+                ) : multa.price === 'KASA' ? (
+                  <span className="badge badge-kasa">KASA</span>
+                ) : (
+                  <span className="badge badge-merenda">MERENDA</span>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="multe-note">
+            <p><strong>Note:</strong></p>
+            <p><span className="badge badge-kasa">KASA</span> = Il giocatore offre birre per tutta la squadra</p>
+            <p><span className="badge badge-merenda">MERENDA</span> = Kasa + Cena per tutta la squadra</p>
+          </div>
+        </div>
+      )}
+
+      {/* Player Multe Section */}
+      {showPlayerMulteSection && (
+        <div className="section section-player-multe">
+          <h2 className="section-title section-title-purple">Multe per Giocatore</h2>
+          <PlayerMulteStats
+            stats={stats}
+            multeTypesData={multeTypesData}
+            totalMulteCount={totalMulteCount}
+            totalEuroSum={totalEuroSum}
+            totalKasa={totalKasa}
+            totalMerenda={totalMerenda}
+          />
+        </div>
+      )}
+
+      {/* Beer Section */}
+      {showBeerSection && (
+        <div className="section section-beer">
+          <h2 className="section-title section-title-blue">Database Birre Bevute</h2>
+          <BeerStats
+            beerCount={beerCount}
+            playerCount={playerCount}
+            totalBeers={totalBeers}
+            hasBeers={beers.length > 0}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Components
+const PlayerMulteStats = ({ stats, multeTypesData, totalMulteCount, totalEuroSum, totalKasa, totalMerenda }) => {
+  if (stats.length === 0) {
+    return <p>Nessuna multa registrata ancora. I dati di esempio sono già presenti!</p>;
+  }
+
+  return (
+    <div className="stats-grid">
+      <div className="stats-total">
+        <h3>Statistiche Totali</h3>
+        <div className="stats-total-grid">
+          <div><strong>Multe totali:</strong> {totalMulteCount}</div>
+          <div><strong>Euro totali:</strong> ${totalEuroSum.toFixed(2)}</div>
+          <div><strong>KASA totali:</strong> {totalKasa}</div>
+          <div><strong>MERENDA totali:</strong> {totalMerenda}</div>
+        </div>
+      </div>
+      {stats.map(stat => (
+        <div key={stat.player.id} className="player-card">
+          <strong>{stat.player.name} {stat.player.surname}</strong> {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
+          <div style={{marginTop: '8px'}}>
+            <div><strong>Totale multe:</strong> {stat.totalCount}</div>
+            <div><strong>Totale $:</strong> ${stat.totalEuro.toFixed(2)}</div>
+            {stat.kasaCount > 0 && <div><span className="badge badge-kasa">KASA</span>: {stat.kasaCount}x</div>}
+            {stat.merendaCount > 0 && <div><span className="badge badge-merenda">MERENDA</span>: {stat.merendaCount}x</div>}
+          </div>
+          <div className="player-card-multe-list">
+            {stat.multe.map((m, idx) => {
+              const multaType = multeTypesData.find(mt => mt.id === m.multaId);
+              if (!multaType) return null;
+              const priceStr = typeof multaType.price === 'number' ? `$${multaType.price}` :
+                              multaType.price === 'KASA' ? 'KASA' : 'MERENDA';
+              return (
+                <div key={idx} className="multa-item">
+                  <strong>{m.count}x</strong> {multaType.name} - {priceStr}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const BeerStats = ({ beerCount, playerCount, totalBeers, hasBeers }) => {
+  if (!hasBeers) {
+    return <p>Nessuna birra registrata ancora.</p>;
+  }
+
+  return (
+    <div className="beer-stats-grid">
+      <div className="beer-total">
+        <strong>Totale Birre Bevute: {totalBeers}</strong>
+      </div>
+      <div className="beer-section-header">
+        <strong>Per Tipo di Birra:</strong>
+      </div>
+      {Object.entries(beerCount).sort((a, b) => b[1] - a[1]).map(([beer, count]) => (
+        <div key={beer} className="beer-item">
+          <strong>{beer}</strong>: {count}x
+        </div>
+      ))}
+      {Object.keys(playerCount).length > 0 && (
+        <>
+          <div className="beer-section-header">
+            <strong>Chi ha offerto di più:</strong>
+          </div>
+          {Object.entries(playerCount).sort((a, b) => b[1] - a[1]).map(([player, count]) => (
+            <div key={player} className="beer-item">
+              <strong>{player}</strong>: {count}x birre offerte
+            </div>
+          ))}
+        </>
+      )}
+    </div>
+  );
+};
+
+export default BasketballTracker;
