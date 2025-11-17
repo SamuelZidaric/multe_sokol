@@ -1,649 +1,292 @@
-import React, { useState } from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basketball Tracker - Multe & Sokol</title>
+  <link rel="stylesheet" href="style.css">
 
-const BasketballTracker = () => {
-  // Players data
-  const playersData = [
-    {id: 1, surname: "Albanese", name: "Alan", alias: "Alan", year: 1994, club: "ND"},
-    {id: 2, surname: "Albanese", name: "Enrico", alias: "Alba", year: 1997, club: "Alga"},
-    {id: 3, surname: "Bratus", name: "Teo", alias: "Teo", year: 2008, club: "ND"},
-    {id: 4, surname: "Daneu", name: "Niko", alias: "Niko", year: 1994, club: "ND"},
-    {id: 5, surname: "Doljak", name: "Marko", alias: "Doljak", year: 2003, club: "ND"},
-    {id: 6, surname: "Emili", name: "Ruben", alias: "ND", year: 2006, club: "ND"},
-    {id: 7, surname: "Ferfolja", name: "Jan", alias: "Minda", year: 1999, club: "Triljan"},
-    {id: 8, surname: "Furlan", name: "Matija", alias: "Ruži buži", year: 1998, club: "Blacky di seppia"},
-    {id: 9, surname: "Gerin", name: "Matija", alias: "Gerry", year: 2004, club: "Girin"},
-    {id: 10, surname: "Gherlani", name: "Peter", alias: "Lani", year: 2003, club: "ND"},
-    {id: 11, surname: "Grgić", name: "Ivan", alias: "CPQ", year: 1998, club: "Sipy"},
-    {id: 12, surname: "Gutty", name: "Francesco", alias: "Gutty", year: 2001, club: "Guatty"},
-    {id: 13, surname: "Hmeljak", name: "Samuel", alias: "ND", year: 2009, club: "ND"},
-    {id: 14, surname: "Hrovatin", name: "Peter", alias: "Hrova", year: 1986, club: "ND"},
-    {id: 15, surname: "Lopreiato", name: "Francesco", alias: "Franz/Lopre", year: 2004, club: "Lopescato"},
-    {id: 16, surname: "Malalan", name: "Erik", alias: "Mali", year: 1994, club: "ND"},
-    {id: 17, surname: "Malalan", name: "Matej", alias: "Gallo", year: 1991, club: "ND"},
-    {id: 18, surname: "Malalan", name: "Sasa", alias: "Fazan", year: 1989, club: "ND"},
-    {id: 19, surname: "Mandić", name: "Aleksander", alias: "Aco", year: 1997, club: "Pesce Pajaco"},
-    {id: 20, surname: "Peric", name: "Francesco", alias: "Fritz", year: 1996, club: "Francopesco"},
-    {id: 21, surname: "Raseni", name: "Luka", alias: "Rasko", year: 2003, club: "ND"},
-    {id: 22, surname: "Renzi", name: "Max", alias: "Ape", year: 2008, club: "ND"},
-    {id: 23, surname: "Scrigner", name: "Daniele", alias: "ND", year: 2001, club: "ND"},
-    {id: 24, surname: "Siega", name: "Fabian", alias: "Flareon", year: 2004, club: "ND"},
-    {id: 25, surname: "Sossi", name: "Niko", alias: "Majki", year: 1991, club: "ND"},
-    {id: 26, surname: "Švab", name: "Marko", alias: "Švabon", year: 1983, club: "ND"},
-    {id: 27, surname: "Terčon", name: "Erik", alias: "Pugnetto/Trčun", year: 2002, club: "Ericcio"},
-    {id: 28, surname: "Ušaj", name: "Ivo", alias: "Ivo", year: 1997, club: "Ivongola"},
-    {id: 29, surname: "Visentin", name: "Cristian", alias: "ND", year: 1997, club: "ND"},
-    {id: 30, surname: "Zidaric", name: "Samuel", alias: "ND", year: 1998, club: "Samuela Sardela"},
-    {id: 31, surname: "Zidaric", name: "Sasha", alias: "Sasha", year: 2001, club: "Zidaribič"}
-  ];
+  <!-- React and ReactDOM from CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 
-  // Multe types
-  const multeTypesData = [
-    {id: 0, name: "Prvi rabu telefon v slačilnici", price: 1},
-    {id: 1, name: "0/2 liberi", price: 2},
-    {id: 2, name: "Airball liberi", price: 2},
-    {id: 3, name: "Ni prnesu multe", price: 2},
-    {id: 4, name: "Pozabu opremo u telovadnici", price: 3},
-    {id: 5, name: "Pozabu opremo u slačilnici", price: 3},
-    {id: 6, name: "Zgrešen zicer", price: 3},
-    {id: 7, name: "Tecnico", price: 10},
-    {id: 8, name: "5 falli", price: 5},
-    {id: 9, name: "Obvestil ksno za trening (min 1h prej)", price: 5},
-    {id: 10, name: "Ni prnesu kaso in ni zrihtu", price: 5},
-    {id: 11, name: "Podaja de merda alla alba", price: 5},
-    {id: 12, name: "0/3 liberi alla minda", price: 5},
-    {id: 13, name: "Antisportivo", price: 5},
-    {id: 14, name: "Espulsion", price: "KASA"},
-    {id: 15, name: "Limon duro alla trčun documentado", price: "KASA"},
-    {id: 16, name: "Mankal brez obvesit", price: "KASA"},
-    {id: 17, name: "Pozabu dres/dokumet za partido", price: "KASA"},
-    {id: 18, name: "Osebni rekord punti", price: "KASA"},
-    {id: 19, name: "Buzzerbeater zmaga/ot", price: "KASA"},
-    {id: 20, name: "Patente alla Lopre", price: "KASA"},
-    {id: 21, name: "Personal Milestone", price: "KASA"},
-    {id: 22, name: "Kasa misc", price: "KASA"},
-    {id: 23, name: "Rojstni dan", price: "MERENDA"},
-    {id: 24, name: "Merenda misc", price: "MERENDA"}
-  ];
+  <!-- Babel Standalone for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
 
-  // Initialize sample data
-  const initPlayerMulte = () => {
-    const initial = {};
-    playersData.forEach(p => {
-      initial[p.id] = [];
-    });
-    // Sample data
-    initial[3].push({multaId: 0, count: 1}); // Teo
-    initial[15].push({multaId: 5, count: 5}); // Lopreiato
-    initial[18].push({multaId: 6, count: 1}); // Sasa
-    initial[18].push({multaId: 11, count: 1});
-    initial[18].push({multaId: 1, count: 1});
-    return initial;
-  };
+  <!-- Main application script -->
+  <script type="text/babel" src="script.js"></script>
 
-  // State management
-  const [dates, setDates] = useState([]);
-  const [multe, setMulte] = useState({});
-  const [beers, setBeers] = useState([]);
-  const [playerMulte, setPlayerMulte] = useState(initPlayerMulte());
-  const [showMulteList, setShowMulteList] = useState(false);
-  const [showBeerSection, setShowBeerSection] = useState(false);
-  const [showPlayerMulteSection, setShowPlayerMulteSection] = useState(false);
+  <!-- Bootstrap the React application -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
 
-  // Add new date
-  const addDate = () => {
-    const dateStr = prompt('Inserisci la data (es. 14/10/2025):');
-    if (dateStr && !dates.includes(dateStr)) {
-      setDates([...dates, dateStr]);
-    }
-  };
+    const BasketballTracker = () => {
+      // State for data loaded from JSON
+      const [playersData, setPlayersData] = useState([]);
+      const [multeTypesData, setMulteTypesData] = useState([]);
+      const [playerMulte, setPlayerMulte] = useState({});
 
-  // Update multa for player on date
-  const updateMulta = (playerId, date, value) => {
-    setMulte(prev => ({
-      ...prev,
-      [playerId]: {
-        ...prev[playerId],
-        [date]: value
-      }
-    }));
-  };
+      // Load data from JSON files
+      useEffect(() => {
+        // Load players data
+        fetch('./players.json')
+          .then(response => response.json())
+          .then(data => {
+            setPlayersData(data);
+            // Initialize player multe after loading players
+            const initial = {};
+            data.forEach(p => {
+              initial[p.id] = [];
+            });
+            // Sample data
+            initial[3] = [{multaId: 0, count: 1}]; // Teo
+            initial[15] = [{multaId: 5, count: 5}]; // Lopreiato
+            initial[18] = [{multaId: 6, count: 1}, {multaId: 11, count: 1}, {multaId: 1, count: 1}]; // Sasa
+            setPlayerMulte(initial);
+          })
+          .catch(error => console.error('Error loading players:', error));
 
-  // Calculate total for player
-  const calculatePlayerTotal = (playerId) => {
-    let total = 0;
-    dates.forEach(date => {
-      if (multe[playerId]?.[date]) {
-        total += parseFloat(multe[playerId][date]) || 0;
-      }
-    });
-    return total;
-  };
+        // Load multe types data
+        fetch('./multe-types.json')
+          .then(response => response.json())
+          .then(data => setMulteTypesData(data))
+          .catch(error => console.error('Error loading multe types:', error));
+      }, []);
 
-  // Add beer
-  const addBeer = (date, name, quantity, player) => {
-    if (!date || !name) {
-      alert('Inserisci almeno data e nome della birra!');
-      return;
-    }
-    setBeers([...beers, { date, name, quantity: parseInt(quantity) || 1, player: player || 'N/A' }]);
-  };
+      // State management
+      const [beers] = useState([]);
+      const [showMulteList, setShowMulteList] = useState(false);
+      const [showBeerSection, setShowBeerSection] = useState(false);
+      const [showPlayerMulteSection, setShowPlayerMulteSection] = useState(true);
 
-  // Add player multa
-  const addPlayerMulta = (playerId, multaId, quantity) => {
-    if (!playerId || multaId === null) {
-      alert('Seleziona un giocatore e un tipo di multa!');
-      return;
-    }
-    setPlayerMulte(prev => {
-      const existing = prev[playerId].find(m => m.multaId === multaId);
-      if (existing) {
-        return {
-          ...prev,
-          [playerId]: prev[playerId].map(m => 
-            m.multaId === multaId ? {...m, count: m.count + quantity} : m
-          )
-        };
-      } else {
-        return {
-          ...prev,
-          [playerId]: [...prev[playerId], {multaId, count: quantity}]
-        };
-      }
-    });
-  };
+      // Calculate player multe stats
+      const playerMulteStats = () => {
+        if (!playersData.length || !multeTypesData.length) return [];
 
-  // Reset all
-  const resetAll = () => {
-    if (confirm('Sei sicuro di voler resettare tutto? (Multe + Birre + Multe per Giocatore)')) {
-      setDates([]);
-      setMulte({});
-      setBeers([]);
-      setPlayerMulte(initPlayerMulte());
-    }
-  };
+        const stats = [];
+        playersData.forEach(player => {
+          const multe = playerMulte[player.id] || [];
+          if (multe.length > 0) {
+            const totalCount = multe.reduce((sum, m) => sum + m.count, 0);
+            let totalEuro = 0;
+            let kasaCount = 0;
+            let merendaCount = 0;
 
-  // Calculate beer stats
-  const beerStats = () => {
-    const beerCount = {};
-    const playerCount = {};
-    let totalBeers = 0;
+            multe.forEach(m => {
+              const multaType = multeTypesData.find(mt => mt.id === m.multaId);
+              if (multaType) {
+                if (typeof multaType.price === 'number') {
+                  totalEuro += multaType.price * m.count;
+                } else if (multaType.price === 'KASA') {
+                  kasaCount += m.count;
+                } else if (multaType.price === 'MERENDA') {
+                  merendaCount += m.count;
+                }
+              }
+            });
 
-    beers.forEach(beer => {
-      beerCount[beer.name] = (beerCount[beer.name] || 0) + beer.quantity;
-      if (beer.player !== 'N/A') {
-        playerCount[beer.player] = (playerCount[beer.player] || 0) + beer.quantity;
-      }
-      totalBeers += beer.quantity;
-    });
-
-    return { beerCount, playerCount, totalBeers };
-  };
-
-  // Calculate player multe stats
-  const playerMulteStats = () => {
-    const stats = [];
-    playersData.forEach(player => {
-      if (playerMulte[player.id].length > 0) {
-        const multe = playerMulte[player.id];
-        const totalCount = multe.reduce((sum, m) => sum + m.count, 0);
-        let totalEuro = 0;
-        let kasaCount = 0;
-        let merendaCount = 0;
-
-        multe.forEach(m => {
-          const multaType = multeTypesData.find(mt => mt.id === m.multaId);
-          if (multaType) {
-            if (typeof multaType.price === 'number') {
-              totalEuro += multaType.price * m.count;
-            } else if (multaType.price === 'KASA') {
-              kasaCount += m.count;
-            } else if (multaType.price === 'MERENDA') {
-              merendaCount += m.count;
-            }
+            stats.push({
+              player,
+              multe,
+              totalCount,
+              totalEuro,
+              kasaCount,
+              merendaCount
+            });
           }
         });
 
-        stats.push({
-          player,
-          multe,
-          totalCount,
-          totalEuro,
-          kasaCount,
-          merendaCount
+        return stats.sort((a, b) => b.totalCount - a.totalCount);
+      };
+
+      // Calculate beer stats
+      const beerStats = () => {
+        const beerCount = {};
+        const playerCount = {};
+        let totalBeers = 0;
+
+        beers.forEach(beer => {
+          beerCount[beer.name] = (beerCount[beer.name] || 0) + beer.quantity;
+          if (beer.player !== 'N/A') {
+            playerCount[beer.player] = (playerCount[beer.player] || 0) + beer.quantity;
+          }
+          totalBeers += beer.quantity;
         });
+
+        return { beerCount, playerCount, totalBeers };
+      };
+
+      const stats = playerMulteStats();
+      const totalMulteCount = stats.reduce((sum, s) => sum + s.totalCount, 0);
+      const totalEuroSum = stats.reduce((sum, s) => sum + s.totalEuro, 0);
+      const totalKasa = stats.reduce((sum, s) => sum + s.kasaCount, 0);
+      const totalMerenda = stats.reduce((sum, s) => sum + s.merendaCount, 0);
+
+      const { beerCount, playerCount, totalBeers } = beerStats();
+
+      return (
+        <div className="app-container">
+          <h1 className="app-title">
+            Basketball Tracker - Multe & Sokol
+          </h1>
+
+          {/* Main Controls */}
+          <div className="main-controls">
+            <button onClick={() => setShowMulteList(!showMulteList)} className="btn">
+              {showMulteList ? 'Nascondi' : 'Mostra'} Liste Multe
+            </button>
+            <button onClick={() => setShowPlayerMulteSection(!showPlayerMulteSection)}
+                    className="btn btn-purple">
+              {showPlayerMulteSection ? 'Nascondi' : 'Mostra'} Multe per Giocatore
+            </button>
+            <button onClick={() => setShowBeerSection(!showBeerSection)}
+                    className="btn btn-blue">
+              {showBeerSection ? 'Nascondi' : 'Mostra'} Gestione Birre
+            </button>
+          </div>
+
+          {/* Multe List */}
+          {showMulteList && (
+            <div className="section section-multe-list">
+              <h2 className="section-title section-title-orange">Liste delle Multe</h2>
+              <div className="multe-grid">
+                {multeTypesData.map(multa => (
+                  <div key={multa.id}>
+                    <strong>{multa.id}.</strong> {multa.name} - {' '}
+                    {typeof multa.price === 'number' ? (
+                      <strong>{multa.price}€</strong>
+                    ) : multa.price === 'KASA' ? (
+                      <span className="badge badge-kasa">KASA</span>
+                    ) : (
+                      <span className="badge badge-merenda">MERENDA</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="multe-note">
+                <p><strong>Note:</strong></p>
+                <p><span className="badge badge-kasa">KASA</span> = Il giocatore offre birre per tutta la squadra</p>
+                <p><span className="badge badge-merenda">MERENDA</span> = Kasa + Cena per tutta la squadra</p>
+              </div>
+            </div>
+          )}
+
+          {/* Player Multe Section */}
+          {showPlayerMulteSection && (
+            <div className="section section-player-multe">
+              <h2 className="section-title section-title-purple">Multe per Giocatore</h2>
+              <PlayerMulteStats
+                stats={stats}
+                multeTypesData={multeTypesData}
+                totalMulteCount={totalMulteCount}
+                totalEuroSum={totalEuroSum}
+                totalKasa={totalKasa}
+                totalMerenda={totalMerenda}
+              />
+            </div>
+          )}
+
+          {/* Beer Section */}
+          {showBeerSection && (
+            <div className="section section-beer">
+              <h2 className="section-title section-title-blue">Database Birre Bevute</h2>
+              <BeerStats
+                beerCount={beerCount}
+                playerCount={playerCount}
+                totalBeers={totalBeers}
+                hasBeers={beers.length > 0}
+              />
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // Components
+    const PlayerMulteStats = ({ stats, multeTypesData, totalMulteCount, totalEuroSum, totalKasa, totalMerenda }) => {
+      if (stats.length === 0) {
+        return <p>Nessuna multa registrata ancora.</p>;
       }
-    });
 
-    return stats.sort((a, b) => b.totalCount - a.totalCount);
-  };
-
-  const stats = playerMulteStats();
-  const totalMulteCount = stats.reduce((sum, s) => sum + s.totalCount, 0);
-  const totalEuroSum = stats.reduce((sum, s) => sum + s.totalEuro, 0);
-  const totalKasa = stats.reduce((sum, s) => sum + s.kasaCount, 0);
-  const totalMerenda = stats.reduce((sum, s) => sum + s.merendaCount, 0);
-
-  const { beerCount, playerCount, totalBeers } = beerStats();
-
-  return (
-    <div style={{
-      fontFamily: 'Arial, sans-serif',
-      margin: '20px',
-      backgroundColor: '#f5f5f5',
-      minHeight: '100vh'
-    }}>
-      <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        backgroundColor: 'white',
-        padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-      }}>
-        <h1 style={{color: '#d84315', textAlign: 'center'}}>
-          🏀 Multe & Beer Basketball Tracker 🍺
-        </h1>
-
-        {/* Main Controls */}
-        <div style={{
-          marginBottom: '20px',
-          display: 'flex',
-          gap: '10px',
-          flexWrap: 'wrap'
-        }}>
-          <button onClick={addDate} style={buttonStyle}>Aggiungi Data</button>
-          <button onClick={() => setShowMulteList(!showMulteList)} style={buttonStyle}>
-            Liste Multe
-          </button>
-          <button onClick={() => setShowPlayerMulteSection(!showPlayerMulteSection)} 
-                  style={{...buttonStyle, backgroundColor: '#6a1b9a'}}>
-            📊 Multe per Giocatore
-          </button>
-          <button onClick={() => setShowBeerSection(!showBeerSection)} 
-                  style={{...buttonStyle, backgroundColor: '#0277bd'}}>
-            🍺 Gestione Birre
-          </button>
-          <button onClick={resetAll} style={buttonStyle}>Reset Tutto</button>
-        </div>
-
-        {/* Multe List */}
-        {showMulteList && (
-          <div style={{
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: '#fff3e0',
-            borderRadius: '8px',
-            border: '2px solid #d84315'
-          }}>
-            <h2 style={{color: '#d84315', marginTop: 0}}>📋 Liste delle Multe</h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-              gap: '10px'
-            }}>
-              {multeTypesData.map(multa => (
-                <div key={multa.id}>
-                  <strong>{multa.id}.</strong> {multa.name} - {' '}
-                  {typeof multa.price === 'number' ? (
-                    <strong>€{multa.price}</strong>
-                  ) : multa.price === 'KASA' ? (
-                    <span style={kasaBadgeStyle}>KASA</span>
-                  ) : (
-                    <span style={merendaBadgeStyle}>MERENDA</span>
-                  )}
-                </div>
-              ))}
-            </div>
-            <div style={{marginTop: '15px', padding: '10px', backgroundColor: 'white', borderRadius: '4px'}}>
-              <p><strong>Note:</strong></p>
-              <p>🍺 <span style={kasaBadgeStyle}>KASA</span> = Il giocatore offre birre per tutta la squadra</p>
-              <p>🍽️ <span style={merendaBadgeStyle}>MERENDA</span> = Kasa + Cena per tutta la squadra</p>
+      return (
+        <div className="stats-grid">
+          <div className="stats-total">
+            <h3>Statistiche Totali</h3>
+            <div className="stats-total-grid">
+              <div><strong>Multe totali:</strong> {totalMulteCount}</div>
+              <div><strong>Euro totali:</strong> {totalEuroSum.toFixed(2)}€</div>
+              <div><strong>KASA totali:</strong> {totalKasa}</div>
+              <div><strong>MERENDA totali:</strong> {totalMerenda}</div>
             </div>
           </div>
-        )}
-
-        {/* Player Multe Section */}
-        {showPlayerMulteSection && (
-          <div style={{
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: '#f3e5f5',
-            borderRadius: '8px',
-            border: '2px solid #6a1b9a'
-          }}>
-            <h2 style={{color: '#6a1b9a', marginTop: 0}}>📊 Multe per Giocatore</h2>
-            <PlayerMulteForm 
-              playersData={playersData}
-              multeTypesData={multeTypesData}
-              onAdd={addPlayerMulta}
-            />
-            <PlayerMulteStats 
-              stats={stats}
-              multeTypesData={multeTypesData}
-              totalMulteCount={totalMulteCount}
-              totalEuroSum={totalEuroSum}
-              totalKasa={totalKasa}
-              totalMerenda={totalMerenda}
-            />
-          </div>
-        )}
-
-        {/* Beer Section */}
-        {showBeerSection && (
-          <div style={{
-            marginBottom: '20px',
-            padding: '15px',
-            backgroundColor: '#e3f2fd',
-            borderRadius: '8px',
-            border: '2px solid #0277bd'
-          }}>
-            <h2 style={{color: '#0277bd', marginTop: 0}}>🍺 Database Birre Bevute</h2>
-            <BeerForm playersData={playersData} onAdd={addBeer} />
-            <BeerStats 
-              beerCount={beerCount}
-              playerCount={playerCount}
-              totalBeers={totalBeers}
-              hasBeers={beers.length > 0}
-            />
-          </div>
-        )}
-
-        {/* Main Table */}
-        <MainTable 
-          playersData={playersData}
-          dates={dates}
-          multe={multe}
-          calculatePlayerTotal={calculatePlayerTotal}
-          updateMulta={updateMulta}
-        />
-      </div>
-    </div>
-  );
-};
-
-// Styles
-const buttonStyle = {
-  padding: '10px 20px',
-  backgroundColor: '#d84315',
-  color: 'white',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontSize: '14px'
-};
-
-const kasaBadgeStyle = {
-  backgroundColor: '#ff6f00',
-  color: 'white',
-  padding: '2px 6px',
-  borderRadius: '3px',
-  fontSize: '0.8em',
-  fontWeight: 'bold'
-};
-
-const merendaBadgeStyle = {
-  backgroundColor: '#c62828',
-  color: 'white',
-  padding: '2px 6px',
-  borderRadius: '3px',
-  fontSize: '0.8em',
-  fontWeight: 'bold'
-};
-
-// Components
-const PlayerMulteForm = ({ playersData, multeTypesData, onAdd }) => {
-  const [selectedPlayer, setSelectedPlayer] = useState('');
-  const [selectedMulta, setSelectedMulta] = useState('');
-  const [quantity, setQuantity] = useState(1);
-
-  const handleSubmit = () => {
-    onAdd(parseInt(selectedPlayer), parseInt(selectedMulta), quantity);
-    setSelectedPlayer('');
-    setSelectedMulta('');
-    setQuantity(1);
-  };
-
-  return (
-    <div style={{display: 'flex', gap: '10px', marginBottom: '15px', flexWrap: 'wrap', alignItems: 'center'}}>
-      <select value={selectedPlayer} onChange={(e) => setSelectedPlayer(e.target.value)}
-              style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}}>
-        <option value="">Seleziona Giocatore</option>
-        {playersData.map(p => (
-          <option key={p.id} value={p.id}>
-            {p.name} {p.surname} {p.alias !== 'ND' && `(${p.alias})`}
-          </option>
-        ))}
-      </select>
-      <select value={selectedMulta} onChange={(e) => setSelectedMulta(e.target.value)}
-              style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}}>
-        <option value="">Seleziona Tipo Multa</option>
-        {multeTypesData.map(m => (
-          <option key={m.id} value={m.id}>
-            {m.id}. {m.name} - {typeof m.price === 'number' ? `€${m.price}` : m.price}
-          </option>
-        ))}
-      </select>
-      <input type="number" min="1" value={quantity} 
-             onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-             placeholder="Quante volte?"
-             style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px', width: '120px'}} />
-      <button onClick={handleSubmit} style={buttonStyle}>Aggiungi Multa</button>
-    </div>
-  );
-};
-
-const PlayerMulteStats = ({ stats, multeTypesData, totalMulteCount, totalEuroSum, totalKasa, totalMerenda }) => {
-  if (stats.length === 0) {
-    return <p>Nessuna multa registrata ancora. I dati di esempio sono già presenti!</p>;
-  }
-
-  return (
-    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '10px', marginTop: '15px'}}>
-      <div style={{
-        gridColumn: '1 / -1',
-        backgroundColor: '#f3e5f5',
-        padding: '15px',
-        borderRadius: '4px',
-        border: '1px solid #6a1b9a'
-      }}>
-        <h3 style={{margin: '0 0 10px 0'}}>📊 Statistiche Totali</h3>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px'}}>
-          <div><strong>Multe totali:</strong> {totalMulteCount}</div>
-          <div><strong>Euro totali:</strong> €{totalEuroSum.toFixed(2)}</div>
-          <div><strong>KASA totali:</strong> {totalKasa}</div>
-          <div><strong>MERENDA totali:</strong> {totalMerenda}</div>
-        </div>
-      </div>
-      {stats.map(stat => (
-        <div key={stat.player.id} style={{
-          backgroundColor: 'white',
-          padding: '10px',
-          borderRadius: '4px',
-          border: '1px solid #6a1b9a'
-        }}>
-          <strong>{stat.player.name} {stat.player.surname}</strong> {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
-          <div style={{marginTop: '8px'}}>
-            <div><strong>Totale multe:</strong> {stat.totalCount}</div>
-            <div><strong>Totale €:</strong> €{stat.totalEuro.toFixed(2)}</div>
-            {stat.kasaCount > 0 && <div><span style={kasaBadgeStyle}>KASA</span>: {stat.kasaCount}x</div>}
-            {stat.merendaCount > 0 && <div><span style={merendaBadgeStyle}>MERENDA</span>: {stat.merendaCount}x</div>}
-          </div>
-          <div style={{paddingLeft: '20px', marginTop: '10px'}}>
-            {stat.multe.map((m, idx) => {
-              const multaType = multeTypesData.find(mt => mt.id === m.multaId);
-              if (!multaType) return null;
-              const priceStr = typeof multaType.price === 'number' ? `€${multaType.price}` :
-                              multaType.price === 'KASA' ? 'KASA' : 'MERENDA';
-              return (
-                <div key={idx} style={{
-                  margin: '5px 0',
-                  padding: '5px',
-                  backgroundColor: '#fafafa',
-                  borderLeft: '3px solid #d84315',
-                  paddingLeft: '10px'
-                }}>
-                  <strong>{m.count}x</strong> {multaType.name} - {priceStr}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const BeerForm = ({ playersData, onAdd }) => {
-  const [date, setDate] = useState('');
-  const [name, setName] = useState('');
-  const [quantity, setQuantity] = useState(1);
-  const [player, setPlayer] = useState('');
-
-  const handleSubmit = () => {
-    onAdd(date, name, quantity, player);
-    setDate('');
-    setName('');
-    setQuantity(1);
-    setPlayer('');
-  };
-
-  return (
-    <div style={{display: 'flex', gap: '10px', marginBottom: '15px', flexWrap: 'wrap', alignItems: 'center'}}>
-      <input type="text" value={date} onChange={(e) => setDate(e.target.value)}
-             placeholder="Data (es. 14/10/2025)"
-             style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} />
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-             placeholder="Nome birra"
-             style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}} />
-      <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-             placeholder="Quantità"
-             style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px', width: '100px'}} />
-      <select value={player} onChange={(e) => setPlayer(e.target.value)}
-              style={{padding: '8px', border: '1px solid #ccc', borderRadius: '4px'}}>
-        <option value="">Chi ha offerto? (opzionale)</option>
-        {playersData.map(p => (
-          <option key={p.id} value={`${p.name} ${p.surname}`}>
-            {p.name} {p.surname} {p.alias !== 'ND' && `(${p.alias})`}
-          </option>
-        ))}
-      </select>
-      <button onClick={handleSubmit} style={{...buttonStyle, backgroundColor: '#0277bd'}}>
-        Aggiungi Birra
-      </button>
-    </div>
-  );
-};
-
-const BeerStats = ({ beerCount, playerCount, totalBeers, hasBeers }) => {
-  if (!hasBeers) {
-    return <p>Nessuna birra registrata ancora. Aggiungi la prima! 🍺</p>;
-  }
-
-  return (
-    <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginTop: '15px'}}>
-      <div style={{
-        gridColumn: '1 / -1',
-        backgroundColor: '#fff3e0',
-        padding: '10px',
-        borderRadius: '4px',
-        border: '1px solid #0277bd'
-      }}>
-        <strong>🍺 Totale Birre Bevute: {totalBeers}</strong>
-      </div>
-      <div style={{gridColumn: '1 / -1', backgroundColor: 'white', padding: '10px', borderRadius: '4px', border: '1px solid #0277bd'}}>
-        <strong>Per Tipo di Birra:</strong>
-      </div>
-      {Object.entries(beerCount).sort((a, b) => b[1] - a[1]).map(([beer, count]) => (
-        <div key={beer} style={{backgroundColor: 'white', padding: '10px', borderRadius: '4px', border: '1px solid #0277bd'}}>
-          🍺 <strong>{beer}</strong>: {count}x
-        </div>
-      ))}
-      {Object.keys(playerCount).length > 0 && (
-        <>
-          <div style={{gridColumn: '1 / -1', backgroundColor: 'white', padding: '10px', borderRadius: '4px', border: '1px solid #0277bd'}}>
-            <strong>Chi ha offerto di più:</strong>
-          </div>
-          {Object.entries(playerCount).sort((a, b) => b[1] - a[1]).map(([player, count]) => (
-            <div key={player} style={{backgroundColor: 'white', padding: '10px', borderRadius: '4px', border: '1px solid #0277bd'}}>
-              👤 <strong>{player}</strong>: {count}x birre offerte
+          {stats.map(stat => (
+            <div key={stat.player.id} className="player-card">
+              <strong>{stat.player.name} {stat.player.surname}</strong> {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
+              <div style={{marginTop: '8px'}}>
+                <div><strong>Totale multe:</strong> {stat.totalCount}</div>
+                <div><strong>Totale €:</strong> {stat.totalEuro.toFixed(2)}€</div>
+                {stat.kasaCount > 0 && <div><span className="badge badge-kasa">KASA</span>: {stat.kasaCount}x</div>}
+                {stat.merendaCount > 0 && <div><span className="badge badge-merenda">MERENDA</span>: {stat.merendaCount}x</div>}
+              </div>
+              <div className="player-card-multe-list">
+                {stat.multe.map((m, idx) => {
+                  const multaType = multeTypesData.find(mt => mt.id === m.multaId);
+                  if (!multaType) return null;
+                  const priceStr = typeof multaType.price === 'number' ? `${multaType.price}€` :
+                                  multaType.price === 'KASA' ? 'KASA' : 'MERENDA';
+                  return (
+                    <div key={idx} className="multa-item">
+                      <strong>{m.count}x</strong> {multaType.name} - {priceStr}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           ))}
-        </>
-      )}
-    </div>
-  );
-};
+        </div>
+      );
+    };
 
-const MainTable = ({ playersData, dates, multe, calculatePlayerTotal, updateMulta }) => {
-  return (
-    <div style={{overflowX: 'auto'}}>
-      <table style={{width: '100%', borderCollapse: 'collapse', marginTop: '20px'}}>
-        <thead>
-          <tr>
-            <th style={thStyle}>Player</th>
-            <th style={thStyle}>Alias</th>
-            <th style={thStyle}>Letnik</th>
-            <th style={thStyle}>Fishing Club</th>
-            {dates.map(date => (
-              <th key={date} style={thStyle}>{date}</th>
-            ))}
-            <th style={{...thStyle, backgroundColor: '#fff3e0', color: '#d84315'}}>Totale €</th>
-          </tr>
-        </thead>
-        <tbody>
-          {playersData.map((player, idx) => (
-            <tr key={player.id} style={{backgroundColor: idx % 2 === 0 ? '#f9f9f9' : 'white'}}>
-              <td style={tdStyle}><strong>{player.name} {player.surname}</strong></td>
-              <td style={{...tdStyle, color: '#666', fontStyle: 'italic'}}>
-                {player.alias !== 'ND' ? player.alias : ''}
-              </td>
-              <td style={tdStyle}>{player.year}</td>
-              <td style={{...tdStyle, color: '#0277bd', fontSize: '0.9em'}}>
-                {player.club !== 'ND' ? player.club : ''}
-              </td>
-              {dates.map(date => (
-                <td key={date} style={tdStyle}>
-                  <input 
-                    type="number"
-                    value={multe[player.id]?.[date] || ''}
-                    onChange={(e) => updateMulta(player.id, date, e.target.value)}
-                    step="0.5"
-                    min="0"
-                    style={{
-                      width: '60px',
-                      padding: '4px',
-                      border: '1px solid #ccc',
-                      borderRadius: '4px'
-                    }}
-                  />
-                </td>
-              ))}
-              <td style={{...tdStyle, fontWeight: 'bold', backgroundColor: '#fff3e0'}}>
-                €{calculatePlayerTotal(player.id).toFixed(2)}
-              </td>
-            </tr>
+    const BeerStats = ({ beerCount, playerCount, totalBeers, hasBeers }) => {
+      if (!hasBeers) {
+        return <p>Nessuna birra registrata ancora.</p>;
+      }
+
+      return (
+        <div className="beer-stats-grid">
+          <div className="beer-total">
+            <strong>Totale Birre Bevute: {totalBeers}</strong>
+          </div>
+          <div className="beer-section-header">
+            <strong>Per Tipo di Birra:</strong>
+          </div>
+          {Object.entries(beerCount).sort((a, b) => b[1] - a[1]).map(([beer, count]) => (
+            <div key={beer} className="beer-item">
+              <strong>{beer}</strong>: {count}x
+            </div>
           ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+          {Object.keys(playerCount).length > 0 && (
+            <>
+              <div className="beer-section-header">
+                <strong>Chi ha offerto di più:</strong>
+              </div>
+              {Object.entries(playerCount).sort((a, b) => b[1] - a[1]).map(([player, count]) => (
+                <div key={player} className="beer-item">
+                  <strong>{player}</strong>: {count}x birre offerte
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+      );
+    };
 
-const thStyle = {
-  padding: '12px',
-  textAlign: 'left',
-  border: '1px solid #ddd',
-  backgroundColor: '#d84315',
-  color: 'white',
-  fontWeight: 'bold',
-  position: 'sticky',
-  top: 0
-};
-
-const tdStyle = {
-  padding: '12px',
-  textAlign: 'left',
-  border: '1px solid #ddd'
-};
-
-export default BasketballTracker;
+    // Render the application
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<BasketballTracker />);
+  </script>
+</body>
+</html>
