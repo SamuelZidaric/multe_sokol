@@ -36,16 +36,26 @@
           .then(response => response.json())
           .then(data => {
             setPlayersData(data);
-            // Initialize player multe after loading players
+            // Initialize player multe structure
             const initial = {};
             data.forEach(p => {
               initial[p.id] = [];
             });
-            // Sample data
-            initial[3] = [{multaId: 0, count: 1}]; // Teo
-            initial[15] = [{multaId: 5, count: 5}]; // Lopreiato
-            initial[18] = [{multaId: 6, count: 1}, {multaId: 11, count: 1}, {multaId: 1, count: 1}]; // Sasa
-            setPlayerMulte(initial);
+
+            // Load player multe data from JSON
+            fetch('./player-multe.json')
+              .then(response => response.json())
+              .then(multeData => {
+                // Merge loaded multe data with initialized structure
+                Object.keys(multeData).forEach(playerId => {
+                  initial[playerId] = multeData[playerId];
+                });
+                setPlayerMulte(initial);
+              })
+              .catch(error => {
+                console.error('Error loading player multe:', error);
+                setPlayerMulte(initial); // Use empty multe if file not found
+              });
           })
           .catch(error => console.error('Error loading players:', error));
 

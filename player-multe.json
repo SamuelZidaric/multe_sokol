@@ -1,0 +1,28 @@
+{
+  "3": [
+    {
+      "multaId": 0,
+      "count": 1
+    }
+  ],
+  "15": [
+    {
+      "multaId": 5,
+      "count": 5
+    }
+  ],
+  "18": [
+    {
+      "multaId": 6,
+      "count": 1
+    },
+    {
+      "multaId": 11,
+      "count": 1
+    },
+    {
+      "multaId": 1,
+      "count": 1
+    }
+  ]
+}
