@@ -22,7 +22,7 @@
   {"id": 21, "surname": "Raseni", "name": "Luka", "alias": "Rasko", "year": 2003, "club": "ND"},
   {"id": 22, "surname": "Renzi", "name": "Max", "alias": "Ape", "year": 2008, "club": "ND"},
   {"id": 23, "surname": "Scrigner", "name": "Daniele", "alias": "ND", "year": 2001, "club": "ND"},
-  {"id": 24, "surname": "Siega", "name": "Fabian", "alias": "Flareon", "year": 2004, "club": "ND"},
+  {"id": 24, "surname": "Siega", "name": "Fabijan", "alias": "Flareon", "year": 2004, "club": "ND"},
   {"id": 25, "surname": "Sossi", "name": "Niko", "alias": "Majki", "year": 1991, "club": "ND"},
   {"id": 26, "surname": "Švab", "name": "Marko", "alias": "Švabon", "year": 1983, "club": "ND"},
   {"id": 27, "surname": "Terčon", "name": "Erik", "alias": "Pugnetto/Trčun", "year": 2002, "club": "Ericcio"},
@@ -30,4 +30,5 @@
   {"id": 29, "surname": "Visentin", "name": "Cristian", "alias": "ND", "year": 1997, "club": "ND"},
   {"id": 30, "surname": "Zidaric", "name": "Samuel", "alias": "ND", "year": 1998, "club": "Samuela Sardela"},
   {"id": 31, "surname": "Zidaric", "name": "Sasha", "alias": "Sasha", "year": 2001, "club": "Zidaribič"}
+  {"id": 31, "surname": "Pipan", "name": "Jan", "alias": "ND", "year": 2009, "club": "Zidaribič"}
 ]
