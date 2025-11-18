@@ -15,7 +15,7 @@
   {"id": 14, "player_id": 18, "multa_id": 1, "date": "04/10/2025", "status": "Pending", "desc": "0/2"},
   {"id": 15, "player_id": 18, "multa_id": 6, "date": "04/10/2025", "status": "Pending", "desc": "Zgresen zicer"},
   {"id": 16, "player_id": 5, "multa_id": 6, "date": "04/10/2025", "status": "Pending", "desc": "Zgresen zicer"},
-  {"id": 17, "player_id": 6, "multa_id": 20, "date": "06/10/2025", "status": "Pending", "desc": "Patent Halo"},
+  {"id": 17, "player_id": 6, "multa_id": 20, "date": "06/10/2025", "status": "Validated", "desc": "Patent Halo"},
   {"id": 18, "player_id": 15, "multa_id": 5, "date": "07/10/2025", "status": "Pending", "desc": "Pozabu majco u telovadnici"},
   {"id": 19, "player_id": 18, "multa_id": 11, "date": "09/10/2025", "status": "Pending", "desc": "Podaja alla alba"},
   {"id": 20, "player_id": 3, "multa_id": 0, "date": "09/10/2025", "status": "Validated", "desc": "Multa Telefono"},
