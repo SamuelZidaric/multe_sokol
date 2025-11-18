@@ -66,11 +66,7 @@
           .catch(error => console.error('Error loading multe types:', error));
       }, []);
 
-      // State management
-      const [beers] = useState([]);
-      const [showMulteList, setShowMulteList] = useState(false);
-      const [showBeerSection, setShowBeerSection] = useState(false);
-      const [showPlayerMulteSection, setShowPlayerMulteSection] = useState(true);
+      // State management (removed beer-related state)
 
       // Calculate player multe stats
       const playerMulteStats = () => {
@@ -112,30 +108,11 @@
         return stats.sort((a, b) => b.totalCount - a.totalCount);
       };
 
-      // Calculate beer stats
-      const beerStats = () => {
-        const beerCount = {};
-        const playerCount = {};
-        let totalBeers = 0;
-
-        beers.forEach(beer => {
-          beerCount[beer.name] = (beerCount[beer.name] || 0) + beer.quantity;
-          if (beer.player !== 'N/A') {
-            playerCount[beer.player] = (playerCount[beer.player] || 0) + beer.quantity;
-          }
-          totalBeers += beer.quantity;
-        });
-
-        return { beerCount, playerCount, totalBeers };
-      };
-
       const stats = playerMulteStats();
       const totalMulteCount = stats.reduce((sum, s) => sum + s.totalCount, 0);
       const totalEuroSum = stats.reduce((sum, s) => sum + s.totalEuro, 0);
       const totalKasa = stats.reduce((sum, s) => sum + s.kasaCount, 0);
       const totalMerenda = stats.reduce((sum, s) => sum + s.merendaCount, 0);
-
-      const { beerCount, playerCount, totalBeers } = beerStats();
 
       return (
         <div className="app-container">
@@ -143,74 +120,42 @@
             Basketball Tracker - Multe & Sokol
           </h1>
 
-          {/* Main Controls */}
-          <div className="main-controls">
-            <button onClick={() => setShowMulteList(!showMulteList)} className="btn">
-              {showMulteList ? 'Nascondi' : 'Mostra'} Liste Multe
-            </button>
-            <button onClick={() => setShowPlayerMulteSection(!showPlayerMulteSection)}
-                    className="btn btn-purple">
-              {showPlayerMulteSection ? 'Nascondi' : 'Mostra'} Multe per Giocatore
-            </button>
-            <button onClick={() => setShowBeerSection(!showBeerSection)}
-                    className="btn btn-blue">
-              {showBeerSection ? 'Nascondi' : 'Mostra'} Gestione Birre
-            </button>
+          {/* Multe Section */}
+          <div className="section section-player-multe">
+            <h2 className="section-title section-title-purple">MULTE</h2>
+            <PlayerMulteStats
+              stats={stats}
+              multeTypesData={multeTypesData}
+              totalMulteCount={totalMulteCount}
+              totalEuroSum={totalEuroSum}
+              totalKasa={totalKasa}
+              totalMerenda={totalMerenda}
+            />
           </div>
 
-          {/* Multe List */}
-          {showMulteList && (
-            <div className="section section-multe-list">
-              <h2 className="section-title section-title-orange">Liste delle Multe</h2>
-              <div className="multe-grid">
-                {multeTypesData.map(multa => (
-                  <div key={multa.id}>
-                    <strong>{multa.id}.</strong> {multa.name} - {' '}
-                    {typeof multa.price === 'number' ? (
-                      <strong>{multa.price}€</strong>
-                    ) : multa.price === 'KASA' ? (
-                      <span className="badge badge-kasa">KASA</span>
-                    ) : (
-                      <span className="badge badge-merenda">MERENDA</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <div className="multe-note">
-                <p><strong>Note:</strong></p>
-                <p><span className="badge badge-kasa">KASA</span> = Il giocatore offre birre per tutta la squadra</p>
-                <p><span className="badge badge-merenda">MERENDA</span> = Kasa + Cena per tutta la squadra</p>
-              </div>
+          {/* Legend Section */}
+          <div className="section section-multe-list">
+            <h2 className="section-title section-title-orange">LEGEND</h2>
+            <div className="multe-grid">
+              {multeTypesData.map(multa => (
+                <div key={multa.id}>
+                  <strong>{multa.id}.</strong> {multa.name} - {' '}
+                  {typeof multa.price === 'number' ? (
+                    <strong>{multa.price}€</strong>
+                  ) : multa.price === 'KASA' ? (
+                    <span className="badge badge-kasa">KASA</span>
+                  ) : (
+                    <span className="badge badge-merenda">MERENDA</span>
+                  )}
+                </div>
+              ))}
             </div>
-          )}
-
-          {/* Player Multe Section */}
-          {showPlayerMulteSection && (
-            <div className="section section-player-multe">
-              <h2 className="section-title section-title-purple">Multe per Giocatore</h2>
-              <PlayerMulteStats
-                stats={stats}
-                multeTypesData={multeTypesData}
-                totalMulteCount={totalMulteCount}
-                totalEuroSum={totalEuroSum}
-                totalKasa={totalKasa}
-                totalMerenda={totalMerenda}
-              />
+            <div className="multe-note">
+              <p><strong>Note:</strong></p>
+              <p><span className="badge badge-kasa">KASA</span> = Il giocatore offre birre per tutta la squadra</p>
+              <p><span className="badge badge-merenda">MERENDA</span> = Kasa + Cena per tutta la squadra</p>
             </div>
-          )}
-
-          {/* Beer Section */}
-          {showBeerSection && (
-            <div className="section section-beer">
-              <h2 className="section-title section-title-blue">Database Birre Bevute</h2>
-              <BeerStats
-                beerCount={beerCount}
-                playerCount={playerCount}
-                totalBeers={totalBeers}
-                hasBeers={beers.length > 0}
-              />
-            </div>
-          )}
+          </div>
         </div>
       );
     };
@@ -284,40 +229,6 @@
               </div>
             </div>
           ))}
-        </div>
-      );
-    };
-
-    const BeerStats = ({ beerCount, playerCount, totalBeers, hasBeers }) => {
-      if (!hasBeers) {
-        return <p>Nessuna birra registrata ancora.</p>;
-      }
-
-      return (
-        <div className="beer-stats-grid">
-          <div className="beer-total">
-            <strong>Totale Birre Bevute: {totalBeers}</strong>
-          </div>
-          <div className="beer-section-header">
-            <strong>Per Tipo di Birra:</strong>
-          </div>
-          {Object.entries(beerCount).sort((a, b) => b[1] - a[1]).map(([beer, count]) => (
-            <div key={beer} className="beer-item">
-              <strong>{beer}</strong>: {count}x
-            </div>
-          ))}
-          {Object.keys(playerCount).length > 0 && (
-            <>
-              <div className="beer-section-header">
-                <strong>Chi ha offerto di più:</strong>
-              </div>
-              {Object.entries(playerCount).sort((a, b) => b[1] - a[1]).map(([player, count]) => (
-                <div key={player} className="beer-item">
-                  <strong>{player}</strong>: {count}x birre offerte
-                </div>
-              ))}
-            </>
-          )}
         </div>
       );
     };
