@@ -226,20 +226,48 @@
           <div className="stats-total">
             <h3>Statistiche Totali</h3>
             <div className="stats-total-grid">
-              <div><strong>Multe totali:</strong> {totalMulteCount}</div>
-              <div><strong>Euro totali:</strong> {totalEuroSum.toFixed(2)}€</div>
-              <div><strong>KASA totali:</strong> {totalKasa}</div>
-              <div><strong>MERENDA totali:</strong> {totalMerenda}</div>
+              <div>
+                <strong>Multe totali</strong>
+                <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalMulteCount}</div>
+              </div>
+              <div>
+                <strong>Euro totali</strong>
+                <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalEuroSum.toFixed(2)}€</div>
+              </div>
+              <div>
+                <strong>KASA totali</strong>
+                <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalKasa}</div>
+              </div>
+              <div>
+                <strong>MERENDA totali</strong>
+                <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalMerenda}</div>
+              </div>
             </div>
           </div>
           {stats.map(stat => (
             <div key={stat.player.id} className="player-card">
               <strong>{stat.player.name} {stat.player.surname}</strong> {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
               <div style={{marginTop: '8px'}}>
-                <div><strong>Totale multe:</strong> {stat.totalCount}</div>
-                <div><strong>Totale €:</strong> {stat.totalEuro.toFixed(2)}€</div>
-                {stat.kasaCount > 0 && <div><span className="badge badge-kasa">KASA</span>: {stat.kasaCount}x</div>}
-                {stat.merendaCount > 0 && <div><span className="badge badge-merenda">MERENDA</span>: {stat.merendaCount}x</div>}
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#f3e5f5', borderRadius: '8px', marginBottom: '10px'}}>
+                  <strong style={{fontSize: '1.05em', color: '#555'}}>Totale multe:</strong>
+                  <span style={{fontSize: '1.8em', fontWeight: '700', color: '#6a1b9a'}}>{stat.totalCount}</span>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '8px', marginBottom: '10px'}}>
+                  <strong style={{fontSize: '1.05em', color: '#555'}}>Totale €:</strong>
+                  <span style={{fontSize: '1.8em', fontWeight: '700', color: '#d84315'}}>{stat.totalEuro.toFixed(2)}€</span>
+                </div>
+                {stat.kasaCount > 0 && (
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '8px', marginBottom: '10px'}}>
+                    <span className="badge badge-kasa">KASA</span>
+                    <span style={{fontSize: '1.6em', fontWeight: '700', color: '#ff6f00'}}>{stat.kasaCount}x</span>
+                  </div>
+                )}
+                {stat.merendaCount > 0 && (
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#ffebee', borderRadius: '8px', marginBottom: '10px'}}>
+                    <span className="badge badge-merenda">MERENDA</span>
+                    <span style={{fontSize: '1.6em', fontWeight: '700', color: '#c62828'}}>{stat.merendaCount}x</span>
+                  </div>
+                )}
               </div>
               <div className="player-card-multe-list">
                 {stat.multe.map((m, idx) => {
