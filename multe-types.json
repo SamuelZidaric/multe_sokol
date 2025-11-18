@@ -23,5 +23,6 @@
   {"id": 21, "name": "Personal Milestone", "price": "KASA"},
   {"id": 22, "name": "Kasa misc", "price": "KASA"},
   {"id": 23, "name": "Rojstni dan", "price": "MERENDA"},
-  {"id": 24, "name": "Merenda misc", "price": "MERENDA"}
+  {"id": 24, "name": "Merenda misc", "price": "MERENDA"},
+  {"id": 25, "name": "Sesto uomo alla sasha", "price": "KASA"}
 ]
