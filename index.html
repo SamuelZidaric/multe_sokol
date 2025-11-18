@@ -16,9 +16,6 @@
 <body>
   <div id="root"></div>
 
-  <!-- Main application script -->
-  <script type="text/babel" src="script.js"></script>
-
   <!-- Bootstrap the React application -->
   <script type="text/babel">
     const { useState, useEffect } = React;
@@ -27,36 +24,16 @@
       // State for data loaded from JSON
       const [playersData, setPlayersData] = useState([]);
       const [multeTypesData, setMulteTypesData] = useState([]);
-      const [playerMulte, setPlayerMulte] = useState({});
+      const [finesInstances, setFinesInstances] = useState([]);
+      const [currentPage, setCurrentPage] = useState('home');
+      const [currentPlayerId, setCurrentPlayerId] = useState(null);
 
       // Load data from JSON files
       useEffect(() => {
         // Load players data
         fetch('./players.json')
           .then(response => response.json())
-          .then(data => {
-            setPlayersData(data);
-            // Initialize player multe structure
-            const initial = {};
-            data.forEach(p => {
-              initial[p.id] = [];
-            });
-
-            // Load player multe data from JSON
-            fetch('./player-multe.json')
-              .then(response => response.json())
-              .then(multeData => {
-                // Merge loaded multe data with initialized structure
-                Object.keys(multeData).forEach(playerId => {
-                  initial[playerId] = multeData[playerId];
-                });
-                setPlayerMulte(initial);
-              })
-              .catch(error => {
-                console.error('Error loading player multe:', error);
-                setPlayerMulte(initial); // Use empty multe if file not found
-              });
-          })
+          .then(data => setPlayersData(data))
           .catch(error => console.error('Error loading players:', error));
 
         // Load multe types data
@@ -64,43 +41,105 @@
           .then(response => response.json())
           .then(data => setMulteTypesData(data))
           .catch(error => console.error('Error loading multe types:', error));
+
+        // Load fines instances data
+        fetch('./fines-instances.json')
+          .then(response => response.json())
+          .then(data => setFinesInstances(data))
+          .catch(error => console.error('Error loading fines instances:', error));
       }, []);
 
-      // State management (removed beer-related state)
+      // Handle hash-based routing
+      useEffect(() => {
+        const handleHashChange = () => {
+          const hash = window.location.hash;
+          if (hash.startsWith('#player/')) {
+            const playerId = parseInt(hash.replace('#player/', ''));
+            setCurrentPage('player');
+            setCurrentPlayerId(playerId);
+          } else {
+            setCurrentPage('home');
+            setCurrentPlayerId(null);
+          }
+        };
+
+        // Initial load
+        handleHashChange();
+
+        // Listen to hash changes
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+      }, []);
+
+      const navigateToPlayer = (playerId) => {
+        window.location.hash = `#player/${playerId}`;
+      };
+
+      const navigateToHome = () => {
+        window.location.hash = '';
+      };
+
+      // Parse date from DD/MM/YYYY to Date object
+      const parseDate = (dateStr) => {
+        const [day, month, year] = dateStr.split('/');
+        return new Date(year, month - 1, day);
+      };
 
       // Calculate player multe stats
       const playerMulteStats = () => {
-        if (!playersData.length || !multeTypesData.length) return [];
+        if (!playersData.length || !multeTypesData.length || !finesInstances.length) return [];
 
         const stats = [];
         playersData.forEach(player => {
-          const multe = playerMulte[player.id] || [];
-          if (multe.length > 0) {
-            const totalCount = multe.reduce((sum, m) => sum + m.count, 0);
-            let totalEuro = 0;
-            let kasaCount = 0;
-            let merendaCount = 0;
+          const playerFines = finesInstances.filter(f => f.player_id === player.id);
+          if (playerFines.length > 0) {
+            const pendingFines = playerFines.filter(f => f.status === 'Pending');
+            const validatedFines = playerFines.filter(f => f.status === 'Validated');
 
-            multe.forEach(m => {
-              const multaType = multeTypesData.find(mt => mt.id === m.multaId);
+            let totalEuro = 0;
+            let totalEuroPending = 0;
+            let totalEuroValidated = 0;
+            let kasaCount = 0;
+            let kasaCountPending = 0;
+            let kasaCountValidated = 0;
+            let merendaCount = 0;
+            let merendaCountPending = 0;
+            let merendaCountValidated = 0;
+
+            playerFines.forEach(fine => {
+              const multaType = multeTypesData.find(mt => mt.id === fine.multa_id);
               if (multaType) {
+                const isPending = fine.status === 'Pending';
                 if (typeof multaType.price === 'number') {
-                  totalEuro += multaType.price * m.count;
+                  totalEuro += multaType.price;
+                  if (isPending) totalEuroPending += multaType.price;
+                  else totalEuroValidated += multaType.price;
                 } else if (multaType.price === 'KASA') {
-                  kasaCount += m.count;
+                  kasaCount++;
+                  if (isPending) kasaCountPending++;
+                  else kasaCountValidated++;
                 } else if (multaType.price === 'MERENDA') {
-                  merendaCount += m.count;
+                  merendaCount++;
+                  if (isPending) merendaCountPending++;
+                  else merendaCountValidated++;
                 }
               }
             });
 
             stats.push({
               player,
-              multe,
-              totalCount,
+              totalCount: playerFines.length,
+              pendingCount: pendingFines.length,
+              validatedCount: validatedFines.length,
               totalEuro,
+              totalEuroPending,
+              totalEuroValidated,
               kasaCount,
-              merendaCount
+              kasaCountPending,
+              kasaCountValidated,
+              merendaCount,
+              merendaCountPending,
+              merendaCountValidated
             });
           }
         });
@@ -108,17 +147,84 @@
         return stats.sort((a, b) => b.totalCount - a.totalCount);
       };
 
+      // Get next 5 pending multe chronologically
+      const getUpcomingMulte = () => {
+        if (!finesInstances.length || !playersData.length || !multeTypesData.length) return [];
+
+        const pendingFines = finesInstances
+          .filter(f => f.status === 'Pending')
+          .map(fine => ({
+            ...fine,
+            dateObj: parseDate(fine.date),
+            player: playersData.find(p => p.id === fine.player_id),
+            multaType: multeTypesData.find(mt => mt.id === fine.multa_id)
+          }))
+          .sort((a, b) => a.dateObj - b.dateObj)
+          .slice(0, 5);
+
+        return pendingFines;
+      };
+
       const stats = playerMulteStats();
+      const upcomingMulte = getUpcomingMulte();
+
       const totalMulteCount = stats.reduce((sum, s) => sum + s.totalCount, 0);
+      const totalPendingCount = stats.reduce((sum, s) => sum + s.pendingCount, 0);
+      const totalValidatedCount = stats.reduce((sum, s) => sum + s.validatedCount, 0);
       const totalEuroSum = stats.reduce((sum, s) => sum + s.totalEuro, 0);
+      const totalEuroPending = stats.reduce((sum, s) => sum + s.totalEuroPending, 0);
+      const totalEuroValidated = stats.reduce((sum, s) => sum + s.totalEuroValidated, 0);
       const totalKasa = stats.reduce((sum, s) => sum + s.kasaCount, 0);
+      const totalKasaPending = stats.reduce((sum, s) => sum + s.kasaCountPending, 0);
+      const totalKasaValidated = stats.reduce((sum, s) => sum + s.kasaCountValidated, 0);
       const totalMerenda = stats.reduce((sum, s) => sum + s.merendaCount, 0);
+      const totalMerendaPending = stats.reduce((sum, s) => sum + s.merendaCountPending, 0);
+      const totalMerendaValidated = stats.reduce((sum, s) => sum + s.merendaCountValidated, 0);
+
+      if (currentPage === 'player' && currentPlayerId) {
+        return (
+          <PlayerPage
+            playerId={currentPlayerId}
+            playersData={playersData}
+            multeTypesData={multeTypesData}
+            finesInstances={finesInstances}
+            navigateToHome={navigateToHome}
+            parseDate={parseDate}
+          />
+        );
+      }
 
       return (
         <div className="app-container">
           <h1 className="app-title">
             Basketball Tracker - Multe & Sokol
           </h1>
+
+          {/* Upcoming Multe Section */}
+          {upcomingMulte.length > 0 && (
+            <div className="upcoming-multe">
+              <h3>🔜 Prossime 5 Multe in Sospeso</h3>
+              <div className="upcoming-multe-list">
+                {upcomingMulte.map(fine => (
+                  <div key={fine.id} className="upcoming-multa-item">
+                    <span className="player-name">
+                      <a
+                        href={`#player/${fine.player_id}`}
+                        className="player-link"
+                        style={{color: 'white', textDecoration: 'none'}}
+                      >
+                        {fine.player?.name} {fine.player?.surname}
+                      </a>
+                    </span>
+                    <span className="multa-desc">
+                      {fine.multaType?.name} - {fine.desc}
+                    </span>
+                    <span className="multa-date">{fine.date}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Multe Section */}
           <div className="section section-player-multe">
@@ -127,9 +233,18 @@
               stats={stats}
               multeTypesData={multeTypesData}
               totalMulteCount={totalMulteCount}
+              totalPendingCount={totalPendingCount}
+              totalValidatedCount={totalValidatedCount}
               totalEuroSum={totalEuroSum}
+              totalEuroPending={totalEuroPending}
+              totalEuroValidated={totalEuroValidated}
               totalKasa={totalKasa}
+              totalKasaPending={totalKasaPending}
+              totalKasaValidated={totalKasaValidated}
               totalMerenda={totalMerenda}
+              totalMerendaPending={totalMerendaPending}
+              totalMerendaValidated={totalMerendaValidated}
+              navigateToPlayer={navigateToPlayer}
             />
           </div>
 
@@ -160,8 +275,163 @@
       );
     };
 
+    // Player Page Component
+    const PlayerPage = ({ playerId, playersData, multeTypesData, finesInstances, navigateToHome, parseDate }) => {
+      const player = playersData.find(p => p.id === playerId);
+
+      if (!player) {
+        return (
+          <div className="app-container">
+            <h1>Player not found</h1>
+            <button className="btn" onClick={navigateToHome}>Back to Home</button>
+          </div>
+        );
+      }
+
+      const playerFines = finesInstances
+        .filter(f => f.player_id === playerId)
+        .map(fine => ({
+          ...fine,
+          dateObj: parseDate(fine.date),
+          multaType: multeTypesData.find(mt => mt.id === fine.multa_id)
+        }))
+        .sort((a, b) => a.dateObj - b.dateObj);
+
+      const pendingFines = playerFines.filter(f => f.status === 'Pending');
+      const validatedFines = playerFines.filter(f => f.status === 'Validated');
+
+      let totalEuro = 0;
+      let totalEuroPending = 0;
+      let totalEuroValidated = 0;
+      let kasaCount = 0;
+      let kasaCountPending = 0;
+      let kasaCountValidated = 0;
+      let merendaCount = 0;
+      let merendaCountPending = 0;
+      let merendaCountValidated = 0;
+
+      playerFines.forEach(fine => {
+        const multaType = fine.multaType;
+        if (multaType) {
+          const isPending = fine.status === 'Pending';
+          if (typeof multaType.price === 'number') {
+            totalEuro += multaType.price;
+            if (isPending) totalEuroPending += multaType.price;
+            else totalEuroValidated += multaType.price;
+          } else if (multaType.price === 'KASA') {
+            kasaCount++;
+            if (isPending) kasaCountPending++;
+            else kasaCountValidated++;
+          } else if (multaType.price === 'MERENDA') {
+            merendaCount++;
+            if (isPending) merendaCountPending++;
+            else merendaCountValidated++;
+          }
+        }
+      });
+
+      return (
+        <div className="app-container">
+          <div className="player-page">
+            <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); navigateToHome(); }}>
+              ← Back to Home
+            </a>
+
+            <div className="player-header">
+              <h2>{player.name} {player.surname}</h2>
+              <div className="player-info">
+                {player.alias !== 'ND' && `Alias: ${player.alias} | `}
+                Year: {player.year} | Club: {player.club}
+              </div>
+            </div>
+
+            <div className="player-stats-summary">
+              <div className="player-stat-box">
+                <strong>Total Multe</strong>
+                <div className="stat-value">{playerFines.length}</div>
+              </div>
+              <div className="player-stat-box">
+                <strong>Pending</strong>
+                <div className="stat-value" style={{color: '#ff9800'}}>{pendingFines.length}</div>
+              </div>
+              <div className="player-stat-box">
+                <strong>Validated</strong>
+                <div className="stat-value" style={{color: '#4caf50'}}>{validatedFines.length}</div>
+              </div>
+              <div className="player-stat-box">
+                <strong>Total €</strong>
+                <div className="stat-value">{totalEuro.toFixed(2)}€</div>
+              </div>
+              {kasaCount > 0 && (
+                <div className="player-stat-box">
+                  <strong>KASA</strong>
+                  <div className="stat-value">{kasaCount}</div>
+                </div>
+              )}
+              {merendaCount > 0 && (
+                <div className="player-stat-box">
+                  <strong>MERENDA</strong>
+                  <div className="stat-value">{merendaCount}</div>
+                </div>
+              )}
+            </div>
+
+            <h3 style={{color: '#6a1b9a', marginBottom: '20px', fontSize: '1.8em'}}>
+              Storico Multe (Cronologico)
+            </h3>
+
+            <div className="player-multe-timeline">
+              {playerFines.map(fine => {
+                const multaType = fine.multaType;
+                if (!multaType) return null;
+
+                const priceStr = typeof multaType.price === 'number' ? `${multaType.price}€` :
+                                multaType.price === 'KASA' ? (
+                                  <span className="badge badge-kasa">KASA</span>
+                                ) : (
+                                  <span className="badge badge-merenda">MERENDA</span>
+                                );
+
+                return (
+                  <div key={fine.id} className={`timeline-item ${fine.status.toLowerCase()}`}>
+                    <div className="timeline-header">
+                      <span className="timeline-date">{fine.date}</span>
+                      <span className={`status-badge badge-${fine.status.toLowerCase()}`}>
+                        {fine.status}
+                      </span>
+                    </div>
+                    <div className="timeline-body">
+                      <div className="timeline-multa-name">{multaType.name}</div>
+                      {fine.desc && <div className="timeline-desc">"{fine.desc}"</div>}
+                      <div className="timeline-price">{priceStr}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     // Components
-    const PlayerMulteStats = ({ stats, multeTypesData, totalMulteCount, totalEuroSum, totalKasa, totalMerenda }) => {
+    const PlayerMulteStats = ({
+      stats,
+      multeTypesData,
+      totalMulteCount,
+      totalPendingCount,
+      totalValidatedCount,
+      totalEuroSum,
+      totalEuroPending,
+      totalEuroValidated,
+      totalKasa,
+      totalKasaPending,
+      totalKasaValidated,
+      totalMerenda,
+      totalMerendaPending,
+      totalMerendaValidated,
+      navigateToPlayer
+    }) => {
       if (stats.length === 0) {
         return <p>Nessuna multa registrata ancora.</p>;
       }
@@ -174,58 +444,87 @@
               <div>
                 <strong>Multe totali</strong>
                 <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalMulteCount}</div>
+                <div style={{fontSize: '0.85em', marginTop: '5px'}}>
+                  <span className="badge badge-pending" style={{marginRight: '5px'}}>{totalPendingCount} Pending</span>
+                  <span className="badge badge-validated">{totalValidatedCount} Validated</span>
+                </div>
               </div>
               <div>
                 <strong>Euro totali</strong>
                 <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalEuroSum.toFixed(2)}€</div>
+                <div style={{fontSize: '0.85em', marginTop: '5px'}}>
+                  <span className="badge badge-pending" style={{marginRight: '5px'}}>{totalEuroPending.toFixed(2)}€ Pending</span>
+                  <span className="badge badge-validated">{totalEuroValidated.toFixed(2)}€ Validated</span>
+                </div>
               </div>
               <div>
                 <strong>KASA totali</strong>
                 <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalKasa}</div>
+                <div style={{fontSize: '0.85em', marginTop: '5px'}}>
+                  <span className="badge badge-pending" style={{marginRight: '5px'}}>{totalKasaPending} Pending</span>
+                  <span className="badge badge-validated">{totalKasaValidated} Validated</span>
+                </div>
               </div>
               <div>
                 <strong>MERENDA totali</strong>
                 <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalMerenda}</div>
+                <div style={{fontSize: '0.85em', marginTop: '5px'}}>
+                  <span className="badge badge-pending" style={{marginRight: '5px'}}>{totalMerendaPending} Pending</span>
+                  <span className="badge badge-validated">{totalMerendaValidated} Validated</span>
+                </div>
               </div>
             </div>
           </div>
           {stats.map(stat => (
             <div key={stat.player.id} className="player-card">
-              <strong>{stat.player.name} {stat.player.surname}</strong> {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
+              <strong>
+                <a
+                  href={`#player/${stat.player.id}`}
+                  className="player-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateToPlayer(stat.player.id);
+                  }}
+                >
+                  {stat.player.name} {stat.player.surname}
+                </a>
+              </strong>{' '}
+              {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
               <div style={{marginTop: '8px'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#f3e5f5', borderRadius: '8px', marginBottom: '10px'}}>
                   <strong style={{fontSize: '1.05em', color: '#555'}}>Totale multe:</strong>
-                  <span style={{fontSize: '1.8em', fontWeight: '700', color: '#6a1b9a'}}>{stat.totalCount}</span>
+                  <div>
+                    <span style={{fontSize: '1.8em', fontWeight: '700', color: '#6a1b9a', marginRight: '10px'}}>{stat.totalCount}</span>
+                    <span className="badge badge-pending" style={{fontSize: '0.7em', marginRight: '3px'}}>{stat.pendingCount} P</span>
+                    <span className="badge badge-validated" style={{fontSize: '0.7em'}}>{stat.validatedCount} V</span>
+                  </div>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '8px', marginBottom: '10px'}}>
                   <strong style={{fontSize: '1.05em', color: '#555'}}>Totale €:</strong>
-                  <span style={{fontSize: '1.8em', fontWeight: '700', color: '#d84315'}}>{stat.totalEuro.toFixed(2)}€</span>
+                  <div>
+                    <span style={{fontSize: '1.8em', fontWeight: '700', color: '#d84315'}}>{stat.totalEuro.toFixed(2)}€</span>
+                  </div>
                 </div>
                 {stat.kasaCount > 0 && (
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '8px', marginBottom: '10px'}}>
                     <span className="badge badge-kasa">KASA</span>
-                    <span style={{fontSize: '1.6em', fontWeight: '700', color: '#ff6f00'}}>{stat.kasaCount}x</span>
+                    <div>
+                      <span style={{fontSize: '1.6em', fontWeight: '700', color: '#ff6f00', marginRight: '10px'}}>{stat.kasaCount}x</span>
+                      <span className="badge badge-pending" style={{fontSize: '0.7em', marginRight: '3px'}}>{stat.kasaCountPending} P</span>
+                      <span className="badge badge-validated" style={{fontSize: '0.7em'}}>{stat.kasaCountValidated} V</span>
+                    </div>
                   </div>
                 )}
                 {stat.merendaCount > 0 && (
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#ffebee', borderRadius: '8px', marginBottom: '10px'}}>
                     <span className="badge badge-merenda">MERENDA</span>
-                    <span style={{fontSize: '1.6em', fontWeight: '700', color: '#c62828'}}>{stat.merendaCount}x</span>
+                    <div>
+                      <span style={{fontSize: '1.6em', fontWeight: '700', color: '#c62828', marginRight: '10px'}}>{stat.merendaCount}x</span>
+                      <span className="badge badge-pending" style={{fontSize: '0.7em', marginRight: '3px'}}>{stat.merendaCountPending} P</span>
+                      <span className="badge badge-validated" style={{fontSize: '0.7em'}}>{stat.merendaCountValidated} V</span>
+                    </div>
                   </div>
                 )}
-              </div>
-              <div className="player-card-multe-list">
-                {stat.multe.map((m, idx) => {
-                  const multaType = multeTypesData.find(mt => mt.id === m.multaId);
-                  if (!multaType) return null;
-                  const priceStr = typeof multaType.price === 'number' ? `${multaType.price}€` :
-                                  multaType.price === 'KASA' ? 'KASA' : 'MERENDA';
-                  return (
-                    <div key={idx} className="multa-item">
-                      <strong>{m.count}x</strong> {multaType.name} - {priceStr}
-                    </div>
-                  );
-                })}
               </div>
             </div>
           ))}
