@@ -198,17 +198,12 @@ body {
   border-color: #6a1b9a;
 }
 
-.player-card > strong {
-  display: block;
-  font-size: 1.3em;
-  color: #6a1b9a;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #f3e5f5;
+.player-balloon {
+  display: inline-block;
 }
 
-.player-card > div {
-  margin-top: 15px;
+.player-balloon:hover {
+  transform: scale(1.2);
 }
 
 .player-card-multe-list {
@@ -415,11 +410,10 @@ input[type="text"] {
   padding: 15px;
   border-radius: 8px;
   backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr auto auto;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 }
 
 .upcoming-multa-item .player-name {
@@ -428,15 +422,33 @@ input[type="text"] {
 }
 
 .upcoming-multa-item .multa-desc {
-  flex: 1;
   font-size: 0.95em;
   opacity: 0.95;
+}
+
+.upcoming-multa-item .multa-price-info {
+  font-size: 1.05em;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .upcoming-multa-item .multa-date {
   font-size: 0.85em;
   opacity: 0.9;
   font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .upcoming-multa-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .upcoming-multa-item .multa-price-info,
+  .upcoming-multa-item .multa-date {
+    white-space: normal;
+  }
 }
 
 /* Player page styles */
@@ -578,4 +590,51 @@ input[type="text"] {
   font-size: 2.2em;
   font-weight: 700;
   color: #6a1b9a;
+}
+
+/* Multe history table */
+.multe-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.multe-history-table th {
+  background-color: #6a1b9a;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95em;
+  border: none;
+}
+
+.multe-history-table td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95em;
+}
+
+.multe-history-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.multe-history-table tbody tr:hover {
+  background-color: #f3e5f5;
+}
+
+.multe-row.validated {
+  opacity: 0.75;
+}
+
+.multe-row.validated td {
+  color: #666;
+}
+
+.multe-row.pending {
+  background-color: #fff3e0;
 }

@@ -205,23 +205,34 @@
             <div className="upcoming-multe">
               <h3>🔜 Prossime 5 Multe in Sospeso</h3>
               <div className="upcoming-multe-list">
-                {upcomingMulte.map(fine => (
-                  <div key={fine.id} className="upcoming-multa-item">
-                    <span className="player-name">
-                      <a
-                        href={`#player/${fine.player_id}`}
-                        className="player-link"
-                        style={{color: 'white', textDecoration: 'none'}}
-                      >
-                        {fine.player?.name} {fine.player?.surname}
-                      </a>
-                    </span>
-                    <span className="multa-desc">
-                      {fine.multaType?.name} - {fine.desc}
-                    </span>
-                    <span className="multa-date">{fine.date}</span>
-                  </div>
-                ))}
+                {upcomingMulte.map(fine => {
+                  const priceInfo = typeof fine.multaType?.price === 'number'
+                    ? `${fine.multaType.price}€`
+                    : fine.multaType?.price === 'KASA'
+                    ? '🍺 KASA (Birre per tutti)'
+                    : '🍽️ MERENDA (Kasa + Cena per tutti)';
+
+                  return (
+                    <div key={fine.id} className="upcoming-multa-item">
+                      <span className="player-name">
+                        <a
+                          href={`#player/${fine.player_id}`}
+                          className="player-link"
+                          style={{color: 'white', textDecoration: 'none'}}
+                        >
+                          {fine.player?.name} {fine.player?.surname}
+                        </a>
+                      </span>
+                      <span className="multa-desc">
+                        {fine.multaType?.name} - {fine.desc}
+                      </span>
+                      <span className="multa-price-info" style={{fontWeight: '700', fontSize: '1.05em'}}>
+                        💰 {priceInfo}
+                      </span>
+                      <span className="multa-date">{fine.date}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -341,7 +352,7 @@
               <h2>{player.name} {player.surname}</h2>
               <div className="player-info">
                 {player.alias !== 'ND' && `Alias: ${player.alias} | `}
-                Year: {player.year} | Club: {player.club}
+                Year: {player.year}
               </div>
             </div>
 
@@ -380,34 +391,45 @@
               Storico Multe (Cronologico)
             </h3>
 
-            <div className="player-multe-timeline">
-              {playerFines.map(fine => {
-                const multaType = fine.multaType;
-                if (!multaType) return null;
+            <div className="table-container">
+              <table className="multe-history-table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Multa</th>
+                    <th>Descrizione</th>
+                    <th>Prezzo</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {playerFines.map(fine => {
+                    const multaType = fine.multaType;
+                    if (!multaType) return null;
 
-                const priceStr = typeof multaType.price === 'number' ? `${multaType.price}€` :
-                                multaType.price === 'KASA' ? (
-                                  <span className="badge badge-kasa">KASA</span>
-                                ) : (
-                                  <span className="badge badge-merenda">MERENDA</span>
-                                );
+                    const priceStr = typeof multaType.price === 'number' ? `${multaType.price}€` :
+                                    multaType.price === 'KASA' ? (
+                                      <span className="badge badge-kasa">KASA</span>
+                                    ) : (
+                                      <span className="badge badge-merenda">MERENDA</span>
+                                    );
 
-                return (
-                  <div key={fine.id} className={`timeline-item ${fine.status.toLowerCase()}`}>
-                    <div className="timeline-header">
-                      <span className="timeline-date">{fine.date}</span>
-                      <span className={`status-badge badge-${fine.status.toLowerCase()}`}>
-                        {fine.status}
-                      </span>
-                    </div>
-                    <div className="timeline-body">
-                      <div className="timeline-multa-name">{multaType.name}</div>
-                      {fine.desc && <div className="timeline-desc">"{fine.desc}"</div>}
-                      <div className="timeline-price">{priceStr}</div>
-                    </div>
-                  </div>
-                );
-              })}
+                    return (
+                      <tr key={fine.id} className={`multe-row ${fine.status.toLowerCase()}`}>
+                        <td style={{fontWeight: '600', color: '#6a1b9a'}}>{fine.date}</td>
+                        <td style={{fontWeight: '600'}}>{multaType.name}</td>
+                        <td style={{fontStyle: 'italic', color: '#666'}}>{fine.desc || '-'}</td>
+                        <td style={{fontWeight: '700', color: '#d84315'}}>{priceStr}</td>
+                        <td>
+                          <span className={`status-badge badge-${fine.status.toLowerCase()}`}>
+                            {fine.status}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -477,19 +499,34 @@
           </div>
           {stats.map(stat => (
             <div key={stat.player.id} className="player-card">
-              <strong>
+              <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px', paddingBottom: '10px', borderBottom: '2px solid #f3e5f5'}}>
                 <a
                   href={`#player/${stat.player.id}`}
-                  className="player-link"
+                  className="player-balloon"
                   onClick={(e) => {
                     e.preventDefault();
                     navigateToPlayer(stat.player.id);
                   }}
+                  style={{fontSize: '2em', cursor: 'pointer', textDecoration: 'none', transition: 'transform 0.2s'}}
+                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                 >
-                  {stat.player.name} {stat.player.surname}
+                  🏀
                 </a>
-              </strong>{' '}
-              {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
+                <strong style={{fontSize: '1.3em', color: '#6a1b9a'}}>
+                  <a
+                    href={`#player/${stat.player.id}`}
+                    className="player-link"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToPlayer(stat.player.id);
+                    }}
+                  >
+                    {stat.player.name} {stat.player.surname}
+                  </a>
+                </strong>{' '}
+                {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
+              </div>
               <div style={{marginTop: '8px'}}>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#f3e5f5', borderRadius: '8px', marginBottom: '10px'}}>
                   <strong style={{fontSize: '1.05em', color: '#555'}}>Totale multe:</strong>
