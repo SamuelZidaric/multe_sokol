@@ -1,7 +1,7 @@
 {
   "16": [{"multaId": 24, "count": 1}],
   "12": [{"multaId": 16, "count": 1}, {"multaId": 23, "count": 1}, {"multaId": 1, "count": 1}, {"multaId": 6, "count": 1}],
-  "7": [{"multaId": 22, "count": 1}, {"multaId": 1, "count": 2}, {"multaId": 4, "count": 1}, {"multaId": 0, "count": 1}],
+  "7": [{"multaId": 22, "count": 1}, {"multaId": 1, "count": 2}, {"multaId": 0, "count": 1}],
   "9": [{"multaId": 16, "count": 1}],
   "29": [{"multaId": 16, "count": 1}, {"multaId": 0, "count": 1}],
   "20": [{"multaId": 24, "count": 1}],
@@ -20,5 +20,6 @@
   "1": [{"multaId": 21, "count": 1}],
   "13": [{"multaId": 23, "count": 1}],
   "30": [{"multaId": 1, "count": 4}],
-  "24": [{"multaId": 26, "count": 1}]
+  "24": [{"multaId": 26, "count": 1}],
+  "32": [{"multaId": 4, "count": 1}]
 }
