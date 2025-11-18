@@ -29,7 +29,7 @@
   {"id": 28, "player_id": 12, "multa_id": 1, "date": "26/10/2025", "status": "Pending", "desc": "0/2"},
   {"id": 29, "player_id": 12, "multa_id": 6, "date": "26/10/2025", "status": "Pending", "desc": "Zgresen zicer"},
   {"id": 30, "player_id": 7, "multa_id": 1, "date": "26/10/2025", "status": "Pending", "desc": "0/2"},
-  {"id": 31, "player_id": 3, "multa_id": 26, "date": "26/10/2025", "status": "Validated", "desc": "esordio"},
+  {"id": 31, "player_id": 3, "multa_id": 26, "date": "26/10/2025", "status": "Pending", "desc": "esordio"},
   {"id": 32, "player_id": 28, "multa_id": 6, "date": "26/10/2025", "status": "Validated", "desc": "Zgresen zicer"},
   {"id": 33, "player_id": 28, "multa_id": 1, "date": "26/10/2025", "status": "Validated", "desc": "0/2"},
   {"id": 34, "player_id": 28, "multa_id": 1, "date": "26/10/2025", "status": "Validated", "desc": "0/2"},
