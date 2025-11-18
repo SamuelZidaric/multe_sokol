@@ -1,8 +1,24 @@
+/* Team Color Scheme */
+:root {
+  --team-red: #dc143c;
+  --team-red-dark: #b71c1c;
+  --team-red-light: #ffebee;
+  --team-red-lighter: #fff5f5;
+  --team-blue: #59a5d8;
+  --team-blue-dark: #2980b9;
+  --team-blue-light: #e3f2fd;
+  --team-white: #ffffff;
+  --team-grey-light: #f5f5f5;
+  --team-grey: #e0e0e0;
+  --team-grey-dark: #666666;
+  --team-text-dark: #333333;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--team-blue) 0%, var(--team-blue-dark) 100%);
   min-height: 100vh;
   padding: 20px;
 }
@@ -10,14 +26,14 @@ body {
 .app-container {
   max-width: 1400px;
   margin: 0 auto;
-  background-color: white;
+  background-color: var(--team-white);
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 .app-title {
-  color: #d84315;
+  color: var(--team-red);
   text-align: center;
   margin-top: 0;
   font-size: 2.5em;
@@ -35,21 +51,21 @@ body {
 
 .btn {
   padding: 12px 24px;
-  background-color: #d84315;
-  color: white;
+  background-color: var(--team-red);
+  color: var(--team-white);
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(216, 67, 21, 0.3);
+  box-shadow: 0 2px 8px rgba(220, 20, 60, 0.3);
 }
 
 .btn:hover {
-  background-color: #bf360c;
+  background-color: var(--team-red-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(216, 67, 21, 0.4);
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.4);
 }
 
 .section {
@@ -61,13 +77,13 @@ body {
 }
 
 .section-multe-list {
-  background-color: #fff3e0;
-  border-color: #d84315;
+  background-color: var(--team-red-lighter);
+  border-color: var(--team-red);
 }
 
 .section-player-multe {
-  background-color: #f3e5f5;
-  border-color: #6a1b9a;
+  background-color: var(--team-blue-light);
+  border-color: var(--team-blue);
 }
 
 .section-title {
@@ -75,11 +91,11 @@ body {
 }
 
 .section-title-orange {
-  color: #d84315;
+  color: var(--team-red);
 }
 
 .section-title-purple {
-  color: #6a1b9a;
+  color: var(--team-blue);
 }
 
 .multe-grid {
@@ -90,9 +106,9 @@ body {
 
 .multe-grid > div {
   padding: 12px;
-  background-color: white;
+  background-color: var(--team-white);
   border-radius: 8px;
-  border-left: 4px solid #d84315;
+  border-left: 4px solid var(--team-red);
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   transition: all 0.2s ease;
 }
@@ -105,9 +121,9 @@ body {
 .multe-note {
   margin-top: 20px;
   padding: 20px;
-  background-color: white;
+  background-color: var(--team-white);
   border-radius: 8px;
-  border: 2px dashed #d84315;
+  border: 2px dashed var(--team-red);
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
@@ -118,12 +134,12 @@ body {
 
 .multe-note p:first-child {
   font-size: 1.1em;
-  color: #d84315;
+  color: var(--team-red);
   margin-bottom: 12px;
 }
 
 .badge {
-  color: white;
+  color: var(--team-white);
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.85em;
@@ -133,11 +149,11 @@ body {
 }
 
 .badge-kasa {
-  background-color: #ff6f00;
+  background-color: var(--team-red);
 }
 
 .badge-merenda {
-  background-color: #c62828;
+  background-color: var(--team-red-dark);
 }
 
 .stats-grid {
@@ -149,11 +165,11 @@ body {
 
 .stats-total {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--team-red) 0%, var(--team-red-dark) 100%);
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(106, 27, 154, 0.3);
-  color: white;
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.3);
+  color: var(--team-white);
 }
 
 .stats-total h3 {
@@ -184,10 +200,10 @@ body {
 }
 
 .player-card {
-  background-color: white;
+  background-color: var(--team-white);
   padding: 20px;
   border-radius: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--team-grey);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
 }
@@ -195,7 +211,7 @@ body {
 .player-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  border-color: #6a1b9a;
+  border-color: var(--team-blue);
 }
 
 .player-balloon {
@@ -214,15 +230,15 @@ body {
 .multa-item {
   margin: 8px 0;
   padding: 12px 15px;
-  background: linear-gradient(to right, #fff3e0, #ffffff);
-  border-left: 4px solid #d84315;
+  background: linear-gradient(to right, var(--team-red-lighter), var(--team-white));
+  border-left: 4px solid var(--team-red);
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   font-size: 1.05em;
 }
 
 .multa-item strong {
-  color: #d84315;
+  color: var(--team-red);
   font-size: 1.15em;
   margin-right: 8px;
 }
@@ -241,8 +257,8 @@ th {
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
-  background-color: #d84315;
-  color: white;
+  background-color: var(--team-red);
+  color: var(--team-white);
   font-weight: bold;
   position: sticky;
   top: 0;
@@ -255,31 +271,31 @@ td {
 }
 
 .td-alias {
-  color: #666;
+  color: var(--team-grey-dark);
   font-style: italic;
 }
 
 .td-club {
-  color: #0277bd;
+  color: var(--team-blue);
   font-size: 0.9em;
 }
 
 .td-total {
   font-weight: bold;
-  background-color: #fff3e0;
+  background-color: var(--team-red-lighter);
 }
 
 .th-total {
-  background-color: #fff3e0;
-  color: #d84315;
+  background-color: var(--team-red-lighter);
+  color: var(--team-red);
 }
 
 tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: var(--team-grey-light);
 }
 
 tbody tr:nth-child(odd) {
-  background-color: white;
+  background-color: var(--team-white);
 }
 
 input[type="number"] {
@@ -355,17 +371,17 @@ input[type="text"] {
 }
 
 .player-link:hover {
-  color: #6a1b9a;
+  color: var(--team-blue);
   text-decoration: underline;
 }
 
 .player-card .player-link:hover {
-  color: #4a148c;
+  color: var(--team-blue-dark);
 }
 
 /* Status badges */
 .badge-pending {
-  background-color: #ff9800;
+  background-color: var(--team-red);
 }
 
 .badge-validated {
@@ -373,7 +389,7 @@ input[type="text"] {
 }
 
 .status-badge {
-  color: white;
+  color: var(--team-white);
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 0.75em;
@@ -385,11 +401,11 @@ input[type="text"] {
 
 /* Upcoming multe section */
 .upcoming-multe {
-  background: linear-gradient(135deg, #ff6f00 0%, #d84315 100%);
+  background: linear-gradient(135deg, var(--team-red) 0%, var(--team-red-dark) 100%);
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(216, 67, 21, 0.3);
-  color: white;
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.3);
+  color: var(--team-white);
   margin-bottom: 25px;
 }
 
@@ -457,12 +473,12 @@ input[type="text"] {
 }
 
 .player-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--team-blue) 0%, var(--team-blue-dark) 100%);
   padding: 30px;
   border-radius: 12px;
-  color: white;
+  color: var(--team-white);
   margin-bottom: 25px;
-  box-shadow: 0 6px 20px rgba(106, 27, 154, 0.3);
+  box-shadow: 0 6px 20px rgba(89, 165, 216, 0.3);
 }
 
 .player-header h2 {
@@ -480,8 +496,8 @@ input[type="text"] {
   display: inline-block;
   padding: 10px 20px;
   background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 2px solid white;
+  color: var(--team-white);
+  border: 2px solid var(--team-white);
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
@@ -492,8 +508,8 @@ input[type="text"] {
 }
 
 .back-button:hover {
-  background-color: white;
-  color: #6a1b9a;
+  background-color: var(--team-white);
+  color: var(--team-blue);
 }
 
 .player-multe-timeline {
@@ -503,10 +519,10 @@ input[type="text"] {
 }
 
 .timeline-item {
-  background-color: white;
+  background-color: var(--team-white);
   padding: 20px;
   border-radius: 12px;
-  border-left: 6px solid #d84315;
+  border-left: 6px solid var(--team-red);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
 }
@@ -522,7 +538,7 @@ input[type="text"] {
 }
 
 .timeline-item.pending {
-  border-left-color: #ff9800;
+  border-left-color: var(--team-red);
 }
 
 .timeline-header {
@@ -536,7 +552,7 @@ input[type="text"] {
 
 .timeline-date {
   font-weight: 700;
-  color: #6a1b9a;
+  color: var(--team-blue);
   font-size: 1.1em;
 }
 
@@ -547,19 +563,19 @@ input[type="text"] {
 .timeline-multa-name {
   font-size: 1.15em;
   font-weight: 600;
-  color: #333;
+  color: var(--team-text-dark);
   margin-bottom: 8px;
 }
 
 .timeline-desc {
-  color: #666;
+  color: var(--team-grey-dark);
   font-style: italic;
   margin-bottom: 8px;
 }
 
 .timeline-price {
   font-weight: 700;
-  color: #d84315;
+  color: var(--team-red);
   font-size: 1.1em;
 }
 
@@ -571,10 +587,10 @@ input[type="text"] {
 }
 
 .player-stat-box {
-  background-color: white;
+  background-color: var(--team-white);
   padding: 20px;
   border-radius: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--team-grey);
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: center;
 }
@@ -582,14 +598,14 @@ input[type="text"] {
 .player-stat-box strong {
   display: block;
   font-size: 0.9em;
-  color: #666;
+  color: var(--team-grey-dark);
   margin-bottom: 10px;
 }
 
 .player-stat-box .stat-value {
   font-size: 2.2em;
   font-weight: 700;
-  color: #6a1b9a;
+  color: var(--team-blue);
 }
 
 /* Multe history table */
@@ -597,15 +613,15 @@ input[type="text"] {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  background-color: white;
+  background-color: var(--team-white);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .multe-history-table th {
-  background-color: #6a1b9a;
-  color: white;
+  background-color: var(--team-blue);
+  color: var(--team-white);
   padding: 12px 15px;
   text-align: left;
   font-weight: 600;
@@ -615,7 +631,7 @@ input[type="text"] {
 
 .multe-history-table td {
   padding: 10px 15px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--team-grey);
   font-size: 0.95em;
 }
 
@@ -624,7 +640,7 @@ input[type="text"] {
 }
 
 .multe-history-table tbody tr:hover {
-  background-color: #f3e5f5;
+  background-color: var(--team-blue-light);
 }
 
 .multe-row.validated {
@@ -632,9 +648,9 @@ input[type="text"] {
 }
 
 .multe-row.validated td {
-  color: #666;
+  color: var(--team-grey-dark);
 }
 
 .multe-row.pending {
-  background-color: #fff3e0;
+  background-color: var(--team-red-lighter);
 }
