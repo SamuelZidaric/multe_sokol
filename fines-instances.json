@@ -46,7 +46,7 @@
   {"id": 45, "player_id": 17, "multa_id": 4, "date": "04/11/2025", "status": "Pending", "desc": "Indumento dimenticato"},
   {"id": 46, "player_id": 7, "multa_id": 0, "date": "04/11/2025", "status": "Validated", "desc": "telefono"},
   {"id": 47, "player_id": 13, "multa_id": 23, "date": "06/11/2025", "status": "Pending", "desc": "BD"},
-  {"id": 48, "player_id": 7, "multa_id": 4, "date": "07/11/2025", "status": "Pending", "desc": "Indumento dimenticato"},
+  {"id": 48, "player_id": 32, "multa_id": 4, "date": "07/11/2025", "status": "Pending", "desc": "Indumento dimenticato"},
   {"id": 49, "player_id": 30, "multa_id": 1, "date": "11/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 50, "player_id": 28, "multa_id": 1, "date": "11/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 51, "player_id": 10, "multa_id": 1, "date": "11/11/2025", "status": "Pending", "desc": "0/2"},
