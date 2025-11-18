@@ -350,3 +350,232 @@ input[type="text"] {
     grid-template-columns: 1fr;
   }
 }
+
+/* Player link styles */
+.player-link {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.player-link:hover {
+  color: #6a1b9a;
+  text-decoration: underline;
+}
+
+.player-card .player-link:hover {
+  color: #4a148c;
+}
+
+/* Status badges */
+.badge-pending {
+  background-color: #ff9800;
+}
+
+.badge-validated {
+  background-color: #4caf50;
+}
+
+.status-badge {
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+/* Upcoming multe section */
+.upcoming-multe {
+  background: linear-gradient(135deg, #ff6f00 0%, #d84315 100%);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(216, 67, 21, 0.3);
+  color: white;
+  margin-bottom: 25px;
+}
+
+.upcoming-multe h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.6em;
+  font-weight: 700;
+}
+
+.upcoming-multe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.upcoming-multa-item {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.upcoming-multa-item .player-name {
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.upcoming-multa-item .multa-desc {
+  flex: 1;
+  font-size: 0.95em;
+  opacity: 0.95;
+}
+
+.upcoming-multa-item .multa-date {
+  font-size: 0.85em;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* Player page styles */
+.player-page {
+  margin-top: 20px;
+}
+
+.player-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px;
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(106, 27, 154, 0.3);
+}
+
+.player-header h2 {
+  margin: 0 0 10px 0;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+.player-header .player-info {
+  font-size: 1.1em;
+  opacity: 0.95;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.back-button:hover {
+  background-color: white;
+  color: #6a1b9a;
+}
+
+.player-multe-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.timeline-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 6px solid #d84315;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.timeline-item.validated {
+  border-left-color: #4caf50;
+  opacity: 0.85;
+}
+
+.timeline-item.pending {
+  border-left-color: #ff9800;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.timeline-date {
+  font-weight: 700;
+  color: #6a1b9a;
+  font-size: 1.1em;
+}
+
+.timeline-body {
+  padding-left: 10px;
+}
+
+.timeline-multa-name {
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.timeline-price {
+  font-weight: 700;
+  color: #d84315;
+  font-size: 1.1em;
+}
+
+.player-stats-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.player-stat-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.player-stat-box strong {
+  display: block;
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.player-stat-box .stat-value {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #6a1b9a;
+}
