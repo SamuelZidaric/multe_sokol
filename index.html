@@ -203,14 +203,14 @@
           {/* Upcoming Multe Section */}
           {upcomingMulte.length > 0 && (
             <div className="upcoming-multe">
-              <h3>🔜 Prossime 5 Multe in Sospeso</h3>
+              <h3>🔜 Naslednje multe u vrsti</h3>
               <div className="upcoming-multe-list">
                 {upcomingMulte.map(fine => {
                   const priceInfo = typeof fine.multaType?.price === 'number'
                     ? `${fine.multaType.price}€`
                     : fine.multaType?.price === 'KASA'
-                    ? '🍺 KASA (Birre per tutti)'
-                    : '🍽️ MERENDA (Kasa + Cena per tutti)';
+                    ? 'KASA'
+                    : 'MERENDA';
 
                   return (
                     <div key={fine.id} className="upcoming-multa-item">
