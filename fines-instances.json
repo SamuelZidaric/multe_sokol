@@ -1,7 +1,7 @@
 [
   {"id": 1, "player_id": 16, "multa_id": 23, "date": "27/06/2025", "status": "Pending", "desc": "BD"},
   {"id": 2, "player_id": 12, "multa_id": 15, "date": "22/07/2025", "status": "Pending", "desc": "slika"},
-  {"id": 3, "player_id": 7, "multa_id": 22, "date": "08/08/2025", "status": "Pending", "desc": "Patente motor"},
+  {"id": 3, "player_id": 7, "multa_id": 21, "date": "08/08/2025", "status": "Pending", "desc": "Patente motor"},
   {"id": 4, "player_id": 9, "multa_id": 15, "date": "15/08/2025", "status": "Pending", "desc": "slika"},
   {"id": 5, "player_id": 29, "multa_id": 16, "date": "20/08/2025", "status": "Pending", "desc": "video"},
   {"id": 6, "player_id": 20, "multa_id": 23, "date": "06/09/2025", "status": "Validated", "desc": "BD"},
