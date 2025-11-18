@@ -324,15 +324,17 @@ input[type="text"] {
   }
 
   .app-container {
-    padding: 20px;
+    padding: 15px;
   }
 
   .app-title {
     font-size: 1.8em;
+    margin-bottom: 20px;
   }
 
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .multe-grid {
@@ -349,16 +351,235 @@ input[type="text"] {
 
   .btn {
     width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 1.5em;
+  }
+
+  .player-card {
+    padding: 15px;
+  }
+
+  /* Better table scrolling on mobile */
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -15px;
+    padding: 0 15px;
+  }
+
+  table {
+    min-width: 600px;
+    font-size: 0.9em;
+  }
+
+  th, td {
+    padding: 10px 8px;
+    font-size: 0.85em;
+  }
+
+  /* Player page mobile improvements */
+  .player-header {
+    padding: 20px;
+  }
+
+  .player-header h2 {
+    font-size: 1.6em;
+  }
+
+  .player-header .player-info {
+    font-size: 0.95em;
+  }
+
+  .player-stats-summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .player-stat-box {
+    padding: 15px;
+  }
+
+  .player-stat-box .stat-value {
+    font-size: 1.8em;
+  }
+
+  /* Upcoming multe mobile layout */
+  .upcoming-multe {
+    padding: 20px 15px;
+  }
+
+  .upcoming-multe h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+  }
+
+  .upcoming-multa-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .upcoming-multa-item .player-name {
+    font-size: 1em;
+  }
+
+  .upcoming-multa-item .multa-desc {
+    font-size: 0.9em;
+  }
+
+  .upcoming-multa-item .multa-price-info,
+  .upcoming-multa-item .multa-date {
+    white-space: normal;
+  }
+
+  /* Stats total mobile improvements */
+  .stats-total {
+    padding: 20px 15px;
+  }
+
+  .stats-total h3 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+
+  .stats-total-grid {
+    gap: 12px;
+  }
+
+  /* Touch-friendly links */
+  .player-link {
+    display: inline-block;
+    padding: 2px 0;
+  }
+
+  .back-button {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  /* Multe note section */
+  .multe-note {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .multe-note p {
+    font-size: 0.9em;
   }
 }
 
 @media (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+
+  .app-container {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
   .app-title {
     font-size: 1.5em;
+    margin-bottom: 15px;
   }
 
   .stats-total-grid {
     grid-template-columns: 1fr;
+  }
+
+  .player-stats-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .multe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .multe-grid > div {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .section {
+    padding: 12px;
+  }
+
+  .section-title {
+    font-size: 1.3em;
+  }
+
+  .player-header {
+    padding: 15px;
+  }
+
+  .player-header h2 {
+    font-size: 1.4em;
+  }
+
+  .stats-total,
+  .upcoming-multe {
+    padding: 15px 12px;
+  }
+
+  .stats-total h3,
+  .upcoming-multe h3 {
+    font-size: 1.2em;
+  }
+
+  .upcoming-multa-item {
+    padding: 10px;
+  }
+
+  /* Better table display on very small screens */
+  table {
+    font-size: 0.8em;
+  }
+
+  th, td {
+    padding: 8px 6px;
+    font-size: 0.8em;
+  }
+
+  /* Smaller badges on mobile */
+  .badge {
+    font-size: 0.75em;
+    padding: 3px 8px;
+  }
+
+  .status-badge {
+    font-size: 0.7em;
+    padding: 2px 6px;
+  }
+
+  /* Player card adjustments */
+  .player-card {
+    padding: 12px;
+  }
+
+  .player-balloon {
+    font-size: 1.5em !important;
+  }
+
+  /* Better spacing for stat boxes */
+  .player-stat-box {
+    padding: 12px;
+  }
+
+  .player-stat-box strong {
+    font-size: 0.85em;
+  }
+
+  .player-stat-box .stat-value {
+    font-size: 1.6em;
   }
 }
 
