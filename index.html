@@ -33,19 +33,28 @@
         // Load players data
         fetch('./players.json')
           .then(response => response.json())
-          .then(data => setPlayersData(data))
+          .then(data => {
+            console.log('Loaded players:', data.length);
+            setPlayersData(data);
+          })
           .catch(error => console.error('Error loading players:', error));
 
         // Load multe types data
         fetch('./multe-types.json')
           .then(response => response.json())
-          .then(data => setMulteTypesData(data))
+          .then(data => {
+            console.log('Loaded multe types:', data.length);
+            setMulteTypesData(data);
+          })
           .catch(error => console.error('Error loading multe types:', error));
 
         // Load fines instances data
         fetch('./fines-instances.json')
           .then(response => response.json())
-          .then(data => setFinesInstances(data))
+          .then(data => {
+            console.log('Loaded fines instances:', data.length);
+            setFinesInstances(data);
+          })
           .catch(error => console.error('Error loading fines instances:', error));
       }, []);
 
@@ -219,6 +228,15 @@
           <h1 className="app-title">
             Multe Sokol
           </h1>
+
+          {/* Debug Info */}
+          <div style={{padding: '10px', backgroundColor: '#f0f0f0', marginBottom: '20px', borderRadius: '5px'}}>
+            <strong>Debug Info:</strong>
+            Players loaded: {playersData.length} |
+            Multe types loaded: {multeTypesData.length} |
+            Fines loaded: {finesInstances.length} |
+            Stats calculated: {stats.length}
+          </div>
 
           {/* Upcoming Multe Section */}
           {upcomingMulte.length > 0 && (
