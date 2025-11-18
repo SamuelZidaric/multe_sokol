@@ -218,7 +218,7 @@
                         <a
                           href={`#player/${fine.player_id}`}
                           className="player-link"
-                          style={{color: 'white', textDecoration: 'none'}}
+                          style={{color: 'var(--team-white)', textDecoration: 'none'}}
                         >
                           {fine.player?.name} {fine.player?.surname}
                         </a>
@@ -363,7 +363,7 @@
               </div>
               <div className="player-stat-box">
                 <strong>Pending</strong>
-                <div className="stat-value" style={{color: '#ff9800'}}>{pendingFines.length}</div>
+                <div className="stat-value" style={{color: 'var(--team-red)'}}>{pendingFines.length}</div>
               </div>
               <div className="player-stat-box">
                 <strong>Validated</strong>
@@ -387,7 +387,7 @@
               )}
             </div>
 
-            <h3 style={{color: '#6a1b9a', marginBottom: '20px', fontSize: '1.8em'}}>
+            <h3 style={{color: 'var(--team-blue)', marginBottom: '20px', fontSize: '1.8em'}}>
               Storico Multe (Cronologico)
             </h3>
 
@@ -416,10 +416,10 @@
 
                     return (
                       <tr key={fine.id} className={`multe-row ${fine.status.toLowerCase()}`}>
-                        <td style={{fontWeight: '600', color: '#6a1b9a'}}>{fine.date}</td>
+                        <td style={{fontWeight: '600', color: 'var(--team-blue)'}}>{fine.date}</td>
                         <td style={{fontWeight: '600'}}>{multaType.name}</td>
-                        <td style={{fontStyle: 'italic', color: '#666'}}>{fine.desc || '-'}</td>
-                        <td style={{fontWeight: '700', color: '#d84315'}}>{priceStr}</td>
+                        <td style={{fontStyle: 'italic', color: 'var(--team-grey-dark)'}}>{fine.desc || '-'}</td>
+                        <td style={{fontWeight: '700', color: 'var(--team-red)'}}>{priceStr}</td>
                         <td>
                           <span className={`status-badge badge-${fine.status.toLowerCase()}`}>
                             {fine.status}
@@ -499,7 +499,7 @@
           </div>
           {stats.map(stat => (
             <div key={stat.player.id} className="player-card">
-              <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px', paddingBottom: '10px', borderBottom: '2px solid #f3e5f5'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px', paddingBottom: '10px', borderBottom: '2px solid var(--team-blue-light)'}}>
                 <a
                   href={`#player/${stat.player.id}`}
                   className="player-balloon"
@@ -513,7 +513,7 @@
                 >
                   🏀
                 </a>
-                <strong style={{fontSize: '1.3em', color: '#6a1b9a'}}>
+                <strong style={{fontSize: '1.3em', color: 'var(--team-blue)'}}>
                   <a
                     href={`#player/${stat.player.id}`}
                     className="player-link"
@@ -528,35 +528,35 @@
                 {stat.player.alias !== 'ND' && `(${stat.player.alias})`}
               </div>
               <div style={{marginTop: '8px'}}>
-                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#f3e5f5', borderRadius: '8px', marginBottom: '10px'}}>
-                  <strong style={{fontSize: '1.05em', color: '#555'}}>Totale multe:</strong>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: 'var(--team-blue-light)', borderRadius: '8px', marginBottom: '10px'}}>
+                  <strong style={{fontSize: '1.05em', color: 'var(--team-grey-dark)'}}>Totale multe:</strong>
                   <div>
-                    <span style={{fontSize: '1.8em', fontWeight: '700', color: '#6a1b9a', marginRight: '10px'}}>{stat.totalCount}</span>
+                    <span style={{fontSize: '1.8em', fontWeight: '700', color: 'var(--team-blue)', marginRight: '10px'}}>{stat.totalCount}</span>
                     <span className="badge badge-pending" style={{fontSize: '0.7em', marginRight: '3px'}}>{stat.pendingCount} P</span>
                     <span className="badge badge-validated" style={{fontSize: '0.7em'}}>{stat.validatedCount} V</span>
                   </div>
                 </div>
-                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '8px', marginBottom: '10px'}}>
-                  <strong style={{fontSize: '1.05em', color: '#555'}}>Totale €:</strong>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: 'var(--team-red-lighter)', borderRadius: '8px', marginBottom: '10px'}}>
+                  <strong style={{fontSize: '1.05em', color: 'var(--team-grey-dark)'}}>Totale €:</strong>
                   <div>
-                    <span style={{fontSize: '1.8em', fontWeight: '700', color: '#d84315'}}>{stat.totalEuro.toFixed(2)}€</span>
+                    <span style={{fontSize: '1.8em', fontWeight: '700', color: 'var(--team-red)'}}>{stat.totalEuro.toFixed(2)}€</span>
                   </div>
                 </div>
                 {stat.kasaCount > 0 && (
-                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#fff3e0', borderRadius: '8px', marginBottom: '10px'}}>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: 'var(--team-red-lighter)', borderRadius: '8px', marginBottom: '10px'}}>
                     <span className="badge badge-kasa">KASA</span>
                     <div>
-                      <span style={{fontSize: '1.6em', fontWeight: '700', color: '#ff6f00', marginRight: '10px'}}>{stat.kasaCount}x</span>
+                      <span style={{fontSize: '1.6em', fontWeight: '700', color: 'var(--team-red)', marginRight: '10px'}}>{stat.kasaCount}x</span>
                       <span className="badge badge-pending" style={{fontSize: '0.7em', marginRight: '3px'}}>{stat.kasaCountPending} P</span>
                       <span className="badge badge-validated" style={{fontSize: '0.7em'}}>{stat.kasaCountValidated} V</span>
                     </div>
                   </div>
                 )}
                 {stat.merendaCount > 0 && (
-                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: '#ffebee', borderRadius: '8px', marginBottom: '10px'}}>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px', backgroundColor: 'var(--team-red-light)', borderRadius: '8px', marginBottom: '10px'}}>
                     <span className="badge badge-merenda">MERENDA</span>
                     <div>
-                      <span style={{fontSize: '1.6em', fontWeight: '700', color: '#c62828', marginRight: '10px'}}>{stat.merendaCount}x</span>
+                      <span style={{fontSize: '1.6em', fontWeight: '700', color: 'var(--team-red-dark)', marginRight: '10px'}}>{stat.merendaCount}x</span>
                       <span className="badge badge-pending" style={{fontSize: '0.7em', marginRight: '3px'}}>{stat.merendaCountPending} P</span>
                       <span className="badge badge-validated" style={{fontSize: '0.7em'}}>{stat.merendaCountValidated} V</span>
                     </div>
