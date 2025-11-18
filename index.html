@@ -57,6 +57,9 @@
             const playerId = parseInt(hash.replace('#player/', ''));
             setCurrentPage('player');
             setCurrentPlayerId(playerId);
+          } else if (hash === '#all-fines') {
+            setCurrentPage('all-fines');
+            setCurrentPlayerId(null);
           } else {
             setCurrentPage('home');
             setCurrentPlayerId(null);
@@ -77,6 +80,10 @@
 
       const navigateToHome = () => {
         window.location.hash = '';
+      };
+
+      const navigateToAllFines = () => {
+        window.location.hash = '#all-fines';
       };
 
       // Parse date from DD/MM/YYYY to Date object
@@ -181,6 +188,19 @@
       const totalMerendaPending = stats.reduce((sum, s) => sum + s.merendaCountPending, 0);
       const totalMerendaValidated = stats.reduce((sum, s) => sum + s.merendaCountValidated, 0);
 
+      if (currentPage === 'all-fines') {
+        return (
+          <AllFinesPage
+            playersData={playersData}
+            multeTypesData={multeTypesData}
+            finesInstances={finesInstances}
+            navigateToHome={navigateToHome}
+            navigateToPlayer={navigateToPlayer}
+            parseDate={parseDate}
+          />
+        );
+      }
+
       if (currentPage === 'player' && currentPlayerId) {
         return (
           <PlayerPage
@@ -256,6 +276,7 @@
               totalMerendaPending={totalMerendaPending}
               totalMerendaValidated={totalMerendaValidated}
               navigateToPlayer={navigateToPlayer}
+              navigateToAllFines={navigateToAllFines}
             />
           </div>
 
@@ -436,6 +457,159 @@
       );
     };
 
+    // All Fines Page Component
+    const AllFinesPage = ({ playersData, multeTypesData, finesInstances, navigateToHome, navigateToPlayer, parseDate }) => {
+      const allFines = finesInstances
+        .map(fine => ({
+          ...fine,
+          dateObj: parseDate(fine.date),
+          player: playersData.find(p => p.id === fine.player_id),
+          multaType: multeTypesData.find(mt => mt.id === fine.multa_id)
+        }))
+        .sort((a, b) => a.dateObj - b.dateObj);
+
+      const pendingFines = allFines.filter(f => f.status === 'Pending');
+      const validatedFines = allFines.filter(f => f.status === 'Validated');
+
+      let totalEuro = 0;
+      let totalEuroPending = 0;
+      let totalEuroValidated = 0;
+      let kasaCount = 0;
+      let kasaCountPending = 0;
+      let kasaCountValidated = 0;
+      let merendaCount = 0;
+      let merendaCountPending = 0;
+      let merendaCountValidated = 0;
+
+      allFines.forEach(fine => {
+        const multaType = fine.multaType;
+        if (multaType) {
+          const isPending = fine.status === 'Pending';
+          if (typeof multaType.price === 'number') {
+            totalEuro += multaType.price;
+            if (isPending) totalEuroPending += multaType.price;
+            else totalEuroValidated += multaType.price;
+          } else if (multaType.price === 'KASA') {
+            kasaCount++;
+            if (isPending) kasaCountPending++;
+            else kasaCountValidated++;
+          } else if (multaType.price === 'MERENDA') {
+            merendaCount++;
+            if (isPending) merendaCountPending++;
+            else merendaCountValidated++;
+          }
+        }
+      });
+
+      return (
+        <div className="app-container">
+          <div className="player-page">
+            <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); navigateToHome(); }}>
+              ← Back to Home
+            </a>
+
+            <div className="player-header">
+              <h2>Tutte le Multe - Cronologia Completa</h2>
+              <div className="player-info">
+                Vista cronologica di tutte le multe del team
+              </div>
+            </div>
+
+            <div className="player-stats-summary">
+              <div className="player-stat-box">
+                <strong>Total Multe</strong>
+                <div className="stat-value">{allFines.length}</div>
+              </div>
+              <div className="player-stat-box">
+                <strong>Pending</strong>
+                <div className="stat-value" style={{color: 'var(--team-red)'}}>{pendingFines.length}</div>
+              </div>
+              <div className="player-stat-box">
+                <strong>Validated</strong>
+                <div className="stat-value" style={{color: '#4caf50'}}>{validatedFines.length}</div>
+              </div>
+              <div className="player-stat-box">
+                <strong>Total €</strong>
+                <div className="stat-value">{totalEuro.toFixed(2)}€</div>
+              </div>
+              {kasaCount > 0 && (
+                <div className="player-stat-box">
+                  <strong>KASA</strong>
+                  <div className="stat-value">{kasaCount}</div>
+                </div>
+              )}
+              {merendaCount > 0 && (
+                <div className="player-stat-box">
+                  <strong>MERENDA</strong>
+                  <div className="stat-value">{merendaCount}</div>
+                </div>
+              )}
+            </div>
+
+            <h3 style={{color: 'var(--team-blue)', marginBottom: '20px', fontSize: '1.8em'}}>
+              Storico Completo (Cronologico)
+            </h3>
+
+            <div className="table-container">
+              <table className="multe-history-table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Giocatore</th>
+                    <th>Multa</th>
+                    <th>Descrizione</th>
+                    <th>Prezzo</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allFines.map(fine => {
+                    const multaType = fine.multaType;
+                    const player = fine.player;
+                    if (!multaType || !player) return null;
+
+                    const priceStr = typeof multaType.price === 'number' ? `${multaType.price}€` :
+                                    multaType.price === 'KASA' ? (
+                                      <span className="badge badge-kasa">KASA</span>
+                                    ) : (
+                                      <span className="badge badge-merenda">MERENDA</span>
+                                    );
+
+                    return (
+                      <tr key={fine.id} className={`multe-row ${fine.status.toLowerCase()}`}>
+                        <td style={{fontWeight: '600', color: 'var(--team-blue)'}}>{fine.date}</td>
+                        <td style={{fontWeight: '600'}}>
+                          <a
+                            href={`#player/${player.id}`}
+                            className="player-link"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigateToPlayer(player.id);
+                            }}
+                            style={{color: 'var(--team-blue)', textDecoration: 'none'}}
+                          >
+                            {player.name} {player.surname}
+                          </a>
+                        </td>
+                        <td style={{fontWeight: '600'}}>{multaType.name}</td>
+                        <td style={{fontStyle: 'italic', color: 'var(--team-grey-dark)'}}>{fine.desc || '-'}</td>
+                        <td style={{fontWeight: '700', color: 'var(--team-red)'}}>{priceStr}</td>
+                        <td>
+                          <span className={`status-badge badge-${fine.status.toLowerCase()}`}>
+                            {fine.status}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     // Components
     const PlayerMulteStats = ({
       stats,
@@ -452,7 +626,8 @@
       totalMerenda,
       totalMerendaPending,
       totalMerendaValidated,
-      navigateToPlayer
+      navigateToPlayer,
+      navigateToAllFines
     }) => {
       if (stats.length === 0) {
         return <p>Nessuna multa registrata ancora.</p>;
@@ -463,12 +638,26 @@
           <div className="stats-total">
             <h3>Statistiche Totali</h3>
             <div className="stats-total-grid">
-              <div>
+              <div
+                onClick={() => navigateToAllFines()}
+                style={{cursor: 'pointer', transition: 'transform 0.2s', padding: '10px', borderRadius: '8px'}}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.backgroundColor = 'rgba(66, 135, 245, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+              >
                 <strong>Multe totali</strong>
                 <div style={{fontSize: '2.5em', fontWeight: '700', marginTop: '5px'}}>{totalMulteCount}</div>
                 <div style={{fontSize: '0.85em', marginTop: '5px'}}>
                   <span className="badge badge-pending" style={{marginRight: '5px'}}>{totalPendingCount} Pending</span>
                   <span className="badge badge-validated">{totalValidatedCount} Validated</span>
+                </div>
+                <div style={{fontSize: '0.75em', marginTop: '8px', color: 'var(--team-blue)', fontStyle: 'italic'}}>
+                  👆 Click to view complete chronology
                 </div>
               </div>
               <div>
