@@ -33,7 +33,7 @@
   {"id": 32, "player_id": 28, "multa_id": 6, "date": "26/10/2025", "status": "Validated", "desc": "Zgresen zicer"},
   {"id": 33, "player_id": 28, "multa_id": 1, "date": "26/10/2025", "status": "Validated", "desc": "0/2"},
   {"id": 34, "player_id": 28, "multa_id": 1, "date": "26/10/2025", "status": "Validated", "desc": "0/2"},
-  {"id": 35, "player_id": 6, "multa_id": 26, "date": "26/10/2025", "status": "Pending", "desc": "esordio"},
+  {"id": 35, "player_id": 6, "multa_id": 26, "date": "26/10/2025", "status": "Validated", "desc": "esordio"},
   {"id": 36, "player_id": 31, "multa_id": 1, "date": "26/10/2025", "status": "Validated", "desc": "0/2"},
   {"id": 37, "player_id": 29, "multa_id": 0, "date": "26/10/2025", "status": "Validated", "desc": "telefono"},
   {"id": 38, "player_id": 1, "multa_id": 21, "date": "26/10/2025", "status": "Pending", "desc": "intervista rai/sportel"},
@@ -62,4 +62,5 @@
   {"id": 61, "player_id": 30, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 62, "player_id": 28, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 63, "player_id": 31, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"}
+  {"id": 64, "player_id": 28, "multa_id": 4, "date": "13/11/2025", "status": "Pending", "desc": "Indumento dimenticato"}
 ]
