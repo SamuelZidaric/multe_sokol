@@ -61,5 +61,6 @@
   {"id": 60, "player_id": 30, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 61, "player_id": 30, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 62, "player_id": 28, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
-  {"id": 63, "player_id": 31, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"}
+  {"id": 63, "player_id": 31, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
+  {"id": 64, "player_id": 28, "multa_id": 4, "date": "13/11/2025", "status": "Pending", "desc": "Indumento dimenticato"}
 ]
