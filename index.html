@@ -27,35 +27,112 @@
       const [finesInstances, setFinesInstances] = useState([]);
       const [currentPage, setCurrentPage] = useState('home');
       const [currentPlayerId, setCurrentPlayerId] = useState(null);
+      const [loadingErrors, setLoadingErrors] = useState([]);
 
       // Load data from JSON files
       useEffect(() => {
+        const errors = [];
+
         // Load players data
         fetch('./players.json')
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to load players.json');
+            return response.json();
+          })
           .then(data => {
             console.log('Loaded players:', data.length);
             setPlayersData(data);
           })
-          .catch(error => console.error('Error loading players:', error));
+          .catch(error => {
+            console.error('Error loading players:', error);
+            errors.push(`Players: ${error.message}`);
+            setLoadingErrors([...errors]);
+          });
 
         // Load multe types data
         fetch('./multe-types.json')
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to load multe-types.json');
+            return response.json();
+          })
           .then(data => {
             console.log('Loaded multe types:', data.length);
             setMulteTypesData(data);
           })
-          .catch(error => console.error('Error loading multe types:', error));
+          .catch(error => {
+            console.error('Error loading multe types:', error);
+            errors.push(`Multe Types: ${error.message}`);
+            setLoadingErrors([...errors]);
+          });
 
-        // Load fines instances data
+        // Load fines instances data with validation
         fetch('./fines-instances.json')
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to load fines-instances.json');
+            return response.json();
+          })
           .then(data => {
             console.log('Loaded fines instances:', data.length);
-            setFinesInstances(data);
+
+            // Validate and filter fines data
+            const validFines = [];
+            const invalidFines = [];
+
+            data.forEach((fine, index) => {
+              // Check required fields
+              if (!fine.id && fine.id !== 0) {
+                invalidFines.push(`Entry ${index}: missing 'id'`);
+                return;
+              }
+              if (!fine.player_id && fine.player_id !== 0) {
+                invalidFines.push(`Fine ${fine.id}: missing 'player_id'`);
+                return;
+              }
+              if (!fine.multa_id && fine.multa_id !== 0) {
+                invalidFines.push(`Fine ${fine.id}: missing 'multa_id'`);
+                return;
+              }
+              if (!fine.date) {
+                invalidFines.push(`Fine ${fine.id}: missing 'date'`);
+                return;
+              }
+              if (!fine.status) {
+                invalidFines.push(`Fine ${fine.id}: missing 'status'`);
+                return;
+              }
+
+              // Validate date format (DD/MM/YYYY)
+              const datePattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+              if (!datePattern.test(fine.date)) {
+                invalidFines.push(`Fine ${fine.id}: invalid date format '${fine.date}' (expected DD/MM/YYYY)`);
+                return;
+              }
+
+              // Validate status
+              if (fine.status !== 'Pending' && fine.status !== 'Validated') {
+                invalidFines.push(`Fine ${fine.id}: invalid status '${fine.status}' (expected 'Pending' or 'Validated')`);
+                return;
+              }
+
+              validFines.push(fine);
+            });
+
+            if (invalidFines.length > 0) {
+              console.warn('Found invalid fines:', invalidFines);
+              errors.push(`Fines validation: ${invalidFines.length} invalid entries (see console)`);
+              setLoadingErrors([...errors]);
+            }
+
+            console.log(`Validated fines: ${validFines.length} valid, ${invalidFines.length} invalid`);
+            setFinesInstances(validFines);
           })
-          .catch(error => console.error('Error loading fines instances:', error));
+          .catch(error => {
+            console.error('Error loading fines instances:', error);
+            errors.push(`Fines: ${error.message} - Check JSON syntax!`);
+            setLoadingErrors([...errors]);
+            // Set empty array so app continues to work
+            setFinesInstances([]);
+          });
       }, []);
 
       // Handle hash-based routing
@@ -97,8 +174,28 @@
 
       // Parse date from DD/MM/YYYY to Date object
       const parseDate = (dateStr) => {
-        const [day, month, year] = dateStr.split('/');
-        return new Date(year, month - 1, day);
+        try {
+          if (!dateStr || typeof dateStr !== 'string') {
+            console.warn('Invalid date string:', dateStr);
+            return new Date(0); // Return epoch date as fallback
+          }
+          const parts = dateStr.split('/');
+          if (parts.length !== 3) {
+            console.warn('Invalid date format:', dateStr);
+            return new Date(0);
+          }
+          const [day, month, year] = parts;
+          const date = new Date(year, month - 1, day);
+          // Check if date is valid
+          if (isNaN(date.getTime())) {
+            console.warn('Invalid date:', dateStr);
+            return new Date(0);
+          }
+          return date;
+        } catch (error) {
+          console.error('Error parsing date:', dateStr, error);
+          return new Date(0);
+        }
       };
 
       // Calculate player multe stats
@@ -175,6 +272,18 @@
             player: playersData.find(p => p.id === fine.player_id),
             multaType: multeTypesData.find(mt => mt.id === fine.multa_id)
           }))
+          .filter(fine => {
+            // Filter out fines with missing player or multa type references
+            if (!fine.player) {
+              console.warn(`Fine ${fine.id}: player_id ${fine.player_id} not found`);
+              return false;
+            }
+            if (!fine.multaType) {
+              console.warn(`Fine ${fine.id}: multa_id ${fine.multa_id} not found`);
+              return false;
+            }
+            return true;
+          })
           .sort((a, b) => a.dateObj - b.dateObj)
           .slice(0, 5);
 
@@ -228,6 +337,28 @@
           <h1 className="app-title">
             Multe Sokol
           </h1>
+
+          {/* Loading Errors Display */}
+          {loadingErrors.length > 0 && (
+            <div style={{
+              backgroundColor: '#fee',
+              border: '2px solid #c00',
+              borderRadius: '8px',
+              padding: '15px',
+              marginBottom: '20px',
+              color: '#900'
+            }}>
+              <h3 style={{margin: '0 0 10px 0', color: '#c00'}}>⚠️ Data Loading Errors</h3>
+              <ul style={{margin: 0, paddingLeft: '20px'}}>
+                {loadingErrors.map((error, idx) => (
+                  <li key={idx}>{error}</li>
+                ))}
+              </ul>
+              <p style={{margin: '10px 0 0 0', fontSize: '0.9em'}}>
+                <strong>Fix:</strong> Check the JSON files for syntax errors (missing commas, brackets, etc.) and validate data format.
+              </p>
+            </div>
+          )}
 
           {/* Upcoming Multe Section */}
           {upcomingMulte.length > 0 && (
@@ -336,6 +467,14 @@
           dateObj: parseDate(fine.date),
           multaType: multeTypesData.find(mt => mt.id === fine.multa_id)
         }))
+        .filter(fine => {
+          // Filter out fines with missing multa type reference
+          if (!fine.multaType) {
+            console.warn(`Fine ${fine.id}: multa_id ${fine.multa_id} not found`);
+            return false;
+          }
+          return true;
+        })
         .sort((a, b) => a.dateObj - b.dateObj);
 
       const pendingFines = playerFines.filter(f => f.status === 'Pending');
@@ -475,6 +614,18 @@
           player: playersData.find(p => p.id === fine.player_id),
           multaType: multeTypesData.find(mt => mt.id === fine.multa_id)
         }))
+        .filter(fine => {
+          // Filter out fines with missing player or multa type references
+          if (!fine.player) {
+            console.warn(`Fine ${fine.id}: player_id ${fine.player_id} not found`);
+            return false;
+          }
+          if (!fine.multaType) {
+            console.warn(`Fine ${fine.id}: multa_id ${fine.multa_id} not found`);
+            return false;
+          }
+          return true;
+        })
         .sort((a, b) => a.dateObj - b.dateObj);
 
       const pendingFines = allFines.filter(f => f.status === 'Pending');
