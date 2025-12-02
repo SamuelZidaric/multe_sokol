@@ -34,7 +34,7 @@
         const errors = [];
 
         // Load players data
-        fetch('./players.json')
+        fetch(`./players.json?t=${Date.now()}`)
           .then(response => {
             if (!response.ok) throw new Error('Failed to load players.json');
             return response.json();
@@ -50,7 +50,7 @@
           });
 
         // Load multe types data
-        fetch('./multe-types.json')
+        fetch(`./multe-types.json?t=${Date.now()}`)
           .then(response => {
             if (!response.ok) throw new Error('Failed to load multe-types.json');
             return response.json();
@@ -66,7 +66,7 @@
           });
 
         // Load fines instances data with validation
-        fetch('./fines-instances.json')
+        fetch(`./fines-instances.json?t=${Date.now()}`)
           .then(response => {
             if (!response.ok) throw new Error('Failed to load fines-instances.json');
             return response.json();
