@@ -68,7 +68,7 @@
   {"id": 67, "player_id": 28, "multa_id": 1, "date": "22/11/2025", "status": "Validated", "desc": "0/2"},
   {"id": 68, "player_id": 31, "multa_id": 7, "date": "22/11/2025", "status": "Validated", "desc": "tecnico"},
   {"id": 69, "player_id": 2, "multa_id": 21, "date": "22/11/2025", "status": "Validated", "desc": "nuovo ruolo assistente"},
-  {"id": 70, "player_id": 18, "multa_id": 0, "date": "25/11/2025", "status": "Validated", "desc": "telefono"},
+  {"id": 70, "player_id": 18, "multa_id": 0, "date": "25/11/2025", "status": "Pending", "desc": "telefono"},
   {"id": 71, "player_id": 29, "multa_id": 23, "date": "25/11/2025", "status": "Pending", "desc": "birthday"},
   {"id": 72, "player_id": 3, "multa_id": 0, "date": "30/11/2025", "status": "Validated", "desc": "telefono"},
   {"id": 73, "player_id": 29, "multa_id": 0, "date": "03/12/2025", "status": "Pending", "desc": "telefono"},
