@@ -5,7 +5,7 @@
   {"id": 4, "player_id": 9, "multa_id": 15, "date": "15/08/2025", "status": "Pending", "desc": "slika"},
   {"id": 5, "player_id": 29, "multa_id": 15, "date": "20/08/2025", "status": "Pending", "desc": "video"},
   {"id": 6, "player_id": 20, "multa_id": 23, "date": "06/09/2025", "status": "Validated", "desc": "BD"},
-  {"id": 7, "player_id": 2, "multa_id": 21, "date": "17/09/2025", "status": "Pending", "desc": "Nou auto"},
+  {"id": 7, "player_id": 2, "multa_id": 21, "date": "17/09/2025", "status": "Paid", "desc": "Nou auto"},
   {"id": 8, "player_id": 15, "multa_id": 23, "date": "22/09/2025", "status": "Validated", "desc": "BD"},
   {"id": 9, "player_id": 23, "multa_id": 21, "date": "27/09/2025", "status": "Pending", "desc": "Patente Gusti Halo"},
   {"id": 10, "player_id": 15, "multa_id": 5, "date": "02/10/2025", "status": "Pending", "desc": "Pozabu majco dresa"},
@@ -67,8 +67,11 @@
   {"id": 66, "player_id": 10, "multa_id": 16, "date": "20/11/2025", "status": "Pending", "desc": "assente senza avvertire"},
   {"id": 67, "player_id": 28, "multa_id": 1, "date": "22/11/2025", "status": "Validated", "desc": "0/2"},
   {"id": 68, "player_id": 31, "multa_id": 7, "date": "22/11/2025", "status": "Validated", "desc": "tecnico"},
-  {"id": 69, "player_id": 2, "multa_id": 21, "date": "22/11/2025", "status": "Pending", "desc": "nuovo ruolo assistente"},
+  {"id": 69, "player_id": 2, "multa_id": 21, "date": "22/11/2025", "status": "Paid", "desc": "nuovo ruolo assistente"},
   {"id": 70, "player_id": 18, "multa_id": 0, "date": "25/11/2025", "status": "Validated", "desc": "telefono"},
   {"id": 71, "player_id": 29, "multa_id": 23, "date": "25/11/2025", "status": "Pending", "desc": "birthday"},
-  {"id": 72, "player_id": 3, "multa_id": 0, "date": "30/11/2025", "status": "Pending", "desc": "telefono"}
+  {"id": 72, "player_id": 3, "multa_id": 0, "date": "30/11/2025", "status": "Paid", "desc": "telefono"},
+  {"id": 73, "player_id": 29, "multa_id": 0, "date": "03/12/2025", "status": "Pending", "desc": "telefono"},
+  {"id": 74, "player_id": 21, "multa_id": 6, "date": "03/12/2025", "status": "Pending", "desc": "Zgresen zicer"},
+  {"id": 75, "player_id": 31, "multa_id": 13, "date": "03/12/2025", "status": "Pending", "desc": "Antisportivo"}
 ]
