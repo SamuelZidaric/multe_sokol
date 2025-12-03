@@ -73,5 +73,6 @@
   {"id": 72, "player_id": 3, "multa_id": 0, "date": "30/11/2025", "status": "Validated", "desc": "telefono"},
   {"id": 73, "player_id": 29, "multa_id": 0, "date": "03/12/2025", "status": "Pending", "desc": "telefono"},
   {"id": 74, "player_id": 21, "multa_id": 6, "date": "03/12/2025", "status": "Pending", "desc": "Zgresen zicer"},
-  {"id": 75, "player_id": 31, "multa_id": 13, "date": "03/12/2025", "status": "Pending", "desc": "Antisportivo"}
+  {"id": 75, "player_id": 31, "multa_id": 13, "date": "03/12/2025", "status": "Pending", "desc": "Antisportivo"},
+  {"id": 76, "player_id": 4, "multa_id": 23, "date": "20/11/2025", "status": "Pending", "desc": "BD"}
 ]
