@@ -85,7 +85,6 @@
   {"id": 84, "player_id": 22, "multa_id": 26, "date": "06/12/2025", "status": "Pending", "desc": "esordio"},
   {"id": 85, "player_id": 3, "multa_id": 18, "date": "06/12/2025", "status": "Pending", "desc": "record punti"},
   {"id": 86, "player_id": 21, "multa_id": 18, "date": "06/12/2025", "status": "Validated", "desc": "record punti"},
-  {"id": 87, "player_id": 22, "multa_id": 18, "date": "06/12/2025", "status": "Validated", "desc": "record punti"},
   {"id": 88, "player_id": 31, "multa_id": 5, "date": "08/12/2025", "status": "Pending", "desc": "indumento dimenticato"},
   {"id": 89, "player_id": 15, "multa_id": 0, "date": "16/12/2025", "status": "Validated", "desc": "telefono"},
   {"id": 90, "player_id": 5, "multa_id": 1, "date": "16/12/2025", "status": "Validated", "desc": "0/2"},
