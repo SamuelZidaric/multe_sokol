@@ -24,7 +24,7 @@
   {"id": 23, "player_id": 31, "multa_id": 25, "date": "26/10/2025", "status": "Validated", "desc": "Sesto uomo alla Sasha"},
   {"id": 24, "player_id": 18, "multa_id": 26, "date": "26/10/2025", "status": "Validated", "desc": "esordio"},
   {"id": 25, "player_id": 18, "multa_id": 18, "date": "26/10/2025", "status": "Pending", "desc": "career-high"},
-  {"id": 26, "player_id": 10, "multa_id": 26, "date": "26/10/2025", "status": "Pending", "desc": "esordio"},
+  {"id": 26, "player_id": 10, "multa_id": 26, "date": "26/10/2025", "status": "Validated", "desc": "esordio"},
   {"id": 27, "player_id": 10, "multa_id": 18, "date": "26/10/2025", "status": "Pending", "desc": "career-high"},
   {"id": 28, "player_id": 12, "multa_id": 1, "date": "26/10/2025", "status": "Pending", "desc": "0/2"},
   {"id": 29, "player_id": 12, "multa_id": 6, "date": "26/10/2025", "status": "Pending", "desc": "Zgresen zicer"},
@@ -56,7 +56,7 @@
   {"id": 55, "player_id": 18, "multa_id": 21, "date": "13/11/2025", "status": "Validated", "desc": "Legenda jadrana"},
   {"id": 56, "player_id": 18, "multa_id": 0, "date": "14/11/2025", "status": "Validated", "desc": "telefono"},
   {"id": 57, "player_id": 24, "multa_id": 26, "date": "14/11/2025", "status": "Validated", "desc": "esordio-panca"},
-  {"id": 58, "player_id": 3, "multa_id": 18, "date": "15/11/2025", "status": "Pending", "desc": "career-high"},
+  {"id": 58, "player_id": 3, "multa_id": 18, "date": "15/11/2025", "status": "Validated", "desc": "career-high"},
   {"id": 59, "player_id": 18, "multa_id": 18, "date": "15/11/2025", "status": "Pending", "desc": "career-high"},
   {"id": 60, "player_id": 30, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
   {"id": 61, "player_id": 30, "multa_id": 1, "date": "15/11/2025", "status": "Pending", "desc": "0/2"},
@@ -71,7 +71,7 @@
   {"id": 70, "player_id": 18, "multa_id": 0, "date": "25/11/2025", "status": "Pending", "desc": "telefono"},
   {"id": 71, "player_id": 29, "multa_id": 23, "date": "25/11/2025", "status": "Pending", "desc": "birthday"},
   {"id": 72, "player_id": 3, "multa_id": 0, "date": "30/11/2025", "status": "Validated", "desc": "telefono"},
-  {"id": 73, "player_id": 29, "multa_id": 0, "date": "03/12/2025", "status": "Pending", "desc": "telefono"},
+  {"id": 73, "player_id": 29, "multa_id": 0, "date": "03/12/2025", "status": "Validated", "desc": "telefono"},
   {"id": 74, "player_id": 21, "multa_id": 6, "date": "03/12/2025", "status": "Pending", "desc": "Zgresen zicer"},
   {"id": 75, "player_id": 31, "multa_id": 13, "date": "03/12/2025", "status": "Pending", "desc": "Antisportivo"},
   {"id": 76, "player_id": 4, "multa_id": 23, "date": "20/11/2025", "status": "Pending", "desc": "BD"},
@@ -106,5 +106,8 @@
   {"id": 106, "player_id": 10, "multa_id": 4, "date": "27/12/2025", "status": "Pending", "desc": "indumento dimenticato in palestra"},
   {"id": 107, "player_id": 1, "multa_id": 23, "date": "02/01/2026", "status": "Pending", "desc": "BD"},
   {"id": 108, "player_id": 29, "multa_id": 0, "date": "06/01/2026", "status": "Pending", "desc": "telefono"},
-  {"id": 109, "player_id": 30, "multa_id": 4, "date": "06/01/2026", "status": "Pending", "desc": "indumento dimenticato in palestra"}
+  {"id": 109, "player_id": 30, "multa_id": 4, "date": "06/01/2026", "status": "Pending", "desc": "indumento dimenticato in palestra"},
+  {"id": 110, "player_id": 10, "multa_id": 0, "date": "09/01/2026", "status": "Pending", "desc": "telefono"},
+  {"id": 111, "player_id": 29, "multa_id": 4, "date": "09/01/2026", "status": "Pending", "desc": "indumento dimenticato"},
+  {"id": 112, "player_id": 29, "multa_id": 4, "date": "09/01/2026", "status": "Pending", "desc": "indumento dimenticato"}
 ]
