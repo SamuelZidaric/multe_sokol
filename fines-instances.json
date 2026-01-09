@@ -105,7 +105,7 @@
   {"id": 105, "player_id": 33, "multa_id": 15, "date": "25/12/2025", "status": "Validated", "desc": "limon documentado alla tercun"},
   {"id": 106, "player_id": 10, "multa_id": 4, "date": "27/12/2025", "status": "Pending", "desc": "indumento dimenticato in palestra"},
   {"id": 107, "player_id": 1, "multa_id": 23, "date": "02/01/2026", "status": "Pending", "desc": "BD"},
-  {"id": 108, "player_id": 29, "multa_id": 0, "date": "06/01/2026", "status": "Pending", "desc": "telefono"},
+  {"id": 108, "player_id": 29, "multa_id": 0, "date": "06/01/2026", "status": "Validated", "desc": "telefono"},
   {"id": 109, "player_id": 30, "multa_id": 4, "date": "06/01/2026", "status": "Pending", "desc": "indumento dimenticato in palestra"},
   {"id": 110, "player_id": 29, "multa_id": 4, "date": "09/01/2026", "status": "Pending", "desc": "indumento dimenticato"},
   {"id": 111, "player_id": 29, "multa_id": 4, "date": "09/01/2026", "status": "Pending", "desc": "indumento dimenticato"},
