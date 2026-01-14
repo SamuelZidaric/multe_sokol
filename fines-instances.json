@@ -109,5 +109,8 @@
   {"id": 109, "player_id": 30, "multa_id": 4, "date": "06/01/2026", "status": "Pending", "desc": "indumento dimenticato in palestra"},
   {"id": 110, "player_id": 29, "multa_id": 4, "date": "09/01/2026", "status": "Pending", "desc": "indumento dimenticato"},
   {"id": 111, "player_id": 29, "multa_id": 4, "date": "09/01/2026", "status": "Pending", "desc": "indumento dimenticato"},
-  {"id": 112, "player_id": 33, "multa_id": 0, "date": "09/01/2026", "status": "Pending", "desc": "telefono"}
+  {"id": 112, "player_id": 33, "multa_id": 0, "date": "09/01/2026", "status": "Pending", "desc": "telefono"},
+  {"id": 113, "player_id": 6, "multa_id": 0, "date": "13/01/2026", "status": "Validated", "desc": "telefono"},
+  {"id": 114, "player_id": 2, "multa_id": 4, "date": "13/01/2026", "status": "Validated", "desc": "indumento dimenticato"},
+  {"id": 115, "player_id": 19, "multa_id": 22, "date": "13/01/2026", "status": "Validated", "desc": "anticipo cassa"}
 ]
