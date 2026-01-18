@@ -112,5 +112,14 @@
   {"id": 112, "player_id": 33, "multa_id": 0, "date": "09/01/2026", "status": "Pending", "desc": "telefono"},
   {"id": 113, "player_id": 6, "multa_id": 0, "date": "13/01/2026", "status": "Validated", "desc": "telefono"},
   {"id": 114, "player_id": 2, "multa_id": 4, "date": "13/01/2026", "status": "Validated", "desc": "indumento dimenticato"},
-  {"id": 115, "player_id": 19, "multa_id": 22, "date": "13/01/2026", "status": "Validated", "desc": "anticipo cassa"}
+  {"id": 115, "player_id": 19, "multa_id": 22, "date": "13/01/2026", "status": "Validated", "desc": "anticipo cassa"},
+  {"id": 116, "player_id": 18, "multa_id": 0, "date": "18/01/2026", "status": "Pending", "desc": "telefono"},
+  {"id": 117, "player_id": 18, "multa_id": 6, "date": "18/01/2026", "status": "Pending", "desc": "zicer"},
+  {"id": 118, "player_id": 30, "multa_id": 8, "date": "18/01/2026", "status": "Pending", "desc": "5 falli"},
+  {"id": 119, "player_id": 30, "multa_id": 1, "date": "18/01/2026", "status": "Pending", "desc": "0/2"},
+  {"id": 120, "player_id": 30, "multa_id": 1, "date": "18/01/2026", "status": "Pending", "desc": "0/2"},
+  {"id": 121, "player_id": 28, "multa_id": 1, "date": "18/01/2026", "status": "Pending", "desc": "0/2"},
+  {"id": 122, "player_id": 10, "multa_id": 1, "date": "18/01/2026", "status": "Pending", "desc": "0/2"},
+  {"id": 123, "player_id": 9, "multa_id": 6, "date": "18/01/2026", "status": "Pending", "desc": "zicer"},
+  {"id": 124, "player_id": 5, "multa_id": 13, "date": "18/01/2026", "status": "Pending", "desc": "antisportivo"}
 ]
