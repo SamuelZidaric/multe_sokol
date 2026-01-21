@@ -96,7 +96,7 @@
   {"id": 98, "player_id": 30, "multa_id": 1, "date": "19/12/2025", "status": "Validated", "desc": "0/2"},
   {"id": 99, "player_id": 30, "multa_id": 5, "date": "19/12/2025", "status": "Validated", "desc": "indumento dimenticato"},
   {"id": 100, "player_id": 30, "multa_id": 5, "date": "19/12/2025", "status": "Validated", "desc": "indumento dimenticato"},
-  {"id": 101, "player_id": 32, "multa_id": 1, "date": "19/12/2025", "status": "Pending", "desc": "0/2"},
+  {"id": 101, "player_id": 7, "multa_id": 1, "date": "19/12/2025", "status": "Pending", "desc": "0/2"},
   {"id": 102, "player_id": 6, "multa_id": 6, "date": "19/12/2025", "status": "Validated", "desc": "zgresen zicer"},
   {"id": 103, "player_id": 6, "multa_id": 18, "date": "19/12/2025", "status": "Pending", "desc": "record punti"},
   {"id": 104, "player_id": 31, "multa_id": 8, "date": "19/12/2025", "status": "Validated", "desc": "5 falli"},
