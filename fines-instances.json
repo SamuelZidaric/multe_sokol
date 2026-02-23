@@ -137,7 +137,7 @@
   {"id": 139, "player_id": 18, "multa_id": 0, "date": "27/01/2026", "status": "Pending", "desc": "telefono"},
   {"id": 140, "player_id": 31, "multa_id": 8, "date": "27/01/2026", "status": "Validated", "desc": "5 falli"},
   {"id": 141, "player_id": 21, "multa_id": 6, "date": "31/01/2026", "status": "Pending", "desc": "zgresen zicer"},
-  {"id": 142, "player_id": 30, "multa_id": 18, "date": "07/02/2026", "status": "Pending", "desc": "record punti"},
+  {"id": 142, "player_id": 30, "multa_id": 18, "date": "07/02/2026", "status": "Validated", "desc": "record punti"},
   {"id": 143, "player_id": 5, "multa_id": 15, "date": "09/02/2026", "status": "Pending", "desc": "slika"},
   {"id": 144, "player_id": 30, "multa_id": 23, "date": "14/02/2026", "status": "Pending", "desc": "BD"},
   {"id": 145, "player_id": 33, "multa_id": 15, "date": "18/02/2026", "status": "Pending", "desc": "slika"},
