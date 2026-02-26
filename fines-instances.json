@@ -148,5 +148,8 @@
   {"id": 150, "player_id": 21, "multa_id": 18, "date": "21/02/2026", "status": "Pending", "desc": "record punti"},
   {"id": 151, "player_id": 6, "multa_id": 18, "date": "21/02/2026", "status": "Pending", "desc": "record punti"},
   {"id": 152, "player_id": 18, "multa_id": 18, "date": "21/02/2026", "status": "Pending", "desc": "record punti"},
-  {"id": 153, "player_id": 30, "multa_id": 0, "date": "21/02/2026", "status": "Pending", "desc": "telefono"}
+  {"id": 153, "player_id": 30, "multa_id": 0, "date": "21/02/2026", "status": "Pending", "desc": "telefono"},
+  {"id": 154, "player_id": 15, "multa_id": 0, "date": "24/02/2026", "status": "Pending", "desc": "telefono"},
+  {"id": 155, "player_id": 28, "multa_id": 1, "date": "24/02/2026", "status": "Pending", "desc": "0/2"},
+  {"id": 156, "player_id": 28, "multa_id": 6, "date": "24/02/2026", "status": "Pending", "desc": "zgresen zicer"}
 ]
