@@ -377,3 +377,292 @@ tr:hover { background-color: #fcfcfc; }
 /* PENDING ROW HIGHLIGHT */
 tr.pending td { color: var(--team-red); font-weight: 500; }
 tr.pending td:first-child { border-left: 4px solid var(--team-red); }
+
+/* 12. HALL OF SHAME PODIUM */
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding: 20px 10px 0;
+}
+
+.podium-card {
+  background: var(--team-white);
+  padding: 25px 20px;
+  border-radius: var(--radius-main);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+  max-width: 260px;
+  border-left: 5px solid transparent;
+}
+
+.podium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 1st place — gold, tallest */
+.podium-rank-1 {
+  border-left-color: #FFD700;
+  background: linear-gradient(180deg, #fffdf0 0%, var(--team-white) 100%);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.25);
+  transform: translateY(-15px);
+}
+.podium-rank-1:hover { transform: translateY(-21px); }
+
+/* 2nd place — silver */
+.podium-rank-2 {
+  border-left-color: #C0C0C0;
+  background: linear-gradient(180deg, #f8f8f8 0%, var(--team-white) 100%);
+  box-shadow: 0 4px 15px rgba(192, 192, 192, 0.3);
+}
+
+/* 3rd place — bronze */
+.podium-rank-3 {
+  border-left-color: #CD7F32;
+  background: linear-gradient(180deg, #fdf5ec 0%, var(--team-white) 100%);
+  box-shadow: 0 4px 15px rgba(205, 127, 50, 0.2);
+}
+
+.podium-emoji {
+  font-size: 2.5em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.podium-name {
+  font-weight: 800;
+  font-size: 1.1em;
+  color: var(--team-text-dark);
+  margin-bottom: 2px;
+}
+
+.podium-title {
+  font-size: 0.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--team-text-grey);
+  margin-bottom: 10px;
+}
+
+.podium-stats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--team-blue-dark);
+}
+
+.podium-pending {
+  margin-top: 8px;
+  font-size: 0.8em;
+  color: var(--team-red);
+  font-weight: 700;
+}
+
+/* 13. MVP BADGE & CARD */
+.badge-mvp {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  color: #f57f17;
+  border: 1px solid #ffe082;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.player-card-mvp {
+  border-color: #ffe082;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+}
+
+.player-card-mvp:hover {
+  border-color: #ffc107;
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+}
+
+.stats-total-mvp {
+  font-size: 0.85em;
+}
+
+/* 14. FREE THROW MINIGAME */
+.minigame-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.minigame-intro p {
+  font-size: 1.1em;
+  color: var(--team-text-grey);
+  margin-bottom: 25px;
+}
+
+.btn-minigame {
+  background: linear-gradient(135deg, #e65100, #f57c00);
+  box-shadow: 0 4px 6px rgba(230, 81, 0, 0.3);
+}
+.btn-minigame:hover {
+  background: linear-gradient(135deg, #bf360c, #e65100);
+  box-shadow: 0 6px 12px rgba(230, 81, 0, 0.4);
+}
+
+.btn-shoot {
+  font-size: 1.2em;
+  padding: 15px 40px;
+  margin-top: 20px;
+}
+
+.shot-label {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--team-text-grey);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.shot-bar-container {
+  margin: 0 auto 10px;
+  max-width: 400px;
+}
+
+.shot-bar {
+  position: relative;
+  display: flex;
+  height: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.shot-zone { flex: 1; }
+.zone-red-left    { flex: 25; background: linear-gradient(90deg, #d32f2f, #ef5350); }
+.zone-yellow-left { flex: 20; background: linear-gradient(90deg, #fbc02d, #fdd835); }
+.zone-green       { flex: 10; background: linear-gradient(90deg, #43a047, #66bb6a); }
+.zone-yellow-right{ flex: 20; background: linear-gradient(90deg, #fdd835, #fbc02d); }
+.zone-red-right   { flex: 25; background: linear-gradient(90deg, #ef5350, #d32f2f); }
+
+.shot-cursor {
+  position: absolute;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--team-white);
+  border: 1px solid rgba(0,0,0,0.3);
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+  z-index: 2;
+}
+
+.shot-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  font-weight: 900;
+  color: white;
+  z-index: 3;
+  border: 2px solid white;
+}
+.shot-marker-swish  { background: #2e7d32; }
+.shot-marker-brick  { background: #f57f17; }
+.shot-marker-airball{ background: #c62828; }
+
+.shot-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: var(--team-text-grey);
+  text-transform: uppercase;
+}
+
+/* Results */
+.minigame-result {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.result-text {
+  font-size: 1.8em;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.result-sub {
+  font-size: 1em;
+  color: var(--team-text-grey);
+  margin-bottom: 20px;
+}
+
+.result-perfect .result-text { color: #2e7d32; }
+.result-saved .result-text   { color: #f57f17; }
+.result-fail .result-text    { color: var(--team-red); }
+.result-airball .result-text { color: var(--team-red-dark); }
+
+.result-fail, .result-airball {
+  animation: redFlash 0.6s ease;
+}
+
+@keyframes redFlash {
+  0%, 100% { background: transparent; }
+  30% { background: var(--team-red-light); }
+}
+
+.result-recap {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.recap-shot {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+.recap-swish  { background: #e8f5e9; color: #2e7d32; }
+.recap-brick  { background: #fff8e1; color: #f57f17; }
+.recap-airball{ background: #ffebee; color: #c62828; }
+
+.result-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* 15. MOBILE — PODIUM + MINIGAME */
+@media (max-width: 600px) {
+  .podium {
+    flex-direction: column;
+    align-items: center;
+  }
+  .podium-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  .podium-rank-1 { transform: none; order: -1; }
+  .podium-rank-1:hover { transform: translateY(-6px); }
+
+  .shot-bar { height: 45px; }
+  .result-text { font-size: 1.4em; }
+  .result-recap { flex-direction: column; align-items: center; }
+}
