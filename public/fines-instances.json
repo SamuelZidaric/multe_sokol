@@ -1,0 +1,1418 @@
+[
+  {
+    "id": 1,
+    "player_id": 16,
+    "multa_id": 23,
+    "date": "2025-06-27",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 2,
+    "player_id": 12,
+    "multa_id": 15,
+    "date": "2025-07-22",
+    "status": "Validated",
+    "desc": "slika"
+  },
+  {
+    "id": 3,
+    "player_id": 7,
+    "multa_id": 21,
+    "date": "2025-08-08",
+    "status": "Validated",
+    "desc": "Patente motor"
+  },
+  {
+    "id": 4,
+    "player_id": 9,
+    "multa_id": 15,
+    "date": "2025-08-15",
+    "status": "Pending",
+    "desc": "slika"
+  },
+  {
+    "id": 5,
+    "player_id": 29,
+    "multa_id": 15,
+    "date": "2025-08-20",
+    "status": "Validated",
+    "desc": "video"
+  },
+  {
+    "id": 6,
+    "player_id": 20,
+    "multa_id": 23,
+    "date": "2025-09-06",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 7,
+    "player_id": 2,
+    "multa_id": 21,
+    "date": "2025-09-17",
+    "status": "Validated",
+    "desc": "Nou auto"
+  },
+  {
+    "id": 8,
+    "player_id": 15,
+    "multa_id": 23,
+    "date": "2025-09-22",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 9,
+    "player_id": 23,
+    "multa_id": 21,
+    "date": "2025-09-27",
+    "status": "Pending",
+    "desc": "Patente Gusti Halo"
+  },
+  {
+    "id": 10,
+    "player_id": 15,
+    "multa_id": 5,
+    "date": "2025-10-02",
+    "status": "Pending",
+    "desc": "Pozabu majco dresa"
+  },
+  {
+    "id": 11,
+    "player_id": 15,
+    "multa_id": 5,
+    "date": "2025-10-02",
+    "status": "Pending",
+    "desc": "Pozabu majco dresa"
+  },
+  {
+    "id": 12,
+    "player_id": 15,
+    "multa_id": 5,
+    "date": "2025-10-02",
+    "status": "Pending",
+    "desc": "Pozabu hlace dresa"
+  },
+  {
+    "id": 13,
+    "player_id": 15,
+    "multa_id": 5,
+    "date": "2025-10-02",
+    "status": "Pending",
+    "desc": "Pozabu hlace dresa"
+  },
+  {
+    "id": 14,
+    "player_id": 18,
+    "multa_id": 1,
+    "date": "2025-10-04",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 15,
+    "player_id": 18,
+    "multa_id": 6,
+    "date": "2025-10-04",
+    "status": "Pending",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 16,
+    "player_id": 5,
+    "multa_id": 6,
+    "date": "2025-10-04",
+    "status": "Validated",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 17,
+    "player_id": 6,
+    "multa_id": 20,
+    "date": "2025-10-06",
+    "status": "Validated",
+    "desc": "Patent Halo"
+  },
+  {
+    "id": 18,
+    "player_id": 15,
+    "multa_id": 5,
+    "date": "2025-10-07",
+    "status": "Pending",
+    "desc": "Pozabu majco u telovadnici"
+  },
+  {
+    "id": 19,
+    "player_id": 18,
+    "multa_id": 11,
+    "date": "2025-10-09",
+    "status": "Pending",
+    "desc": "Podaja alla alba"
+  },
+  {
+    "id": 20,
+    "player_id": 3,
+    "multa_id": 0,
+    "date": "2025-10-09",
+    "status": "Validated",
+    "desc": "Multa Telefono"
+  },
+  {
+    "id": 21,
+    "player_id": 25,
+    "multa_id": 22,
+    "date": "2025-10-09",
+    "status": "Validated",
+    "desc": "Kasa dichiarada"
+  },
+  {
+    "id": 22,
+    "player_id": 17,
+    "multa_id": 23,
+    "date": "2025-10-15",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 23,
+    "player_id": 31,
+    "multa_id": 25,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "Sesto uomo alla Sasha"
+  },
+  {
+    "id": 24,
+    "player_id": 18,
+    "multa_id": 26,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "esordio"
+  },
+  {
+    "id": 25,
+    "player_id": 18,
+    "multa_id": 18,
+    "date": "2025-10-26",
+    "status": "Pending",
+    "desc": "career-high"
+  },
+  {
+    "id": 26,
+    "player_id": 10,
+    "multa_id": 26,
+    "date": "2025-10-26",
+    "status": "Pending",
+    "desc": "esordio"
+  },
+  {
+    "id": 27,
+    "player_id": 10,
+    "multa_id": 18,
+    "date": "2025-10-26",
+    "status": "Pending",
+    "desc": "career-high"
+  },
+  {
+    "id": 28,
+    "player_id": 12,
+    "multa_id": 1,
+    "date": "2025-10-26",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 29,
+    "player_id": 12,
+    "multa_id": 6,
+    "date": "2025-10-26",
+    "status": "Pending",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 30,
+    "player_id": 7,
+    "multa_id": 1,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 31,
+    "player_id": 3,
+    "multa_id": 26,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "esordio"
+  },
+  {
+    "id": 32,
+    "player_id": 28,
+    "multa_id": 6,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 33,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 34,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 35,
+    "player_id": 6,
+    "multa_id": 26,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "esordio"
+  },
+  {
+    "id": 36,
+    "player_id": 31,
+    "multa_id": 1,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 37,
+    "player_id": 29,
+    "multa_id": 0,
+    "date": "2025-10-26",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 38,
+    "player_id": 1,
+    "multa_id": 21,
+    "date": "2025-10-26",
+    "status": "Pending",
+    "desc": "intervista rai/sportel"
+  },
+  {
+    "id": 39,
+    "player_id": 18,
+    "multa_id": 21,
+    "date": "2025-10-27",
+    "status": "Pending",
+    "desc": "slika primorski"
+  },
+  {
+    "id": 40,
+    "player_id": 31,
+    "multa_id": 0,
+    "date": "2025-10-31",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 41,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-10-31",
+    "status": "Validated",
+    "desc": "Pozabu majco trening"
+  },
+  {
+    "id": 42,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-10-31",
+    "status": "Validated",
+    "desc": "Pozabu kocjte"
+  },
+  {
+    "id": 43,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-10-31",
+    "status": "Validated",
+    "desc": "Pozabu hlacke"
+  },
+  {
+    "id": 44,
+    "player_id": 12,
+    "multa_id": 23,
+    "date": "2025-11-02",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 45,
+    "player_id": 17,
+    "multa_id": 4,
+    "date": "2025-11-04",
+    "status": "Pending",
+    "desc": "Indumento dimenticato"
+  },
+  {
+    "id": 46,
+    "player_id": 7,
+    "multa_id": 0,
+    "date": "2025-11-04",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 47,
+    "player_id": 13,
+    "multa_id": 23,
+    "date": "2025-11-06",
+    "status": "Pending",
+    "desc": "BD"
+  },
+  {
+    "id": 48,
+    "player_id": 32,
+    "multa_id": 4,
+    "date": "2025-11-07",
+    "status": "Validated",
+    "desc": "Indumento dimenticato"
+  },
+  {
+    "id": 49,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2025-11-11",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 50,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-11-11",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 51,
+    "player_id": 10,
+    "multa_id": 1,
+    "date": "2025-11-11",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 52,
+    "player_id": 31,
+    "multa_id": 1,
+    "date": "2025-11-11",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 53,
+    "player_id": 10,
+    "multa_id": 18,
+    "date": "2025-11-11",
+    "status": "Pending",
+    "desc": "career-high"
+  },
+  {
+    "id": 54,
+    "player_id": 31,
+    "multa_id": 23,
+    "date": "2025-11-12",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 55,
+    "player_id": 18,
+    "multa_id": 21,
+    "date": "2025-11-13",
+    "status": "Validated",
+    "desc": "Legenda jadrana"
+  },
+  {
+    "id": 56,
+    "player_id": 18,
+    "multa_id": 0,
+    "date": "2025-11-14",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 57,
+    "player_id": 24,
+    "multa_id": 26,
+    "date": "2025-11-14",
+    "status": "Validated",
+    "desc": "esordio-panca"
+  },
+  {
+    "id": 58,
+    "player_id": 3,
+    "multa_id": 18,
+    "date": "2025-11-15",
+    "status": "Validated",
+    "desc": "career-high"
+  },
+  {
+    "id": 59,
+    "player_id": 18,
+    "multa_id": 18,
+    "date": "2025-11-15",
+    "status": "Pending",
+    "desc": "career-high"
+  },
+  {
+    "id": 60,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2025-11-15",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 61,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2025-11-15",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 62,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-11-15",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 64,
+    "player_id": 28,
+    "multa_id": 4,
+    "date": "2025-11-13",
+    "status": "Validated",
+    "desc": "Indumento dimenticato"
+  },
+  {
+    "id": 65,
+    "player_id": 9,
+    "multa_id": 0,
+    "date": "2025-11-20",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 66,
+    "player_id": 10,
+    "multa_id": 16,
+    "date": "2025-11-20",
+    "status": "Pending",
+    "desc": "assente senza avvertire"
+  },
+  {
+    "id": 67,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-11-22",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 68,
+    "player_id": 31,
+    "multa_id": 7,
+    "date": "2025-11-22",
+    "status": "Validated",
+    "desc": "tecnico"
+  },
+  {
+    "id": 69,
+    "player_id": 2,
+    "multa_id": 21,
+    "date": "2025-11-22",
+    "status": "Validated",
+    "desc": "nuovo ruolo assistente"
+  },
+  {
+    "id": 70,
+    "player_id": 18,
+    "multa_id": 0,
+    "date": "2025-11-25",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 71,
+    "player_id": 29,
+    "multa_id": 23,
+    "date": "2025-11-25",
+    "status": "Validated",
+    "desc": "birthday"
+  },
+  {
+    "id": 72,
+    "player_id": 3,
+    "multa_id": 0,
+    "date": "2025-11-30",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 73,
+    "player_id": 29,
+    "multa_id": 0,
+    "date": "2025-12-03",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 74,
+    "player_id": 21,
+    "multa_id": 6,
+    "date": "2025-12-03",
+    "status": "Pending",
+    "desc": "Zgresen zicer"
+  },
+  {
+    "id": 75,
+    "player_id": 31,
+    "multa_id": 13,
+    "date": "2025-12-03",
+    "status": "Validated",
+    "desc": "Antisportivo"
+  },
+  {
+    "id": 76,
+    "player_id": 4,
+    "multa_id": 23,
+    "date": "2025-11-20",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 77,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x1"
+  },
+  {
+    "id": 78,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x2"
+  },
+  {
+    "id": 79,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x3"
+  },
+  {
+    "id": 80,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x4"
+  },
+  {
+    "id": 81,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x5"
+  },
+  {
+    "id": 82,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x6"
+  },
+  {
+    "id": 83,
+    "player_id": 2,
+    "multa_id": 5,
+    "date": "2025-12-05",
+    "status": "Validated",
+    "desc": "dimenticato x7"
+  },
+  {
+    "id": 84,
+    "player_id": 22,
+    "multa_id": 26,
+    "date": "2025-12-06",
+    "status": "Validated",
+    "desc": "esordio"
+  },
+  {
+    "id": 85,
+    "player_id": 3,
+    "multa_id": 18,
+    "date": "2025-12-06",
+    "status": "Pending",
+    "desc": "record punti"
+  },
+  {
+    "id": 86,
+    "player_id": 21,
+    "multa_id": 18,
+    "date": "2025-12-06",
+    "status": "Validated",
+    "desc": "record punti"
+  },
+  {
+    "id": 89,
+    "player_id": 15,
+    "multa_id": 0,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 90,
+    "player_id": 5,
+    "multa_id": 1,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 91,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 92,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 93,
+    "player_id": 28,
+    "multa_id": 2,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "airball libero"
+  },
+  {
+    "id": 94,
+    "player_id": 7,
+    "multa_id": 8,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "5 falli"
+  },
+  {
+    "id": 95,
+    "player_id": 10,
+    "multa_id": 1,
+    "date": "2025-12-16",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 96,
+    "player_id": 32,
+    "multa_id": 21,
+    "date": "2025-12-16",
+    "status": "Validated",
+    "desc": "Milestone"
+  },
+  {
+    "id": 97,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 98,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 99,
+    "player_id": 30,
+    "multa_id": 5,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 100,
+    "player_id": 30,
+    "multa_id": 5,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 101,
+    "player_id": 7,
+    "multa_id": 1,
+    "date": "2025-12-19",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 102,
+    "player_id": 6,
+    "multa_id": 6,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "zgresen zicer"
+  },
+  {
+    "id": 103,
+    "player_id": 6,
+    "multa_id": 18,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "record punti"
+  },
+  {
+    "id": 104,
+    "player_id": 31,
+    "multa_id": 8,
+    "date": "2025-12-19",
+    "status": "Validated",
+    "desc": "5 falli"
+  },
+  {
+    "id": 105,
+    "player_id": 33,
+    "multa_id": 15,
+    "date": "2025-12-25",
+    "status": "Validated",
+    "desc": "limon documentado alla tercun"
+  },
+  {
+    "id": 106,
+    "player_id": 10,
+    "multa_id": 4,
+    "date": "2025-12-27",
+    "status": "Pending",
+    "desc": "indumento dimenticato in palestra"
+  },
+  {
+    "id": 107,
+    "player_id": 1,
+    "multa_id": 23,
+    "date": "2026-01-02",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 108,
+    "player_id": 29,
+    "multa_id": 0,
+    "date": "2026-01-06",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 109,
+    "player_id": 30,
+    "multa_id": 4,
+    "date": "2026-01-06",
+    "status": "Validated",
+    "desc": "indumento dimenticato in palestra"
+  },
+  {
+    "id": 110,
+    "player_id": 29,
+    "multa_id": 4,
+    "date": "2026-01-09",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 111,
+    "player_id": 29,
+    "multa_id": 4,
+    "date": "2026-01-09",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 112,
+    "player_id": 33,
+    "multa_id": 0,
+    "date": "2026-01-09",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 113,
+    "player_id": 6,
+    "multa_id": 0,
+    "date": "2026-01-13",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 114,
+    "player_id": 2,
+    "multa_id": 4,
+    "date": "2026-01-13",
+    "status": "Validated",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 115,
+    "player_id": 19,
+    "multa_id": 24,
+    "date": "2026-01-13",
+    "status": "Validated",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 116,
+    "player_id": 18,
+    "multa_id": 0,
+    "date": "2026-01-17",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 117,
+    "player_id": 18,
+    "multa_id": 6,
+    "date": "2026-01-17",
+    "status": "Pending",
+    "desc": "zicer"
+  },
+  {
+    "id": 118,
+    "player_id": 30,
+    "multa_id": 8,
+    "date": "2026-01-17",
+    "status": "Validated",
+    "desc": "5 falli"
+  },
+  {
+    "id": 119,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2026-01-17",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 120,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2026-01-17",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 121,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2026-01-17",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 122,
+    "player_id": 10,
+    "multa_id": 1,
+    "date": "2026-01-17",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 123,
+    "player_id": 9,
+    "multa_id": 6,
+    "date": "2026-01-17",
+    "status": "Pending",
+    "desc": "zicer"
+  },
+  {
+    "id": 124,
+    "player_id": 5,
+    "multa_id": 13,
+    "date": "2026-01-17",
+    "status": "Validated",
+    "desc": "antisportivo"
+  },
+  {
+    "id": 125,
+    "player_id": 10,
+    "multa_id": 0,
+    "date": "2026-01-20",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 126,
+    "player_id": 18,
+    "multa_id": 9,
+    "date": "2026-01-20",
+    "status": "Pending",
+    "desc": "obvestu ksno"
+  },
+  {
+    "id": 127,
+    "player_id": 16,
+    "multa_id": 4,
+    "date": "2026-01-20",
+    "status": "Pending",
+    "desc": "borraccia pozabljena"
+  },
+  {
+    "id": 128,
+    "player_id": 15,
+    "multa_id": 4,
+    "date": "2026-01-20",
+    "status": "Pending",
+    "desc": "pozabu opremo"
+  },
+  {
+    "id": 129,
+    "player_id": 17,
+    "multa_id": 4,
+    "date": "2026-01-20",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 130,
+    "player_id": 17,
+    "multa_id": 4,
+    "date": "2026-01-20",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 131,
+    "player_id": 21,
+    "multa_id": 23,
+    "date": "2026-01-21",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 132,
+    "player_id": 18,
+    "multa_id": 0,
+    "date": "2026-01-24",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 133,
+    "player_id": 5,
+    "multa_id": 13,
+    "date": "2026-01-24",
+    "status": "Validated",
+    "desc": "Antisportivo"
+  },
+  {
+    "id": 134,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2026-01-24",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 135,
+    "player_id": 12,
+    "multa_id": 1,
+    "date": "2026-01-24",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 136,
+    "player_id": 30,
+    "multa_id": 21,
+    "date": "2026-01-24",
+    "status": "Validated",
+    "desc": "intervista sportel"
+  },
+  {
+    "id": 137,
+    "player_id": 12,
+    "multa_id": 1,
+    "date": "2026-01-24",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 138,
+    "player_id": 23,
+    "multa_id": 23,
+    "date": "2026-01-25",
+    "status": "Pending",
+    "desc": "BD"
+  },
+  {
+    "id": 139,
+    "player_id": 18,
+    "multa_id": 0,
+    "date": "2026-01-27",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 140,
+    "player_id": 31,
+    "multa_id": 8,
+    "date": "2026-01-27",
+    "status": "Validated",
+    "desc": "5 falli"
+  },
+  {
+    "id": 141,
+    "player_id": 21,
+    "multa_id": 6,
+    "date": "2026-01-31",
+    "status": "Pending",
+    "desc": "zgresen zicer"
+  },
+  {
+    "id": 142,
+    "player_id": 30,
+    "multa_id": 18,
+    "date": "2026-02-07",
+    "status": "Validated",
+    "desc": "record punti"
+  },
+  {
+    "id": 143,
+    "player_id": 5,
+    "multa_id": 15,
+    "date": "2026-02-09",
+    "status": "Validated",
+    "desc": "slika"
+  },
+  {
+    "id": 144,
+    "player_id": 30,
+    "multa_id": 23,
+    "date": "2026-02-14",
+    "status": "Validated",
+    "desc": "BD"
+  },
+  {
+    "id": 145,
+    "player_id": 33,
+    "multa_id": 15,
+    "date": "2026-02-18",
+    "status": "Pending",
+    "desc": "slika"
+  },
+  {
+    "id": 146,
+    "player_id": 6,
+    "multa_id": 15,
+    "date": "2026-02-18",
+    "status": "Validated",
+    "desc": "slika"
+  },
+  {
+    "id": 147,
+    "player_id": 5,
+    "multa_id": 15,
+    "date": "2026-02-22",
+    "status": "Validated",
+    "desc": "slika"
+  },
+  {
+    "id": 148,
+    "player_id": 3,
+    "multa_id": 1,
+    "date": "2026-02-21",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 149,
+    "player_id": 3,
+    "multa_id": 2,
+    "date": "2026-02-21",
+    "status": "Validated",
+    "desc": "Airball liberi"
+  },
+  {
+    "id": 150,
+    "player_id": 21,
+    "multa_id": 18,
+    "date": "2026-02-21",
+    "status": "Validated",
+    "desc": "record punti"
+  },
+  {
+    "id": 151,
+    "player_id": 6,
+    "multa_id": 18,
+    "date": "2026-02-21",
+    "status": "Validated",
+    "desc": "record punti"
+  },
+  {
+    "id": 152,
+    "player_id": 18,
+    "multa_id": 18,
+    "date": "2026-02-21",
+    "status": "Pending",
+    "desc": "record punti"
+  },
+  {
+    "id": 153,
+    "player_id": 30,
+    "multa_id": 0,
+    "date": "2026-02-21",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 154,
+    "player_id": 15,
+    "multa_id": 0,
+    "date": "2026-02-24",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 155,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2026-02-24",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 156,
+    "player_id": 28,
+    "multa_id": 6,
+    "date": "2026-02-24",
+    "status": "Validated",
+    "desc": "zgresen zicer"
+  },
+  {
+    "id": 157,
+    "player_id": 30,
+    "multa_id": 0,
+    "date": "2026-02-26",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 158,
+    "player_id": 31,
+    "multa_id": 0,
+    "date": "2026-02-26",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 159,
+    "player_id": 12,
+    "multa_id": 0,
+    "date": "2026-02-26",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 160,
+    "player_id": 28,
+    "multa_id": 4,
+    "date": "2026-02-26",
+    "status": "Validated",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 161,
+    "player_id": 24,
+    "multa_id": 0,
+    "date": "2026-02-27",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 162,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2026-02-27",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 163,
+    "player_id": 12,
+    "multa_id": 1,
+    "date": "2026-02-27",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 164,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2026-02-27",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 165,
+    "player_id": 3,
+    "multa_id": 1,
+    "date": "2026-02-27",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 166,
+    "player_id": 5,
+    "multa_id": 6,
+    "date": "2026-02-27",
+    "status": "Validated",
+    "desc": "zicer"
+  },
+  {
+    "id": 167,
+    "player_id": 30,
+    "multa_id": 4,
+    "date": "2026-02-27",
+    "status": "Pending",
+    "desc": "shampoo dimenticato"
+  },
+  {
+    "id": 168,
+    "player_id": 17,
+    "multa_id": 0,
+    "date": "2026-03-03",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 169,
+    "player_id": 18,
+    "multa_id": 9,
+    "date": "2026-03-03",
+    "status": "Pending",
+    "desc": "obvestu ksno"
+  },
+  {
+    "id": 170,
+    "player_id": 1,
+    "multa_id": 4,
+    "date": "2026-03-03",
+    "status": "Validated",
+    "desc": "pozabu schedo z trening"
+  },
+  {
+    "id": 171,
+    "player_id": 1,
+    "multa_id": 0,
+    "date": "2026-03-05",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 172,
+    "player_id": 2,
+    "multa_id": 4,
+    "date": "2026-03-05",
+    "status": "Pending",
+    "desc": "pozabu telefono"
+  },
+  {
+    "id": 173,
+    "player_id": 1,
+    "multa_id": 0,
+    "date": "2026-03-07",
+    "status": "Validated",
+    "desc": "telefono"
+  },
+  {
+    "id": 174,
+    "player_id": 3,
+    "multa_id": 2,
+    "date": "2026-03-07",
+    "status": "Validated",
+    "desc": "Airball liberi"
+  },
+  {
+    "id": 175,
+    "player_id": 5,
+    "multa_id": 1,
+    "date": "2026-03-07",
+    "status": "Validated",
+    "desc": "0/2"
+  },
+  {
+    "id": 176,
+    "player_id": 3,
+    "multa_id": 7,
+    "date": "2026-03-07",
+    "status": "Pending",
+    "desc": "tecnico colletti"
+  },
+  {
+    "id": 177,
+    "player_id": 9,
+    "multa_id": 18,
+    "date": "2026-03-07",
+    "status": "Pending",
+    "desc": "record punti"
+  },
+  {
+    "id": 178,
+    "player_id": 2,
+    "multa_id": 4,
+    "date": "2026-03-07",
+    "status": "Pending",
+    "desc": "pozabu levo cvato"
+  },
+  {
+    "id": 179,
+    "player_id": 2,
+    "multa_id": 4,
+    "date": "2026-03-07",
+    "status": "Pending",
+    "desc": "pozabu desno cvato"
+  },
+  {
+    "id": 180,
+    "player_id": 5,
+    "multa_id": 23,
+    "date": "2026-03-09",
+    "status": "Pending",
+    "desc": "BD"
+  }
+]
