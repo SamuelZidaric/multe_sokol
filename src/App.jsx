@@ -491,15 +491,10 @@ const FreeThrowGame = ({ navigate }) => {
       cancelAnimationFrame(animRef.current);
       setPhase('result');
     } else {
-      // Brief pause then restart cursor for second shot
-      cancelAnimationFrame(animRef.current);
-      setTimeout(() => {
-        posRef.current = 0;
-        dirRef.current = 1;
-        setCursorPos(0);
-        setPhase('shooting');
-      }, 500);
-      setPhase('ready'); // brief pause
+      // Instantly reset cursor for second shot — no pause
+      posRef.current = 0;
+      dirRef.current = 1;
+      setCursorPos(0);
     }
   };
 
