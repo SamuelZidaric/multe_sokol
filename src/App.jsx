@@ -110,9 +110,9 @@ export const BasketballTracker = () => {
     return mvp.totalEuro > 0 ? mvp.player.id : null;
   }, [stats]);
 
-  const maxEuro = useMemo(() => {
+  const maxCount = useMemo(() => {
     if (!stats.length) return 1;
-    return Math.max(...stats.map(s => s.totalEuro), 1);
+    return Math.max(...stats.map(s => s.totalCount), 1);
   }, [stats]);
 
   const upcomingMulte = useMemo(() => {
@@ -330,7 +330,7 @@ export const BasketballTracker = () => {
         {/* Player Cards Grid */}
         <div className="stats-grid">
            {gridStats.map(stat => {
-             const barWidth = maxEuro > 0 ? (stat.totalEuro / maxEuro) * 100 : 0;
+             const barWidth = maxCount > 0 ? (stat.totalCount / maxCount) * 100 : 0;
              const severity = stat.totalCount >= 12 ? 'high' : stat.totalCount >= 6 ? 'mid' : 'low';
              return (
                <div

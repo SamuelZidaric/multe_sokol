@@ -28,7 +28,7 @@
     "player_id": 9,
     "multa_id": 15,
     "date": "2025-08-15",
-    "status": "Pending",
+    "status": "Validated",
     "desc": "slika"
   },
   {
@@ -1414,5 +1414,21 @@
     "date": "2026-03-09",
     "status": "Pending",
     "desc": "BD"
+  },
+  {
+    "id": 181,
+    "player_id": 9,
+    "multa_id": 23,
+    "date": "2026-03-27",
+    "status": "Validated",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 182,
+    "player_id": 29,
+    "multa_id": 4,
+    "date": "2026-03-27",
+    "status": "Pending",
+    "desc": "3€ shampoo dimenticato"
   }
 ]
