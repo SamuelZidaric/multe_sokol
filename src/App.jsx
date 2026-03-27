@@ -21,7 +21,6 @@ export const BasketballTracker = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 1. Centralized Data Fetching with loading & error states
   useEffect(() => {
     Promise.all([
       fetch('./players.json').then(res => {
@@ -48,7 +47,6 @@ export const BasketballTracker = () => {
     });
   }, []);
 
-  // 2. State-driven navigation function
   const navigate = useCallback((page, playerId = null) => {
     if (page === 'player' && playerId) {
       window.location.hash = `#player/${playerId}`;
@@ -61,7 +59,6 @@ export const BasketballTracker = () => {
     }
   }, []);
 
-  // 3. Hash-based routing (handles browser back/forward and initial load)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
@@ -77,11 +74,10 @@ export const BasketballTracker = () => {
       }
     };
     window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Init
+    handleHashChange();
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // 4. Global Stats Calculation
   const stats = useMemo(() => {
     if (!playersData.length || !multeTypesData.length) return [];
 
@@ -108,14 +104,17 @@ export const BasketballTracker = () => {
     }).sort((a, b) => b.totalCount - a.totalCount);
   }, [playersData, finesInstances, multeTypesData]);
 
-  // 4b. MVP — player with highest euro total
   const mvpId = useMemo(() => {
     if (!stats.length) return null;
     const mvp = stats.reduce((best, s) => s.totalEuro > best.totalEuro ? s : best, stats[0]);
     return mvp.totalEuro > 0 ? mvp.player.id : null;
   }, [stats]);
 
-  // 5. Upcoming Multe Logic (ISO dates sort natively)
+  const maxEuro = useMemo(() => {
+    if (!stats.length) return 1;
+    return Math.max(...stats.map(s => s.totalEuro), 1);
+  }, [stats]);
+
   const upcomingMulte = useMemo(() => {
     return finesInstances
       .filter(f => f.status === 'Pending')
@@ -129,12 +128,26 @@ export const BasketballTracker = () => {
       .slice(0, 5);
   }, [finesInstances, playersData, multeTypesData]);
 
-  // --- LOADING & ERROR STATES ---
+  // Group legend by price type
+  const legendGroups = useMemo(() => {
+    if (!multeTypesData.length) return [];
+    const euro = multeTypesData.filter(t => typeof t.price === 'number').sort((a, b) => a.price - b.price);
+    const kasa = multeTypesData.filter(t => t.price === 'KASA');
+    const merenda = multeTypesData.filter(t => t.price === 'MERENDA');
+    return [
+      { label: 'Multe in Euro', icon: '💶', items: euro, type: 'euro' },
+      { label: 'Kasa', icon: '🍺', items: kasa, type: 'kasa' },
+      { label: 'Merenda', icon: '🍕', items: merenda, type: 'merenda' },
+    ];
+  }, [multeTypesData]);
 
   if (isLoading) {
     return (
       <div className="app-container">
-        <h1 className="app-title">Multe Sokol 🏀</h1>
+        <header className="app-header">
+          <div className="app-logo">S</div>
+          <h1 className="app-title">Multe Sokol</h1>
+        </header>
         <div className="section" style={{ textAlign: 'center', padding: '60px 25px' }}>
           <div className="loading-spinner"></div>
           <p style={{ color: 'var(--team-text-grey)', marginTop: '15px' }}>Caricamento dati...</p>
@@ -146,7 +159,10 @@ export const BasketballTracker = () => {
   if (error) {
     return (
       <div className="app-container">
-        <h1 className="app-title">Multe Sokol 🏀</h1>
+        <header className="app-header">
+          <div className="app-logo">S</div>
+          <h1 className="app-title">Multe Sokol</h1>
+        </header>
         <div className="section" style={{ textAlign: 'center', padding: '40px 25px' }}>
           <p style={{ color: 'var(--team-red)', fontWeight: 700, fontSize: '1.1em' }}>
             Errore nel caricamento dei dati
@@ -159,8 +175,6 @@ export const BasketballTracker = () => {
       </div>
     );
   }
-
-  // --- RENDER HELPERS ---
 
   if (currentPage === 'all-fines') {
     return <FinesListPage
@@ -187,48 +201,46 @@ export const BasketballTracker = () => {
     return <FreeThrowGame navigate={navigate} />;
   }
 
-  // Split stats: top 3 for podium, rest for grid
   const podiumStats = stats.slice(0, 3);
   const gridStats = stats.slice(3);
-
-  // Find MVP stat for display in totals
   const mvpStat = mvpId ? stats.find(s => s.player.id === mvpId) : null;
+  const totalPending = stats.reduce((acc, s) => acc + s.pending, 0);
 
   return (
     <div className="app-container">
-      <h1 className="app-title">Multe Sokol 🏀</h1>
+      <header className="app-header">
+        <div className="app-logo">S</div>
+        <div>
+          <h1 className="app-title">Multe Sokol</h1>
+          <p className="app-subtitle">Sistema multe stagione 2024/25</p>
+        </div>
+      </header>
 
       {/* Upcoming Section */}
       {upcomingMulte.length > 0 && (
         <div className="upcoming-multe">
-          <h3>Najstarejši recupero</h3>
+          <h3>
+            <span className="section-icon">🔥</span>
+            Da recuperare
+          </h3>
           <div className="upcoming-multe-list">
             {upcomingMulte.map(f => {
               const fineDate = new Date(f.date);
               const today = new Date();
               const diffTime = today - fineDate;
               const daysPassed = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
               const initials = (f.player.name[0] + f.player.surname[0]).toUpperCase();
 
               return (
                 <div key={f.id} className="upcoming-multa-item">
-                  <div className="player-avatar">
-                    {initials}
-                  </div>
-
+                  <div className="player-avatar">{initials}</div>
                   <div className="upcoming-info">
                      <div className="upcoming-player">{f.player.name} {f.player.surname}</div>
                      <div className="upcoming-desc">{f.type.name}</div>
                   </div>
-
                   <div className="upcoming-badges-container">
-                    <div className="days-overdue-badge">
-                      +{daysPassed} dni
-                    </div>
-                    <div className="upcoming-date-badge">
-                      {formatDate(f.date)}
-                    </div>
+                    <div className="days-overdue-badge">+{daysPassed} dni</div>
+                    <div className="upcoming-date-badge">{formatDate(f.date)}</div>
                   </div>
                 </div>
               );
@@ -237,117 +249,182 @@ export const BasketballTracker = () => {
         </div>
       )}
 
-      {/* Main Stats Grid */}
+      {/* Team Totals - Hero Card */}
+      <div className="stats-total">
+        <div className="stats-total-inner">
+          <div className="stats-total-left">
+            <h3>Totale Squadra</h3>
+            <div className="stats-total-numbers">
+              <div className="stat-pill">
+                <span className="stat-pill-label">Multe</span>
+                <span className="stat-pill-value">{finesInstances.length}</span>
+              </div>
+              <div className="stat-pill">
+                <span className="stat-pill-label">Euro</span>
+                <span className="stat-pill-value">{stats.reduce((acc, s) => acc + s.totalEuro, 0)}€</span>
+              </div>
+              {totalPending > 0 && (
+                <div className="stat-pill stat-pill-pending">
+                  <span className="stat-pill-label">In sospeso</span>
+                  <span className="stat-pill-value">{totalPending}</span>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="stats-total-right">
+            {mvpStat && (
+              <div className="sponsor-badge">
+                <span className="sponsor-label">💰 Sponsor Ufficiale</span>
+                <span className="sponsor-name">{mvpStat.player.name} {mvpStat.player.surname}</span>
+                <span className="sponsor-amount">{mvpStat.totalEuro}€</span>
+              </div>
+            )}
+            <button onClick={() => navigate('all-fines')} className="btn btn-ghost">
+              Vedi tutte le multe →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Classifica Section */}
       <div className="section">
-        <h2 className="section-title section-title-purple">Classifica Multe</h2>
+        <h2 className="section-title">
+          <span className="section-icon">🏆</span>
+          Classifica Multe
+        </h2>
 
         {/* Hall of Shame Podium */}
         {podiumStats.length >= 3 && (
           <div className="podium">
-            {/* Render in order: 2nd | 1st | 3rd */}
             {[1, 0, 2].map(rank => {
               const stat = podiumStats[rank];
               const { emoji, title } = PODIUM_TITLES[rank];
               return (
                 <div
                   key={stat.player.id}
-                  className={`podium-card podium-rank-${rank + 1}`}
+                  className={`podium-slot podium-slot-${rank + 1}`}
                   onClick={() => navigate('player', stat.player.id)}
                 >
-                  <div className="podium-emoji">{emoji}</div>
-                  <div className="podium-name">{stat.player.name} {stat.player.surname}</div>
-                  <div className="podium-title">{title}</div>
-                  <div className="podium-stats">
-                    <span>{stat.totalCount} multe</span>
-                    <span>{stat.totalEuro}€</span>
+                  <div className="podium-card">
+                    <div className="podium-emoji">{emoji}</div>
+                    <div className="podium-name">{stat.player.name} {stat.player.surname}</div>
+                    <div className="podium-title">{title}</div>
+                    <div className="podium-stats">
+                      <span>{stat.totalCount} multe</span>
+                      <span className="podium-stats-sep">·</span>
+                      <span>{stat.totalEuro}€</span>
+                    </div>
+                    {stat.pending > 0 && (
+                      <div className="podium-pending">⚠ {stat.pending} in sospeso</div>
+                    )}
                   </div>
-                  {stat.pending > 0 && (
-                    <div className="podium-pending">⚠️ {stat.pending} Pending</div>
-                  )}
+                  <div className="podium-pedestal">
+                    <span className="podium-rank">{rank + 1}</span>
+                  </div>
                 </div>
               );
             })}
           </div>
         )}
 
+        {/* Player Cards Grid */}
         <div className="stats-grid">
-           {/* Total Summary Block */}
-           <div className="stats-total">
-             <h3>Totale Squadra</h3>
-             <div className="stats-total-grid">
-               <div><strong>Multe:</strong> {finesInstances.length}</div>
-               <div><strong>Euro:</strong> {stats.reduce((acc, s) => acc + s.totalEuro, 0)}€</div>
-               {mvpStat && (
-                 <div className="stats-total-mvp">
-                   <strong>💰 Sponsor:</strong> {mvpStat.player.name} {mvpStat.player.surname} ({mvpStat.totalEuro}€)
+           {gridStats.map(stat => {
+             const barWidth = maxEuro > 0 ? (stat.totalEuro / maxEuro) * 100 : 0;
+             const severity = stat.totalCount >= 12 ? 'high' : stat.totalCount >= 6 ? 'mid' : 'low';
+             return (
+               <div
+                 key={stat.player.id}
+                 className={`player-card severity-${severity} ${stat.player.id === mvpId ? 'player-card-mvp' : ''}`}
+                 onClick={() => navigate('player', stat.player.id)}
+               >
+                 <div className="player-card-header">
+                   <strong>{stat.player.name} {stat.player.surname}</strong>
+                   {stat.player.id === mvpId && (
+                     <span className="badge badge-mvp">Sponsor</span>
+                   )}
                  </div>
-               )}
-               <button onClick={() => navigate('all-fines')} className="btn" style={{marginTop: 5, width: '100%'}}>Vedi Tutte</button>
-             </div>
-           </div>
 
-           {/* Player Cards */}
-           {gridStats.map(stat => (
-             <div
-               key={stat.player.id}
-               className={`player-card ${stat.player.id === mvpId ? 'player-card-mvp' : ''}`}
-               onClick={() => navigate('player', stat.player.id)}
-             >
-               <div style={{display:'flex', justifyContent:'space-between', alignItems: 'center'}}>
-                 <strong>{stat.player.name} {stat.player.surname}</strong>
-                 {stat.player.id === mvpId ? (
-                   <span className="badge badge-mvp">Sponsor Ufficiale</span>
-                 ) : (
-                   <span style={{fontSize: '1.5em'}}>🏀</span>
+                 <div className="player-card-stats">
+                   <div className="player-stat-row">
+                     <span className="player-stat-label">Multe</span>
+                     <span className="player-stat-value">{stat.totalCount}</span>
+                   </div>
+                   <div className="player-stat-row">
+                     <span className="player-stat-label">Euro</span>
+                     <span className="player-stat-value">{stat.totalEuro}€</span>
+                   </div>
+                   {stat.kasa > 0 && (
+                     <div className="player-stat-row">
+                       <span className="player-stat-label">Kasa</span>
+                       <span className="player-stat-value">{stat.kasa}</span>
+                     </div>
+                   )}
+                   {stat.merenda > 0 && (
+                     <div className="player-stat-row">
+                       <span className="player-stat-label">Merenda</span>
+                       <span className="player-stat-value">{stat.merenda}</span>
+                     </div>
+                   )}
+                 </div>
+
+                 <div className="player-card-bar">
+                   <div className="player-card-bar-fill" style={{ width: `${barWidth}%` }}></div>
+                 </div>
+
+                 {stat.pending > 0 && (
+                   <div className="player-card-pending">⚠ {stat.pending} in sospeso</div>
                  )}
                </div>
-               <hr style={{borderColor: 'var(--team-grey-light)'}}/>
-               <div>Total: <strong>{stat.totalCount}</strong></div>
-               <div>Euro: <strong>{stat.totalEuro}€</strong></div>
-               {stat.kasa > 0 && <div>Kasa: {stat.kasa}</div>}
-               {stat.merenda > 0 && <div>Merenda: {stat.merenda}</div>}
-               {stat.pending > 0 && <div style={{color: 'var(--team-red)', fontWeight:'bold'}}>⚠️ {stat.pending} Pending</div>}
-             </div>
-           ))}
+             );
+           })}
         </div>
 
         {/* Minigame Button */}
-        <div style={{textAlign: 'center', marginTop: '25px'}}>
+        <div className="minigame-cta">
           <button className="btn btn-minigame" onClick={() => navigate('minigame')}>
             🏀 0/2 Liberi Simulator
           </button>
+          <span className="minigame-cta-sub">Prova la tua mira!</span>
         </div>
       </div>
 
       {/* Legend Section */}
       <div className="section">
-        <h2 className="section-title section-title-orange">Legenda Multe</h2>
-        <div className="legend-grid">
-          {multeTypesData.map(type => (
-            <div key={type.id} className="legend-item">
-              <div className="legend-info">
-                <span className="legend-id">#{type.id}</span>
-                <span className="legend-name">{type.name}</span>
-              </div>
-              <div>
-                {typeof type.price === 'number' ? (
-                  <strong style={{color: 'var(--team-blue-dark)'}}>{type.price}€</strong>
-                ) : type.price === 'KASA' ? (
-                  <span className="badge badge-kasa">KASA</span>
-                ) : (
-                  <span className="badge badge-merenda">MERENDA</span>
-                )}
-              </div>
+        <h2 className="section-title">
+          <span className="section-icon">📋</span>
+          Legenda Multe
+        </h2>
+        {legendGroups.map(group => (
+          <div key={group.type} className="legend-group">
+            <h4 className={`legend-group-title legend-group-${group.type}`}>
+              {group.icon} {group.label}
+            </h4>
+            <div className="legend-grid">
+              {group.items.map(type => (
+                <div key={type.id} className="legend-item">
+                  <span className="legend-name">{type.name}</span>
+                  <div>
+                    {typeof type.price === 'number' ? (
+                      <span className="legend-price">{type.price}€</span>
+                    ) : type.price === 'KASA' ? (
+                      <span className="badge badge-kasa">KASA</span>
+                    ) : (
+                      <span className="badge badge-merenda">MERENDA</span>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
         <div className="legend-notes">
           <div><strong>💡 Note:</strong></div>
-          <div style={{display:'flex', alignItems:'center', gap:'10px'}}>
+          <div className="legend-note-row">
             <span className="badge badge-kasa">KASA</span>
             <span>= Kasa bjre</span>
           </div>
-          <div style={{display:'flex', alignItems:'center', gap:'10px'}}>
+          <div className="legend-note-row">
             <span className="badge badge-merenda">MERENDA</span>
             <span>= Kasa + Jedača</span>
           </div>
@@ -388,25 +465,47 @@ const FinesListPage = ({ fines, players, types, title, isPlayerView, navigate })
   return (
     <div className="app-container">
       <div className="main-controls">
-        <button className="back-button" onClick={() => navigate('home')}>← Back</button>
+        <button className="back-button" onClick={() => navigate('home')}>← Indietro</button>
       </div>
-      <h2 className="app-title" style={{fontSize: '2em'}}>{title}</h2>
+      <h2 className="app-title" style={{fontSize: '1.8em'}}>{title}</h2>
 
       <div className="filters-container">
         <input
           type="text"
           className="search-input"
-          placeholder="Cerca..."
+          placeholder="Cerca giocatore o multa..."
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
         <select className="filter-select" value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
           <option value="All">Tutti</option>
-          <option value="Pending">Pending</option>
-          <option value="Validated">Validated</option>
+          <option value="Pending">In sospeso</option>
+          <option value="Validated">Confermato</option>
         </select>
       </div>
 
+      {/* Mobile card view */}
+      <div className="fines-cards-mobile">
+        {filtered.map((f) => (
+          <div key={f.id} className={`fine-card-mobile ${f.status === 'Pending' ? 'fine-card-pending' : ''}`}>
+            <div className="fine-card-top">
+              {!isPlayerView && <strong>{f.player.surname} {f.player.name}</strong>}
+              {isPlayerView && <strong>{f.type.name}</strong>}
+            </div>
+            {!isPlayerView && <div className="fine-card-type">{f.type.name}</div>}
+            {f.desc && <div className="fine-card-desc">{f.desc}</div>}
+            <div className="fine-card-bottom">
+              <span className="fine-card-date">{formatDate(f.date)}</span>
+              <div className="fine-card-meta">
+                {renderPrice(f.type.price)}
+                <span className={`badge badge-${f.status === 'Pending' ? 'kasa' : 'validated'}`}>{f.status === 'Pending' ? 'In sospeso' : 'Confermato'}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop table view */}
       <div className="table-container">
         <table className="multe-history-table">
           <thead>
@@ -416,7 +515,7 @@ const FinesListPage = ({ fines, players, types, title, isPlayerView, navigate })
               <th>Multa</th>
               <th>Sanzione</th>
               <th>Descrizione</th>
-              <th>Status</th>
+              <th>Stato</th>
             </tr>
           </thead>
           <tbody>
@@ -427,26 +526,32 @@ const FinesListPage = ({ fines, players, types, title, isPlayerView, navigate })
                 <td>{f.type.name}</td>
                 <td>{renderPrice(f.type.price)}</td>
                 <td>{f.desc}</td>
-                <td><span className={`badge badge-${f.status === 'Pending' ? 'kasa' : 'validated'}`}>{f.status}</span></td>
+                <td><span className={`badge badge-${f.status === 'Pending' ? 'kasa' : 'validated'}`}>{f.status === 'Pending' ? 'In sospeso' : 'Confermato'}</span></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {filtered.length === 0 && (
+        <div className="empty-state">
+          <span className="empty-state-icon">🔍</span>
+          <p>Nessuna multa trovata</p>
+        </div>
+      )}
     </div>
   );
 };
 
 // --- FREE THROW MINIGAME ---
 const FreeThrowGame = ({ navigate }) => {
-  const [phase, setPhase] = useState('ready'); // ready | shooting | result
+  const [phase, setPhase] = useState('ready');
   const [shots, setShots] = useState([]);
   const [cursorPos, setCursorPos] = useState(50);
   const animRef = useRef(null);
   const posRef = useRef(50);
   const dirRef = useRef(1);
 
-  // Animate cursor back and forth
   useEffect(() => {
     if (phase !== 'shooting') return;
 
@@ -491,7 +596,6 @@ const FreeThrowGame = ({ navigate }) => {
       cancelAnimationFrame(animRef.current);
       setPhase('result');
     } else {
-      // Instantly reset cursor for second shot — no pause
       posRef.current = 0;
       dirRef.current = 1;
       setCursorPos(0);
@@ -512,78 +616,101 @@ const FreeThrowGame = ({ navigate }) => {
   return (
     <div className="app-container">
       <div className="main-controls">
-        <button className="back-button" onClick={() => navigate('home')}>← Back</button>
+        <button className="back-button" onClick={() => navigate('home')}>← Indietro</button>
       </div>
-      <h2 className="app-title" style={{fontSize: '2em'}}>🏀 0/2 Liberi Simulator</h2>
 
-      <div className="section minigame-container">
-        {phase === 'ready' && shots.length === 0 && (
-          <div className="minigame-intro">
-            <p>Hai 2 tiri liberi. Ferma il cursore nella zona verde per segnare!</p>
-            <button className="btn btn-shoot" onClick={startGame}>Tira!</button>
-          </div>
-        )}
+      <div className="minigame-page">
+        <div className="minigame-court">
+          <div className="court-circle"></div>
+          <div className="court-line"></div>
+          <div className="court-ft-line"></div>
+        </div>
 
-        {(phase === 'shooting' || (phase === 'ready' && shots.length > 0)) && (
-          <div className="minigame-play">
-            <div className="shot-label">Tiro {shots.length + 1} di 2</div>
+        <h2 className="minigame-title">0/2 Liberi Simulator</h2>
+        <p className="minigame-subtitle">La simulazione definitiva del tiro libero</p>
 
-            <div className="shot-bar-container">
-              <div className="shot-bar">
-                <div className="shot-zone zone-red-left"></div>
-                <div className="shot-zone zone-yellow-left"></div>
-                <div className="shot-zone zone-green"></div>
-                <div className="shot-zone zone-yellow-right"></div>
-                <div className="shot-zone zone-red-right"></div>
-                {phase === 'shooting' && (
-                  <div className="shot-cursor" style={{ left: `${cursorPos}%` }}></div>
-                )}
-                {/* Show previous shot markers */}
+        <div className="section minigame-container">
+          {phase === 'ready' && shots.length === 0 && (
+            <div className="minigame-intro">
+              <div className="minigame-intro-icon">🏀</div>
+              <p>Hai <strong>2 tiri liberi</strong>. Ferma il cursore nella zona verde per segnare!</p>
+              <div className="minigame-rules">
+                <div className="minigame-rule">
+                  <span className="rule-dot rule-dot-green"></span>
+                  <span>Swish = Canestro</span>
+                </div>
+                <div className="minigame-rule">
+                  <span className="rule-dot rule-dot-yellow"></span>
+                  <span>Brick = Ferro</span>
+                </div>
+                <div className="minigame-rule">
+                  <span className="rule-dot rule-dot-red"></span>
+                  <span>Airball = Multa 2€</span>
+                </div>
+              </div>
+              <button className="btn btn-shoot" onClick={startGame}>Tira!</button>
+            </div>
+          )}
+
+          {(phase === 'shooting' || (phase === 'ready' && shots.length > 0)) && (
+            <div className="minigame-play">
+              <div className="shot-label">Tiro {shots.length + 1} di 2</div>
+
+              <div className="shot-bar-container">
+                <div className="shot-bar">
+                  <div className="shot-zone zone-red-left"></div>
+                  <div className="shot-zone zone-yellow-left"></div>
+                  <div className="shot-zone zone-green"></div>
+                  <div className="shot-zone zone-yellow-right"></div>
+                  <div className="shot-zone zone-red-right"></div>
+                  {phase === 'shooting' && (
+                    <div className="shot-cursor" style={{ left: `${cursorPos}%` }}></div>
+                  )}
+                  {shots.map((s, i) => (
+                    <div
+                      key={i}
+                      className={`shot-marker shot-marker-${s.result}`}
+                      style={{ left: `${s.pos}%` }}
+                    >
+                      {s.result === 'swish' ? '✓' : '✗'}
+                    </div>
+                  ))}
+                </div>
+                <div className="shot-bar-labels">
+                  <span>Airball</span>
+                  <span>Brick</span>
+                  <span>Swish</span>
+                  <span>Brick</span>
+                  <span>Airball</span>
+                </div>
+              </div>
+
+              {phase === 'shooting' && (
+                <button className="btn btn-shoot" onClick={shoot}>Tira!</button>
+              )}
+            </div>
+          )}
+
+          {phase === 'result' && (
+            <div className={`minigame-result ${getResultMessage().className}`}>
+              <div className="result-text">{getResultMessage().text}</div>
+              <div className="result-sub">{getResultMessage().sub}</div>
+
+              <div className="result-recap">
                 {shots.map((s, i) => (
-                  <div
-                    key={i}
-                    className={`shot-marker shot-marker-${s.result}`}
-                    style={{ left: `${s.pos}%` }}
-                  >
-                    {s.result === 'swish' ? '✓' : '✗'}
+                  <div key={i} className={`recap-shot recap-${s.result}`}>
+                    Tiro {i + 1}: {s.result === 'swish' ? 'Canestro!' : s.result === 'airball' ? 'Airball!' : 'Ferro!'}
                   </div>
                 ))}
               </div>
-              <div className="shot-bar-labels">
-                <span>Airball</span>
-                <span>Brick</span>
-                <span>Swish</span>
-                <span>Brick</span>
-                <span>Airball</span>
+
+              <div className="result-buttons">
+                <button className="btn btn-shoot" onClick={startGame}>Rigioca</button>
+                <button className="btn" onClick={() => navigate('home')}>Home</button>
               </div>
             </div>
-
-            {phase === 'shooting' && (
-              <button className="btn btn-shoot" onClick={shoot}>Tira!</button>
-            )}
-          </div>
-        )}
-
-        {phase === 'result' && (
-          <div className={`minigame-result ${getResultMessage().className}`}>
-            <div className="result-text">{getResultMessage().text}</div>
-            <div className="result-sub">{getResultMessage().sub}</div>
-
-            {/* Shot recap */}
-            <div className="result-recap">
-              {shots.map((s, i) => (
-                <div key={i} className={`recap-shot recap-${s.result}`}>
-                  Tiro {i + 1}: {s.result === 'swish' ? 'Canestro!' : s.result === 'airball' ? 'Airball!' : 'Ferro!'}
-                </div>
-              ))}
-            </div>
-
-            <div className="result-buttons">
-              <button className="btn btn-shoot" onClick={startGame}>Rigioca</button>
-              <button className="btn" onClick={() => navigate('home')}>Home</button>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
