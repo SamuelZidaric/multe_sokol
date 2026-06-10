@@ -836,7 +836,7 @@
     "player_id": 29,
     "multa_id": 0,
     "date": "2026-01-06",
-    "status": "Pending",
+    "status": "Validated",
     "desc": "telefono"
   },
   {
@@ -852,7 +852,7 @@
     "player_id": 29,
     "multa_id": 4,
     "date": "2026-01-09",
-    "status": "Pending",
+    "status": "Validated",
     "desc": "indumento dimenticato"
   },
   {
@@ -860,7 +860,7 @@
     "player_id": 29,
     "multa_id": 4,
     "date": "2026-01-09",
-    "status": "Pending",
+    "status": "Validated",
     "desc": "indumento dimenticato"
   },
   {
@@ -1412,12 +1412,12 @@
     "player_id": 5,
     "multa_id": 23,
     "date": "2026-03-09",
-    "status": "Pending",
+    "status": "Validated",
     "desc": "BD"
   },
   {
     "id": 181,
-    "player_id": 9,
+    "player_id": 10,
     "multa_id": 23,
     "date": "2026-03-27",
     "status": "Validated",
@@ -1428,7 +1428,279 @@
     "player_id": 29,
     "multa_id": 4,
     "date": "2026-03-27",
-    "status": "Pending",
+    "status": "Validated",
     "desc": "3€ shampoo dimenticato"
+  },
+  {
+    "id": 183,
+    "player_id": 24,
+    "multa_id": 0,
+    "date": "2026-03-27",
+    "status": "Pending",
+    "desc": "telefono"
+  },
+  {
+    "id": 184,
+    "player_id": 5,
+    "multa_id": 6,
+    "date": "2026-03-27",
+    "status": "Pending",
+    "desc": "zgresen zicer"
+  },
+  {
+    "id": 185,
+    "player_id": 5,
+    "multa_id": 18,
+    "date": "2026-03-27",
+    "status": "Pending",
+    "desc": "record punti"
+  },
+  {
+    "id": 186,
+    "player_id": 3,
+    "multa_id": 1,
+    "date": "2026-03-27",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 187,
+    "player_id": 9,
+    "multa_id": 1,
+    "date": "2026-03-27",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 188,
+    "player_id": 28,
+    "multa_id": 21,
+    "date": "2026-03-31",
+    "status": "Pending",
+    "desc": "Fine Master"
+  },
+  {
+    "id": 189,
+    "player_id": 29,
+    "multa_id": 4,
+    "date": "2026-04-07",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 190,
+    "player_id": 29,
+    "multa_id": 21,
+    "date": "2026-04-08",
+    "status": "Pending",
+    "desc": "First Panca"
+  },
+  {
+    "id": 191,
+    "player_id": 30,
+    "multa_id": 6,
+    "date": "2026-04-09",
+    "status": "Pending",
+    "desc": "zgresen zicer"
+  },
+  {
+    "id": 192,
+    "player_id": 21,
+    "multa_id": 6,
+    "date": "2026-04-09",
+    "status": "Pending",
+    "desc": "zgresen zicer"
+  },
+  {
+    "id": 193,
+    "player_id": 29,
+    "multa_id": 0,
+    "date": "2026-04-09",
+    "status": "Validated",
+    "desc": "telefono (2a, pagata)"
+  },
+  {
+    "id": 194,
+    "player_id": 30,
+    "multa_id": 1,
+    "date": "2026-04-21",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 195,
+    "player_id": 5,
+    "multa_id": 1,
+    "date": "2026-04-21",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 196,
+    "player_id": 2,
+    "multa_id": 11,
+    "date": "2026-04-21",
+    "status": "Pending",
+    "desc": "dietro schiena"
+  },
+  {
+    "id": 197,
+    "player_id": 31,
+    "multa_id": 17,
+    "date": "2026-04-21",
+    "status": "Pending",
+    "desc": "documento dimenticato"
+  },
+  {
+    "id": 198,
+    "player_id": 9,
+    "multa_id": 17,
+    "date": "2026-04-21",
+    "status": "Pending",
+    "desc": "documento dimenticato"
+  },
+  {
+    "id": 199,
+    "player_id": 17,
+    "multa_id": 4,
+    "date": "2026-04-21",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 200,
+    "player_id": 22,
+    "multa_id": 23,
+    "date": "2026-04-23",
+    "status": "Validated",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 201,
+    "player_id": 30,
+    "multa_id": 4,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 202,
+    "player_id": 16,
+    "multa_id": 4,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 203,
+    "player_id": 16,
+    "multa_id": 4,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 204,
+    "player_id": 28,
+    "multa_id": 1,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 205,
+    "player_id": 5,
+    "multa_id": 1,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 206,
+    "player_id": 5,
+    "multa_id": 1,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "0/2"
+  },
+  {
+    "id": 207,
+    "player_id": 18,
+    "multa_id": 7,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "tecnico"
+  },
+  {
+    "id": 208,
+    "player_id": 16,
+    "multa_id": 7,
+    "date": "2026-04-28",
+    "status": "Pending",
+    "desc": "tecnico"
+  },
+  {
+    "id": 209,
+    "player_id": 25,
+    "multa_id": 23,
+    "date": "2026-05-01",
+    "status": "Pending",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 210,
+    "player_id": 7,
+    "multa_id": 23,
+    "date": "2026-05-05",
+    "status": "Validated",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 211,
+    "player_id": 18,
+    "multa_id": 23,
+    "date": "2026-05-14",
+    "status": "Validated",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 212,
+    "player_id": 2,
+    "multa_id": 23,
+    "date": "2026-05-17",
+    "status": "Pending",
+    "desc": "Rojstni dan"
+  },
+  {
+    "id": 213,
+    "player_id": 9,
+    "multa_id": 4,
+    "date": "2026-06-03",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 214,
+    "player_id": 2,
+    "multa_id": 4,
+    "date": "2026-06-09",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 215,
+    "player_id": 2,
+    "multa_id": 4,
+    "date": "2026-06-09",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
+  },
+  {
+    "id": 216,
+    "player_id": 6,
+    "multa_id": 4,
+    "date": "2026-06-09",
+    "status": "Pending",
+    "desc": "indumento dimenticato"
   }
 ]
