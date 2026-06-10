@@ -145,7 +145,7 @@ export const BasketballTracker = () => {
     return (
       <div className="app-container">
         <header className="app-header">
-          <div className="app-logo">S</div>
+          <div className="app-logo">🦅</div>
           <h1 className="app-title">Multe Sokol</h1>
         </header>
         <div className="section" style={{ textAlign: 'center', padding: '60px 25px' }}>
@@ -160,7 +160,7 @@ export const BasketballTracker = () => {
     return (
       <div className="app-container">
         <header className="app-header">
-          <div className="app-logo">S</div>
+          <div className="app-logo">🦅</div>
           <h1 className="app-title">Multe Sokol</h1>
         </header>
         <div className="section" style={{ textAlign: 'center', padding: '40px 25px' }}>
@@ -209,10 +209,10 @@ export const BasketballTracker = () => {
   return (
     <div className="app-container">
       <header className="app-header">
-        <div className="app-logo">S</div>
+        <div className="app-logo">🦅</div>
         <div>
           <h1 className="app-title">Multe Sokol</h1>
-          <p className="app-subtitle">Sistema multe stagione 2024/25</p>
+          <p className="app-subtitle">Hall of Shame · Stagione 2025/26</p>
         </div>
       </header>
 
@@ -222,6 +222,7 @@ export const BasketballTracker = () => {
           <h3>
             <span className="section-icon">🔥</span>
             Da recuperare
+            <span className="count-chip">{totalPending}</span>
           </h3>
           <div className="upcoming-multe-list">
             {upcomingMulte.map(f => {
@@ -308,6 +309,9 @@ export const BasketballTracker = () => {
                   <div className="podium-card">
                     <div className="podium-emoji">{emoji}</div>
                     <div className="podium-name">{stat.player.name} {stat.player.surname}</div>
+                    {stat.player.alias !== 'ND' && (
+                      <div className="podium-alias">"{stat.player.alias}"</div>
+                    )}
                     <div className="podium-title">{title}</div>
                     <div className="podium-stats">
                       <span>{stat.totalCount} multe</span>
@@ -332,6 +336,7 @@ export const BasketballTracker = () => {
            {gridStats.map(stat => {
              const barWidth = maxCount > 0 ? (stat.totalCount / maxCount) * 100 : 0;
              const severity = stat.totalCount >= 12 ? 'high' : stat.totalCount >= 6 ? 'mid' : 'low';
+             const initials = (stat.player.name[0] + stat.player.surname[0]).toUpperCase();
              return (
                <div
                  key={stat.player.id}
@@ -339,17 +344,25 @@ export const BasketballTracker = () => {
                  onClick={() => navigate('player', stat.player.id)}
                >
                  <div className="player-card-header">
-                   <strong>{stat.player.name} {stat.player.surname}</strong>
-                   {stat.player.id === mvpId && (
-                     <span className="badge badge-mvp">Sponsor</span>
-                   )}
+                   <div className="player-card-id">
+                     <div className="player-avatar player-avatar-sm">{initials}</div>
+                     <div className="player-card-names">
+                       <strong>{stat.player.name} {stat.player.surname}</strong>
+                       {stat.player.alias !== 'ND' && (
+                         <span className="player-card-alias">"{stat.player.alias}"</span>
+                       )}
+                       {stat.player.id === mvpId && (
+                         <span className="badge badge-mvp">💰 Sponsor</span>
+                       )}
+                     </div>
+                   </div>
+                   <div className="player-card-count">
+                     <span className="player-card-count-num">{stat.totalCount}</span>
+                     <span className="player-card-count-label">multe</span>
+                   </div>
                  </div>
 
                  <div className="player-card-stats">
-                   <div className="player-stat-row">
-                     <span className="player-stat-label">Multe</span>
-                     <span className="player-stat-value">{stat.totalCount}</span>
-                   </div>
                    <div className="player-stat-row">
                      <span className="player-stat-label">Euro</span>
                      <span className="player-stat-value">{stat.totalEuro}€</span>
